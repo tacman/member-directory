@@ -73,5 +73,6 @@
 
 {% block javascripts %}
 {{ parent() }}
+  {{ importmap('map') }}
 {{ encore_entry_script_tags('map') }}
 {% endblock %}

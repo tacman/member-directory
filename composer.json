@@ -1,8 +1,10 @@
 {
     "type": "project",
     "license": "MIT",
+    "minimum-stability": "beta",
+    "prefer-stable": false,
     "require": {
-        "php": ">=8.1.0",
+        "php": ">=8.2",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "beberlei/doctrineextensions": "^1.2",
@@ -27,6 +29,7 @@
         "stof/doctrine-extensions-bundle": "^1.7",
         "symfony/apache-pack": "^1.0",
         "symfony/asset": "^6.3",
+        "symfony/asset-mapper": "^6.4",
         "symfony/cache": "^6.3",
         "symfony/console": "^6.3",
         "symfony/dotenv": "^6.3",
@@ -49,7 +52,6 @@
         "symfony/twig-bundle": "^6.3",
         "symfony/twilio-notifier": "^6.3",
         "symfony/validator": "^6.3",
-        "symfony/webpack-encore-bundle": "^2.0",
         "symfony/yaml": "^6.3",
         "symfonycasts/reset-password-bundle": "^1.17",
         "twig/cssinliner-extra": "^3.6",
@@ -61,9 +63,6 @@
         "twilio/sdk": "^6.21"
     },
     "config": {
-        "platform": {
-          "php": "8.1.10"
-        },
         "preferred-install": {
             "*": "dist"
         },
@@ -110,7 +109,7 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "^6.3"
+            "require": "^6.4"
         }
     },
     "require-dev": {
