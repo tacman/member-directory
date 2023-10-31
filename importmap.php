@@ -39,4 +39,13 @@ return [
         'version' => '1.9.4',
         'type' => 'css',
     ],
+    'gravatar' => [
+        'version' => '1.8.2',
+    ],
+    'blueimp-md5' => [
+        'version' => '2.19.0',
+    ],
+    'hotkeys-js' => [
+        'version' => '3.12.0',
+    ],
 ];
