@@ -45,9 +45,6 @@
     "doctrine/common": {
         "version": "v2.10.0"
     },
-    "doctrine/data-fixtures": {
-        "version": "v1.3.1"
-    },
     "doctrine/dbal": {
         "version": "v2.9.2"
     },
@@ -69,7 +66,7 @@
         ]
     },
     "doctrine/doctrine-fixtures-bundle": {
-        "version": "3.4",
+        "version": "4.0",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
@@ -346,6 +343,32 @@
         },
         "files": [
             "config/packages/stof_doctrine_extensions.yaml"
+        ]
+    },
+    "survos/command-bundle": {
+        "version": "1.5",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "1.5",
+            "ref": "31483097a99800fa6b049af3c61ad0ebf5727751"
+        },
+        "files": [
+            "config/packages/survos_command.yaml",
+            "config/routes/survos_command.php"
+        ]
+    },
+    "survos/crawler-bundle": {
+        "version": "2.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "1.5",
+            "ref": "d98d3a77f60f60a5a1fc49f2fb151e43abb54dfc"
+        },
+        "files": [
+            "config/packages/survos_crawler.yaml",
+            "config/routes/survos_crawler.php"
         ]
     },
     "symfony/apache-pack": {

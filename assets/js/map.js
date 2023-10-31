@@ -1,6 +1,13 @@
 /* jshint esversion: 6 */
 /* globals Routing, $ */
 
+// import './styles/app.css'
+import 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css'
+
+import $ from 'jquery';
+// export for others scripts to use
+window.$ = $;
 
 import 'leaflet/dist/leaflet.min.css';
 // import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css'; // Re-uses images from ~leaflet package
@@ -8,9 +15,15 @@ import * as L from 'leaflet';
 // import 'leaflet-defaulticon-compatibility';
 
 // Routing
-const routes = require('../js/fos_js_routes.json');
-import Routing from '../../vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router.min.js';
-Routing.setRoutingData(routes);
+import Routing from 'fos-routing';
+import RoutingData from '../../js/fos_js_routes.js';
+Routing.setData(RoutingData);
+console.log(Routing.getHost());
+let path = Routing.generate('lost');
+
+// const routes = require('../js/fos_js_routes.json');
+// import Routing from '../../vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router.min.js';
+// Routing.setRoutingData(routes);
 
 var sanitizeHTML = function (str) {
   if (!str) { return ''; }
@@ -19,10 +32,12 @@ var sanitizeHTML = function (str) {
 	});
 };
 
+// iconUrl:       require('../images/marker-icon.svg'),
+//   shadowUrl:     require('../images/marker-shadow.png'),
+
 var markerIcon = L.Icon.extend({
   options: {
-    iconUrl:       require('../images/marker-icon.svg'),
-    shadowUrl:     require('../images/marker-shadow.png'),
+    iconUrl: 'https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/images/marker-icon.png',
     iconSize:    [12, 20],
     iconAnchor:  [6, 20],
     popupAnchor: [1, -16],

@@ -14,6 +14,8 @@ symfony open:local
 echo "login as admin@example.com/testing"
 ```
 
+bin/console importmap:require fos_routing --path=vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router.min.js
+
 [![Coding Standards](https://github.com/utmsigep/member-directory/actions/workflows/php-cs-fixer.yml/badge.svg)](https://github.com/utmsigep/member-directory/actions/workflows/php-cs-fixer.yml) [![CI Build and Test](https://github.com/utmsigep/member-directory/actions/workflows/ci.yml/badge.svg)](https://github.com/utmsigep/member-directory/actions/workflows/ci.yml)
 
 Member Directory is a [Symfony](https://symfony.com/) project to manage membership records. It offers automated email service subscription management, donation tracking and integrated communication logging. A suite of user roles allow administrators to delegate tasks to other users.

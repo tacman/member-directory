@@ -97,9 +97,41 @@
     {% include '_toast_template.html.twig' %}
 
     {% block javascripts %}
-            {{ importmap('app') }}
-    <script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
-    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+        {{ importmap('app') }}
+{#        {{ importmap('fos_js_routing') }}#}
+{#      <script type="module">#}
+{#        import Routing from 'fos-routing';#}
+{#        console.log(Routing);#}
+{#        import RoutingData from '../../js/fos_js_routes.js';#}
+{#        Routing.setData(RoutingData);#}
+
+{#        // const router = new Router();#}
+{#        console.log(Routing.getHost());#}
+{#        //#}
+{#        // import {Router} from 'fos_routing'#}
+{#        //#}
+{#        // const module = await import("./ass.json", {#}
+{#        //   with: { type: "json" },#}
+{#        // });#}
+{#        // import '../.././js/fos_js_routes.js';#}
+{#        // import routes from '../../web/js/fos_js_routes.json';#}
+{#        //#}
+{#        //#}
+{#        // router.setRoutingData(routes);#}
+{#        let url = Routing.generate('lost');#}
+{#        console.log(url);#}
+{#        // import './asset/'#}
+{#        // import {Routing} from 'fos_routing';#}
+{#        // // Routing.load();#}
+{#        console.log('routes loaded?')#}
+{#      </script>#}
+
+
+{#    <script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>#}
+{#    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>#}
+
+
+
     {% endblock %}
   </body>
 </html>

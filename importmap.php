@@ -22,6 +22,10 @@ return [
         'path' => './assets/js/map.js',
         'entrypoint' => true,
     ],
+    'fos_js_routing' => [
+        'path' => './assets/js/fos_js_routes.js',
+        'entrypoint' => true,
+    ],
     'bootstrap' => [
         'version' => '5.3.2',
     ],
@@ -47,5 +51,14 @@ return [
     ],
     'hotkeys-js' => [
         'version' => '3.12.0',
+    ],
+    'fos_routing_local' => [
+        'path' => './vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router.js',
+    ],
+    'fos-routing' => [
+        'version' => '0.0.6',
+    ],
+    'jquery' => [
+        'version' => '3.7.1',
     ],
 ];

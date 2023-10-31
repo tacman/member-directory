@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Repository\MemberRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -14,7 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Table]
 #[ORM\Index(columns: ['first_name', 'preferred_name', 'middle_name', 'last_name'], flags: ['fulltext'])]
-#[ORM\Entity(repositoryClass: 'App\Repository\MemberRepository')]
+#[ORM\Entity(repositoryClass: MemberRepository::class)]
 #[ORM\HasLifecycleCallbacks]
 #[UniqueEntity('localIdentifier')]
 #[UniqueEntity('externalIdentifier')]

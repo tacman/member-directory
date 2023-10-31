@@ -33,3 +33,5 @@ build/
 /public/assets/
 /assets/vendor
 ###< symfony/asset-mapper ###
+
+/public/js/fos_js_routes.js
