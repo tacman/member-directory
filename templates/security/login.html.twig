@@ -40,8 +40,9 @@
         <span>Powered by <a href="https://github.com/utmsigep/member-directory" target="_blank">Member Directory</a></span>
       </footer>
     </form>
-    <script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
-    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
-    {{ encore_entry_script_tags('app') }}
+{#    <script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>#}
+{#    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>#}
+    {{ importmap('app') }}
+{#    {{ encore_entry_script_tags('app') }}#}
   </body>
 </html>
