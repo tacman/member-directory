@@ -117,7 +117,9 @@ class DonationRepository extends ServiceEntityRepository
     public function getTotalDonationsByMonth()
     {
         return $this->createQueryBuilder('d')
-            ->select('DATE_FORMAT(d.receivedAt, \'%Y-%m-01\') AS aggregatedDate, COUNT(d) AS totalDonations, COUNT(DISTINCT d.member) AS totalDonors, SUM(d.amount) AS totalAmount, SUM(d.processingFee) AS totalProcessingFee, SUM(d.netAmount) AS totalNetAmount, d.currency')
+            // SUBSTRING(i.timestamp, 1, 10) as date,
+            ->select('SUBSTRING(d.receivedAt, 1, 10) AS aggregatedDate, COUNT(d) AS totalDonations, COUNT(DISTINCT d.member) AS totalDonors, SUM(d.amount) AS totalAmount, SUM(d.processingFee) AS totalProcessingFee, SUM(d.netAmount) AS totalNetAmount, d.currency')
+//            ->select('DATE_FORMAT(d.receivedAt, \'%Y-%m-01\') AS aggregatedDate, COUNT(d) AS totalDonations, COUNT(DISTINCT d.member) AS totalDonors, SUM(d.amount) AS totalAmount, SUM(d.processingFee) AS totalProcessingFee, SUM(d.netAmount) AS totalNetAmount, d.currency')
             ->andWhere('d.receivedAt >= :startDate')
             ->andWhere('d.receivedAt <= :endDate')
             ->setParameter('startDate', $this->startDate)
@@ -147,7 +149,7 @@ class DonationRepository extends ServiceEntityRepository
     public function getTotalDonationsByMonthForMember(Member $member)
     {
         return $this->createQueryBuilder('d')
-            ->select('DATE_FORMAT(d.receivedAt, \'%Y-%m-01\') AS aggregatedDate, COUNT(d) AS totalDonations, COUNT(DISTINCT d.member) AS totalDonors, SUM(d.amount) AS totalAmount, SUM(d.processingFee) AS totalProcessingFee, SUM(d.netAmount) AS totalNetAmount, d.currency')
+            ->select('SUBSTRING(d.receivedAt, 1, 10) AS aggregatedDate, COUNT(d) AS totalDonations, COUNT(DISTINCT d.member) AS totalDonors, SUM(d.amount) AS totalAmount, SUM(d.processingFee) AS totalProcessingFee, SUM(d.netAmount) AS totalNetAmount, d.currency')
             ->groupBy('d.currency', 'aggregatedDate')
             ->orderBy('aggregatedDate', 'ASC')
             ->join('d.member', 'm')

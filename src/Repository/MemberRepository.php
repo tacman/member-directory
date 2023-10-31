@@ -273,21 +273,22 @@ class MemberRepository extends ServiceEntityRepository
         $qb = $this->createQueryBuilder('m')
             ->addSelect('t')
             ->addSelect('s')
-            ->addSelect('MONTH(m.birthDate) AS bdMonth')
-            ->addSelect('DAY(m.birthDate) AS bdDay')
+            ->addSelect('SUBSTRING(m.birthDate, 6, 2) AS bdMonth')
+            ->addSelect('SUBSTRING(m.birthDate, 9, 2) AS bdDay')
+//            ->addSelect('MONTH(m.birthDate) AS bdMonth')
+//            ->addSelect('DAY(m.birthDate) AS bdDay')
             ->join('m.status', 's')
             ->leftJoin('m.tags', 't')
             ->where('m.birthDate IS NOT NULL')
             ->andWhere('m.isLocalDoNotContact = 0')
             ->andWhere('s.isInactive = 0')
         ;
-
         $this->processParams($qb, $params);
 
-        // Override ordering defaults
-        $qb->orderBy('bdMonth', 'ASC')
-            ->addOrderBy('bdDay', 'ASC')
-        ;
+//        // Override ordering defaults
+//        $qb->orderBy('bdMonth', 'ASC')
+//            ->addOrderBy('bdDay', 'ASC')
+//        ;
 
         return new Paginator($qb->getQuery(), $fetchJoinCollection = true);
     }
