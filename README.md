@@ -10,6 +10,8 @@ bin/console importmap:install
 bin/console doctrine:schema:update --force --complete
 bin/console doctrine:fixtures:load -n
 symfony server:start -d
+symfony open:local
+echo "login as admin@example.com/testing"
 ```
 
 [![Coding Standards](https://github.com/utmsigep/member-directory/actions/workflows/php-cs-fixer.yml/badge.svg)](https://github.com/utmsigep/member-directory/actions/workflows/php-cs-fixer.yml) [![CI Build and Test](https://github.com/utmsigep/member-directory/actions/workflows/ci.yml/badge.svg)](https://github.com/utmsigep/member-directory/actions/workflows/ci.yml)
