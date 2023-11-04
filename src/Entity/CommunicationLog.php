@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
 use App\Repository\CommunicationLogRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -10,6 +11,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: CommunicationLogRepository::class)]
 #[UniqueEntity(['member', 'type', 'loggedAt'])]
+#[ApiResource()]
 #[Gedmo\Loggable]
 class CommunicationLog
 {

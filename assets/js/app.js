@@ -3,6 +3,9 @@
 // Javascript
 const $ = require('jquery');
 global.$ = global.jQuery = $;
+
+return;
+
 require('@popperjs/core');
 require('select2');
 require('bootstrap');

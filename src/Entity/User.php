@@ -272,6 +272,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFact
 
     public function getTotpAuthenticationConfiguration(): TotpConfigurationInterface
     {
-        return new TotpConfiguration($this->totpSecret, TotpConfiguration::ALGORITHM_SHA1, 30, 6);
+        // for API Platform, we need to be able to initialize the configuration without a secret
+        return new TotpConfiguration($this->totpSecret??'', TotpConfiguration::ALGORITHM_SHA1, 30, 6);
     }
 }

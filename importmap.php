@@ -22,10 +22,6 @@ return [
         'path' => './assets/js/map.js',
         'entrypoint' => true,
     ],
-    'fos_js_routing' => [
-        'path' => './assets/js/fos_js_routes.js',
-        'entrypoint' => true,
-    ],
     'bootstrap' => [
         'version' => '5.3.2',
     ],
@@ -60,5 +56,11 @@ return [
     ],
     'jquery' => [
         'version' => '3.7.1',
+    ],
+    '@hotwired/stimulus' => [
+        'version' => '3.2.2',
+    ],
+    '@symfony/stimulus-bundle' => [
+        'path' => './vendor/symfony/stimulus-bundle/assets/dist/loader.js',
     ],
 ];

@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
 use App\Repository\MemberRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -20,6 +21,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[UniqueEntity('localIdentifier')]
 #[UniqueEntity('externalIdentifier')]
 #[UniqueEntity('primaryEmail')]
+#[ApiResource()]
 #[Gedmo\Loggable]
 class Member implements Loggable
 {
