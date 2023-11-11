@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "75ae8a31ac9eddd8913d6d19fa4c6109",
+    "content-hash": "7df2350efff8fe9dd2eb79154809b193",
     "packages": [
         {
             "name": "api-platform/core",
@@ -1255,12 +1255,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/DoctrineBundle.git",
-                "reference": "3cdc41115e1ba97e8890eceddb78760529434516"
+                "reference": "e168b42a64742e03e412d893274bd19d72b1117c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/DoctrineBundle/zipball/3cdc41115e1ba97e8890eceddb78760529434516",
-                "reference": "3cdc41115e1ba97e8890eceddb78760529434516",
+                "url": "https://api.github.com/repos/doctrine/DoctrineBundle/zipball/e168b42a64742e03e412d893274bd19d72b1117c",
+                "reference": "e168b42a64742e03e412d893274bd19d72b1117c",
                 "shasum": ""
             },
             "require": {
@@ -1365,7 +1365,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-11-06T07:45:48+00:00"
+            "time": "2023-11-11T09:47:04+00:00"
         },
         {
             "name": "doctrine/doctrine-fixtures-bundle",
@@ -1976,12 +1976,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/orm.git",
-                "reference": "0e958387874feea82c562087cfde7436df402565"
+                "reference": "b41de2a39dcec69167b2658df7f66733de0deb9d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/orm/zipball/0e958387874feea82c562087cfde7436df402565",
-                "reference": "0e958387874feea82c562087cfde7436df402565",
+                "url": "https://api.github.com/repos/doctrine/orm/zipball/b41de2a39dcec69167b2658df7f66733de0deb9d",
+                "reference": "b41de2a39dcec69167b2658df7f66733de0deb9d",
                 "shasum": ""
             },
             "require": {
@@ -2069,7 +2069,7 @@
                 "issues": "https://github.com/doctrine/orm/issues",
                 "source": "https://github.com/doctrine/orm/tree/2.17.x"
             },
-            "time": "2023-11-07T07:14:32+00:00"
+            "time": "2023-11-11T11:30:09+00:00"
         },
         {
             "name": "doctrine/persistence",
@@ -3350,12 +3350,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/csv.git",
-                "reference": "77d9ea5164cade2f7fc530dfa17933469e4ea981"
+                "reference": "0785f1a049bb2af36e7b4816481d2ce461c9cc51"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/csv/zipball/77d9ea5164cade2f7fc530dfa17933469e4ea981",
-                "reference": "77d9ea5164cade2f7fc530dfa17933469e4ea981",
+                "url": "https://api.github.com/repos/thephpleague/csv/zipball/0785f1a049bb2af36e7b4816481d2ce461c9cc51",
+                "reference": "0785f1a049bb2af36e7b4816481d2ce461c9cc51",
                 "shasum": ""
             },
             "require": {
@@ -3432,7 +3432,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-11-10T07:37:10+00:00"
+            "time": "2023-11-11T09:57:02+00:00"
         },
         {
             "name": "league/uri",
@@ -5392,11 +5392,17 @@
         },
         {
             "name": "survos/api-grid-bundle",
-            "version": "dev-main",
+            "version": "1.5.76",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/survos/SurvosApiGridBundle.git",
+                "reference": "4427cba8c8a96355644251661f0d97ba0fd4964c"
+            },
             "dist": {
-                "type": "path",
-                "url": "../../survos/survos/packages/api-grid-bundle",
-                "reference": "6bd5c1da543bbbc351f8b11393fd3bd100019a2c"
+                "type": "zip",
+                "url": "https://api.github.com/repos/survos/SurvosApiGridBundle/zipball/4427cba8c8a96355644251661f0d97ba0fd4964c",
+                "reference": "4427cba8c8a96355644251661f0d97ba0fd4964c",
+                "shasum": ""
             },
             "require": {
                 "api-platform/core": "^3.2",
@@ -5405,7 +5411,7 @@
                 "doctrine/persistence": "^2.0 || ^3.0",
                 "friendsofsymfony/jsrouting-bundle": "^3.2",
                 "php": "^8.1",
-                "survos/inspection-bundle": "^1.6",
+                "survos/inspection-bundle": "^1.5.76",
                 "symfony/config": "^6.3 || ^7.0",
                 "symfony/dependency-injection": "^6.3 || ^7.0",
                 "symfony/http-kernel": "^6.3 || ^7.0",
@@ -5433,11 +5439,7 @@
                     "Survos\\ApiGrid\\": "src/"
                 }
             },
-            "scripts": {
-                "phpstan": [
-                    "vendor/bin/phpstan analyse"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -5452,9 +5454,11 @@
                 "symfony-ux",
                 "symfony6"
             ],
-            "transport-options": {
-                "relative": true
-            }
+            "support": {
+                "issues": "https://github.com/survos/SurvosApiGridBundle/issues",
+                "source": "https://github.com/survos/SurvosApiGridBundle/tree/1.5.76"
+            },
+            "time": "2023-11-10T17:47:03+00:00"
         },
         {
             "name": "survos/command-bundle",
@@ -5668,10 +5672,16 @@
         {
             "name": "survos/grid-bundle",
             "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/survos/SurvosGridBundle.git",
+                "reference": "262d9a31d82c45c2bead8b356650ef19f2355fe5"
+            },
             "dist": {
-                "type": "path",
-                "url": "../../survos/survos/packages/grid-bundle",
-                "reference": "9db9d03c0cdd39e25d646f9f90370aefc3b11dba"
+                "type": "zip",
+                "url": "https://api.github.com/repos/survos/SurvosGridBundle/zipball/262d9a31d82c45c2bead8b356650ef19f2355fe5",
+                "reference": "262d9a31d82c45c2bead8b356650ef19f2355fe5",
+                "shasum": ""
             },
             "require": {
                 "doctrine/doctrine-bundle": "^2.7",
@@ -5723,6 +5733,7 @@
                 "monolog/monolog": "Allows more advanced logging of the application flow",
                 "survos/api-grid-bundle": "For javascript-based grid rendering"
             },
+            "default-branch": true,
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
@@ -5737,11 +5748,7 @@
                     "Survos\\Grid\\": "src/"
                 }
             },
-            "scripts": {
-                "phpstan": [
-                    "vendor/bin/phpstan analyse"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -5756,9 +5763,11 @@
                 "symfony-ux",
                 "symfony6"
             ],
-            "transport-options": {
-                "relative": true
-            }
+            "support": {
+                "issues": "https://github.com/survos/SurvosGridBundle/issues",
+                "source": "https://github.com/survos/SurvosGridBundle/tree/main"
+            },
+            "time": "2023-11-10T17:47:28+00:00"
         },
         {
             "name": "survos/inspection-bundle",
@@ -10500,12 +10509,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/stimulus-bundle.git",
-                "reference": "f6c8ff81b7b2ae82327f4a71c5f9377eb31f83f1"
+                "reference": "d7190749571a7a02664b677dab37f8949315b4d5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/stimulus-bundle/zipball/f6c8ff81b7b2ae82327f4a71c5f9377eb31f83f1",
-                "reference": "f6c8ff81b7b2ae82327f4a71c5f9377eb31f83f1",
+                "url": "https://api.github.com/repos/symfony/stimulus-bundle/zipball/d7190749571a7a02664b677dab37f8949315b4d5",
+                "reference": "d7190749571a7a02664b677dab37f8949315b4d5",
                 "shasum": ""
             },
             "require": {
@@ -10546,7 +10555,7 @@
                 "symfony-ux"
             ],
             "support": {
-                "source": "https://github.com/symfony/stimulus-bundle/tree/v2.13.0"
+                "source": "https://github.com/symfony/stimulus-bundle/tree/v2.13.2"
             },
             "funding": [
                 {
@@ -10562,7 +10571,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-11-07T21:10:32+00:00"
+            "time": "2023-11-11T01:20:31+00:00"
         },
         {
             "name": "symfony/stopwatch",
@@ -12981,12 +12990,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "0eb12b33c9b215706bd827728eec906ba324f5eb"
+                "reference": "435e82d875287493b9f051a1c0fe7df6d0b77963"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/0eb12b33c9b215706bd827728eec906ba324f5eb",
-                "reference": "0eb12b33c9b215706bd827728eec906ba324f5eb",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/435e82d875287493b9f051a1c0fe7df6d0b77963",
+                "reference": "435e82d875287493b9f051a1c0fe7df6d0b77963",
                 "shasum": ""
             },
             "require": {
@@ -13036,7 +13045,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-11-10T14:22:25+00:00"
+            "time": "2023-11-11T09:31:03+00:00"
         },
         {
             "name": "phpstan/phpstan-doctrine",
@@ -14885,8 +14894,6 @@
         "api-platform/core": 20,
         "nelmio/cors-bundle": 20,
         "phpdocumentor/reflection-docblock": 20,
-        "survos/api-grid-bundle": 20,
-        "survos/grid-bundle": 20,
         "symfony/monolog-bundle": 20,
         "symfony/stimulus-bundle": 20
     },

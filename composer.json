@@ -32,10 +32,10 @@
         "scheb/2fa-trusted-device": "^6.3",
         "sebastian/version": "^3.0",
         "stof/doctrine-extensions-bundle": "^1.7",
-        "survos/api-grid-bundle": "*@dev",
+        "survos/api-grid-bundle": "^1.5",
         "survos/command-bundle": "^1.5",
         "survos/crawler-bundle": "^1.5",
-        "survos/grid-bundle": "*@dev",
+        "survos/grid-bundle": "^1.5",
         "symfony/apache-pack": "^1.0",
         "symfony/asset": "^6.3",
         "symfony/asset-mapper": "^6.4",
@@ -143,13 +143,5 @@
         "symfony/web-profiler-bundle": "^6.3"
     },
     "repositories": {
-        "grid": {
-            "type": "path",
-            "url": "../../survos/survos/packages/grid-bundle"
-        },
-        "api-grid": {
-            "type": "path",
-            "url": "../../survos/survos/packages/api-grid-bundle"
-        }
     }
 }
