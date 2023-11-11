@@ -38,6 +38,14 @@ class DirectoryController extends AbstractController
         null,
     ];
 
+    #[Route(path: '/browse', name: 'directory_browse')]
+    public function browse(DirectoryCollectionRepository $directoryCollectionRepository)
+    {
+        return $this->render('directory/browse.html.twig', [
+            'class' => Member::class
+        ]);
+    }
+
     #[Route(path: '/', name: 'home')]
     public function index(DirectoryCollectionRepository $directoryCollectionRepository)
     {
@@ -49,6 +57,7 @@ class DirectoryController extends AbstractController
             return $this->render('getting-started.html.twig');
         }
     }
+
 
     #[Route(path: '/collection/{slug}.{_format}', name: 'directory_collection', defaults: ['_format' => 'html'])]
     public function directoryCollectionTableSource(DirectoryCollection $directoryCollection, MemberRepository $memberRepository, Request $request, string $_format): Response

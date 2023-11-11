@@ -32,8 +32,10 @@
         "scheb/2fa-trusted-device": "^6.3",
         "sebastian/version": "^3.0",
         "stof/doctrine-extensions-bundle": "^1.7",
+        "survos/api-grid-bundle": "*@dev",
         "survos/command-bundle": "^1.5",
         "survos/crawler-bundle": "^1.5",
+        "survos/grid-bundle": "*@dev",
         "symfony/apache-pack": "^1.0",
         "symfony/asset": "^6.3",
         "symfony/asset-mapper": "^6.4",
@@ -44,6 +46,7 @@
         "symfony/flex": "^2.3",
         "symfony/form": "^6.3",
         "symfony/framework-bundle": "^6.3",
+        "symfony/html-sanitizer": "^6.4",
         "symfony/http-client": "^6.3",
         "symfony/intl": "^6.3",
         "symfony/mailer": "^6.3",
@@ -105,7 +108,7 @@
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd",
-            "fos:js-routing:dump --target=public/js/fos_js_routes.js --callback=\"module.exports = \"": "symfony-cmd"
+            "fos:js-routing:dump --format=js --target=public/js/fos_js_routes.js --callback=\"export default  \"": "symfony-cmd"
         },
       "post-install-cmd": [
             "@auto-scripts"
@@ -140,5 +143,13 @@
         "symfony/web-profiler-bundle": "^6.3"
     },
     "repositories": {
+        "grid": {
+            "type": "path",
+            "url": "../../survos/survos/packages/grid-bundle"
+        },
+        "api-grid": {
+            "type": "path",
+            "url": "../../survos/survos/packages/api-grid-bundle"
+        }
     }
 }

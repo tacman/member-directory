@@ -11,7 +11,7 @@ use Gedmo\Loggable\Loggable;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Attribute\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Table]
@@ -725,6 +725,12 @@ class Member implements Loggable
     public function getDisplayName(): string
     {
         return $this->preferredName.' '.$this->lastName;
+    }
+
+    #[Groups(['member_main'])]
+    public function getCleanDisplayName(): string
+    {
+        return strip_tags($this->getDisplayName());
     }
 
     public function getTagsAsCSV(): string

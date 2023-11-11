@@ -8,4 +8,9 @@ import './bootstrap.js';
 import './styles/app.css'
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
+
+console.log('importing @fortawesome free');
+import '@fortawesome/fontawesome-free'
+import '@fortawesome/fontawesome-free/css/fontawesome.min.css'
+
 console.log('This log comes from assets/app.js - bootstrap, etc.')

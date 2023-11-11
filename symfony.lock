@@ -371,6 +371,9 @@
             "config/packages/stof_doctrine_extensions.yaml"
         ]
     },
+    "survos/api-grid-bundle": {
+        "version": "dev-main"
+    },
     "survos/command-bundle": {
         "version": "1.5",
         "recipe": {
@@ -384,6 +387,9 @@
             "config/routes/survos_command.php"
         ]
     },
+    "survos/core-bundle": {
+        "version": "dev-main"
+    },
     "survos/crawler-bundle": {
         "version": "2.0",
         "recipe": {
@@ -396,6 +402,12 @@
             "config/packages/survos_crawler.yaml",
             "config/routes/survos_crawler.php"
         ]
+    },
+    "survos/grid-bundle": {
+        "version": "dev-main"
+    },
+    "survos/inspection-bundle": {
+        "version": "dev-main"
     },
     "symfony/apache-pack": {
         "version": "1.0",
@@ -753,6 +765,18 @@
             "version": "5.0",
             "ref": "eb697fe6a90b4972a4a544b4f7ea56520d29d9e9"
         }
+    },
+    "symfony/ux-twig-component": {
+        "version": "2.9999999",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "2.13",
+            "ref": "67814b5f9794798b885cec9d3f48631424449a01"
+        },
+        "files": [
+            "config/packages/twig_component.yaml"
+        ]
     },
     "symfony/validator": {
         "version": "6.3",

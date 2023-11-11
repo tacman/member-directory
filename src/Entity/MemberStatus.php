@@ -8,6 +8,8 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Survos\CoreBundle\Entity\RouteParametersInterface;
+use Survos\CoreBundle\Entity\RouteParametersTrait;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 
@@ -15,9 +17,10 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[UniqueEntity('code')]
 #[ApiResource]
 #[Gedmo\Loggable]
-class MemberStatus
+class MemberStatus implements RouteParametersInterface
 {
     use TimestampableEntity;
+    use RouteParametersTrait;
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -155,6 +158,12 @@ class MemberStatus
 
         return $this;
     }
+
+    public function getUniqueIdentifiers(): array
+    {
+        return ['memberStatusId' => $this->getCode()];
+    }
+
 
     /* Model Methods */
 

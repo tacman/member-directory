@@ -12,6 +12,28 @@
 
 {% include 'admin/_nav.html.twig' %}
 
+  {% set columns = [
+    {name: 'code', route: 'member_status_show'},
+    'label',
+    {name: 'members', title: '#members'},
+    {name: 'actions'},
+  ] %}
+<div class="card mb-3 shadow">
+  <div class="card-body">
+    <div class="table-responsive">
+  <twig:grid :data="member_statuses" :columns="columns" rowAlias="member_status">
+    <twig:block name="actions">
+{#      {{ member_status|default(null)|json_encode }}#}
+{#      {{ row|json_encode }}#}
+{#      <a href="{{ path('member_status_edit', member_status.rp) }}"><i class="fas fa-edit fa-fw"></i>member_status</a>#}
+      <a href="{{ path('member_status_edit', row.rp) }}"><i class="fas fa-edit fa-fw"></i>row</a>
+    </twig:block>
+
+  </twig:grid>
+    </div>
+  </div>
+</div>
+
 {% if member_statuses %}
 <div class="card mb-3 shadow">
   <div class="card-body">
@@ -28,11 +50,11 @@
         <tbody>
         {% for member_status in member_statuses %}
         <tr class="{{ member_status.isInactive ? 'inactive' : '' }}" role="row">
-          <td><a href="{{ path('member_status_show', {'id': member_status.id}) }}">{{ member_status.code }}</a></td>
+          <td><a href="{{ path('member_status_show', member_status.rp) }}">{{ member_status.code }}</a></td>
           <td>{{ member_status.label }}</td>
           <td>{{ member_status.members|length|default('0') }}</td>
           <td>
-              <a href="{{ path('member_status_edit', {'id': member_status.id}) }}"><i class="fas fa-edit fa-fw"></i></a>
+              <a href="{{ path('member_status_edit', member_status.rp) }}"><i class="fas fa-edit fa-fw"></i></a>
           </td>
         </tr>
         {% endfor %}

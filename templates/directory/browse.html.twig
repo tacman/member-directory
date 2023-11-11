@@ -1,0 +1,80 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{{ class }}{% endblock %}
+
+{% block body %}
+
+  {{ class }}
+
+  {#  column('displayName', browseable=false, order=1) // named arguments coming in twig4 #}
+  {% set columns = [
+    'displayName',
+    'localIdentifier',
+    'photoUrl',
+  ] %}
+  {% set globals = {} %}
+
+  <twig:api_grid :caller="_self"
+                 :class="class"
+                 columns="{{ columns }}"
+                 :globals="globals">
+
+    <twig:block name="displayName">
+      <a href="{{ path('member_show', {localIdentifier: row.localIdentifier}) }}">
+        {{ row.cleanDisplayName }}
+      </a>
+
+      <div class="mt-1">
+        {% if (row.isDeceased) %}
+          <a href="{{ path('deceased', {}) }}">
+            <sup class="badge bg-black text-white" title="Deceased">Deceased</sup>
+          </a>
+        {% endif %}
+
+        {% if (row.isLost|default(false)) %}
+          <a href="{{ path('lost', {}) }}">
+            <sup class="badge bg-warning text-bg-warning" title="Lost">Lost</sup>
+          </a>
+        {% endif %}
+
+        {% if (row.isLocalDoNotContact) %}
+          <a href="{{ path('do_not_contact') }}">
+            <sup class="badge bg-danger text-bg-danger" title="Do Not Contact"></sup>
+          </a>
+        {% endif %}
+
+        {% if (row.tags|default(false)) %}
+          {% set tags = row.tagsAsCSV|split(',') %}
+          {% for idx, tagUrl in row.tags %}
+            <a href="{{ path('tag', {t}) }}">
+              <sup class="badge bg-secondary text-bg-secondary">
+                {{ tags[idx] }}
+              </sup>
+            </a>
+          {% endfor %}
+        {% endif %}
+
+      </div>
+    </twig:block>
+
+    <twig:block name="photoUrl">
+      <a href="{{ path('member_show', {localIdentifier: row.localIdentifier}) }}">
+        {% if row.photoUrl %}
+        <img src="{{ row.photoUrl }}" class="img-fluid" alt="Profile Photo"  />
+        {% else %}
+          @todo: gravatar for {{ row.primaryEmail }}
+        {% endif %}
+      </a>
+    </twig:block>
+
+    <twig:block name="locale" id="x" class="something">
+      <span data-locale-display-target="language" data-lang="{{ row.locale }}">{{ row.locale }}</span>
+      {#            <span data-locale-display-target="country" data-cc="{{row.countryCode }}"></span> #}
+
+    </twig:block>
+
+  </twig:api_grid>
+
+
+
+{% endblock %}

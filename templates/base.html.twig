@@ -18,6 +18,7 @@
 
   <body id="page-top">
 
+  <span class="fas fa-user"></span>User
     {% if app.user and is_granted('ROLE_USER') %}
     <form action="{{ path('search') }}" method="GET">
       <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
