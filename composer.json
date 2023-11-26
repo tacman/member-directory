@@ -2,7 +2,7 @@
     "type": "project",
     "license": "MIT",
     "minimum-stability": "dev",
-    "prefer-stable": false,
+    "prefer-stable": true,
     "require": {
         "php": ">=8.2",
         "ext-ctype": "*",
@@ -36,6 +36,7 @@
         "survos/command-bundle": "^1.5",
         "survos/crawler-bundle": "^1.5",
         "survos/grid-bundle": "^1.5",
+        "survos/inspection-bundle": "^1.6@dev",
         "symfony/apache-pack": "^1.0",
         "symfony/asset": "^6.3",
         "symfony/asset-mapper": "^6.4",

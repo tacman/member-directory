@@ -1,7 +1,10 @@
 /* jshint esversion: 6 */
 /* globals Routing, $ */
 
-var moment = require('moment');
+import moment from 'moment';
+import $ from 'jquery';
+import 'datatables.net-bs5';
+import 'datatables.net-responsive-bs5';
 
 $(document).ready(function () {
   var exportButtons = [

@@ -56,5 +56,8 @@
 
 {% block javascripts %}
 {{ parent() }}
-{{ encore_entry_script_tags('directory') }}
+  <script type="module">
+    import '{{ asset('js/directory.js') }}';
+  </script>
+{#{{ encore_entry_script_tags('directory') }}#}
 {% endblock %}

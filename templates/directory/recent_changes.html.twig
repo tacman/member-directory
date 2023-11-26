@@ -86,7 +86,9 @@
 
 {% block javascripts %}
 {{ parent() }}
-<script>
+<script type="module">
+  // @todo: replace with vanilla javacript or stimulus or ...?  No need to load jquery for just this.
+  import $ from 'jquery';
 $('#filter-form :input').on('change', function () {
   $('#filter-form').submit()
 })

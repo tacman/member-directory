@@ -10,6 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Loggable\Loggable;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Survos\CoreBundle\Entity\RouteParametersInterface;
+use Survos\CoreBundle\Entity\RouteParametersTrait;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Serializer\Attribute\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -21,11 +23,23 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[UniqueEntity('localIdentifier')]
 #[UniqueEntity('externalIdentifier')]
 #[UniqueEntity('primaryEmail')]
-#[ApiResource()]
+#[ApiResource(
+    shortName: 'member',
+//    operations: [new Get(), new Put(), new Delete(), new Patch(), new GetCollection()],
+    normalizationContext: [
+        'groups' => ['member.read', 'member_main', 'rp'],
+    ],
+    denormalizationContext: [
+        'groups' => ['member.write'],
+    ],
+)]
+
 #[Gedmo\Loggable]
-class Member implements Loggable
+//#[Groups(['member.read'])]
+class Member implements Loggable, RouteParametersInterface
 {
     use TimestampableEntity;
+    use RouteParametersTrait;
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -841,5 +855,10 @@ class Member implements Loggable
         }
 
         return $this;
+    }
+
+    public function getUniqueIdentifiers(): array
+    {
+        return ['localIdentifier' => $this->getLocalIdentifier()];
     }
 }

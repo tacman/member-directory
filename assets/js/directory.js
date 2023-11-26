@@ -1,8 +1,17 @@
 /* jshint esversion: 6 */
 /* globals Routing, $ */
 
-var gravatar = require('gravatar');
+// var gravatar = require('gravatar');
+import gravatar from 'gravatar';
+import $ from 'jquery';
+import Routing from 'fos-routing';
+import RoutingData from '/js/fos_js_routes.js';
+Routing.setData(RoutingData);
 
+window.jQuery = $;
+import 'datatables.net-bs5';
+import 'datatables.net-responsive-bs5';
+// import 'tablednd'; // issue with global jQuery
 var sanitizeHTML = function (str) {
   if (!str) { return ''; }
 	return str.replace(/[^\w. ]/gi, function (c) {
@@ -194,6 +203,7 @@ $(document).ready(function() {
   }
 
   var toastTemplate = $('#toastTemplate').html();
+  if (0) // @todo: import tablednd
   $('table[data-draggable]').tableDnD({
     dragHandle: $('.drag_handle'),
     onDrop: function (table, row) {

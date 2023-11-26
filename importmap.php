@@ -64,7 +64,7 @@ return [
         'version' => '3.2.2',
     ],
     'twig' => [
-        'version' => '1.16.0',
+        'version' => '1.17.1',
     ],
     'locutus/php/strings/sprintf' => [
         'version' => '2.0.16',
@@ -97,13 +97,13 @@ return [
         'version' => '1.6.1',
     ],
     'datatables.net-bs5' => [
-        'version' => '1.13.7',
+        'version' => '1.13.8',
     ],
     'datatables.net' => [
-        'version' => '1.13.7',
+        'version' => '1.13.8',
     ],
     'datatables.net-bs5/css/dataTables.bootstrap5.min.css' => [
-        'version' => '1.13.7',
+        'version' => '1.13.8',
         'type' => 'css',
     ],
     'datatables.net-responsive' => [
@@ -148,5 +148,28 @@ return [
     ],
     'datatables.net-searchpanes' => [
         'version' => '2.2.0',
+    ],
+    'datatables.net-buttons-bs5' => [
+        'version' => '2.4.2',
+    ],
+    'datatables.net-buttons' => [
+        'version' => '2.4.2',
+    ],
+    'datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css' => [
+        'version' => '2.4.2',
+        'type' => 'css',
+    ],
+    'datatables.net-responsive-bs5' => [
+        'version' => '2.5.0',
+    ],
+    'datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css' => [
+        'version' => '2.5.0',
+        'type' => 'css',
+    ],
+    'tablednd' => [
+        'version' => '1.0.5',
+    ],
+    'moment' => [
+        'version' => '2.29.4',
     ],
 ];

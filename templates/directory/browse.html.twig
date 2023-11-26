@@ -20,8 +20,9 @@
                  :globals="globals">
 
     <twig:block name="displayName">
+
       <a href="{{ path('member_show', {localIdentifier: row.localIdentifier}) }}">
-        {{ row.cleanDisplayName }}
+        {{ row.cleanDisplayName }} xx
       </a>
 
       <div class="mt-1">

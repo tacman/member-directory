@@ -55,6 +55,9 @@
 
 {% block javascripts %}
 {{ parent() }}
-{{ encore_entry_script_tags('donations') }}
-{% include 'donation/_column_chart_loader.html.twig' %}
+<script type="module">
+  import '{{ asset('js/donations.js') }}';
+</script>
+{#{{ encore_entry_script_tags('directory') }}#}
 {% endblock %}
+
