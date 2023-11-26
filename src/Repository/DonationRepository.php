@@ -14,7 +14,7 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class DonationRepository extends ServiceEntityRepository
 {
-    public const DEFAULT_START_DATE = '-1 years midnight';
+    public const DEFAULT_START_DATE = '-15 years midnight';
     public const DEFAULT_END_DATE = 'tomorrow -1 min';
 
     protected $startDate;

@@ -6,11 +6,14 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Survos\CoreBundle\Entity\RouteParametersInterface;
+use Survos\CoreBundle\Entity\RouteParametersTrait;
 
 #[ORM\Entity(repositoryClass: 'Gedmo\Sortable\Entity\Repository\SortableRepository')]
 #[Gedmo\Loggable]
-class DirectoryCollection
+class DirectoryCollection implements \Stringable, RouteParametersInterface
 {
+    use RouteParametersTrait;
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
@@ -227,5 +230,10 @@ class DirectoryCollection
     public function __toString(): string
     {
         return $this->label;
+    }
+
+    public function getUniqueIdentifiers(): array
+    {
+        return ['slug' => $this->getSlug()];
     }
 }

@@ -38,6 +38,8 @@
 {% endblock %}
 
 {% block javascripts %}
-{{ parent() }}
-{{ encore_entry_script_tags('events') }}
+  {{ parent() }}
+  <script type="module">
+    import '{{ asset('js/events.js') }}';
+  </script>
 {% endblock %}

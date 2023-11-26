@@ -8,13 +8,16 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Survos\CoreBundle\Entity\RouteParametersInterface;
+use Survos\CoreBundle\Entity\RouteParametersTrait;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: 'App\Repository\TagRepository')]
 #[ApiResource]
 #[Gedmo\Loggable]
-class Tag
+class Tag implements \Stringable, RouteParametersInterface
 {
+    use RouteParametersTrait;
     use TimestampableEntity;
 
     #[ORM\Id]
@@ -86,5 +89,10 @@ class Tag
     public function __toString(): string
     {
         return $this->tagName;
+    }
+
+    public function getUniqueIdentifiers(): array
+    {
+        return ['tagId' => $this->getId()];
     }
 }

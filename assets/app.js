@@ -14,3 +14,9 @@ import '@fortawesome/fontawesome-free'
 import '@fortawesome/fontawesome-free/css/fontawesome.min.css'
 
 console.log('This log comes from assets/app.js - bootstrap, etc.')
+
+import $ from 'jquery';
+window.$ = $;
+
+import 'datatables.net-bs5';
+import 'datatables.net-responsive-bs5';

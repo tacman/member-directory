@@ -2,11 +2,12 @@
 
 namespace App\Entity;
 
+use App\Repository\DonationRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 
-#[ORM\Entity(repositoryClass: 'App\Repository\DonationRepository')]
+#[ORM\Entity(repositoryClass: DonationRepository::class)]
 #[ORM\HasLifecycleCallbacks]
 #[Gedmo\Loggable]
 class Donation
@@ -20,7 +21,7 @@ class Donation
 
     #[ORM\ManyToOne(targetEntity: Member::class, inversedBy: 'donations')]
     #[Gedmo\Versioned]
-    private $member;
+    private Member $member;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     #[Gedmo\Versioned]

@@ -38,7 +38,7 @@ class DonationController extends AbstractController
     public function index(DonationRepository $donationRepository, ChartService $chartService, Request $request): Response
     {
         $this->handleDateRequest($request);
-        $donationRepository->setDateRange($this->startDate, $this->endDate);
+//        $donationRepository->setDateRange($this->startDate, $this->endDate);
         $donations = $donationRepository->findAll();
         $donationsByMonth = $donationRepository->getTotalDonationsByMonth();
         $totals = $donationRepository->getTotalDonations();

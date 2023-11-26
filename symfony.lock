@@ -167,6 +167,21 @@
     "guzzlehttp/psr7": {
         "version": "2.0.0"
     },
+    "knplabs/knp-menu-bundle": {
+        "version": "v3.2.0"
+    },
+    "knpuniversity/oauth2-client-bundle": {
+        "version": "2.16",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "1.20",
+            "ref": "1ff300d8c030f55c99219cc55050b97a695af3f6"
+        },
+        "files": [
+            "config/packages/knpu_oauth2_client.yaml"
+        ]
+    },
     "laminas/laminas-code": {
         "version": "3.5.1"
     },
@@ -374,6 +389,12 @@
     "survos/api-grid-bundle": {
         "version": "dev-main"
     },
+    "survos/auth-bundle": {
+        "version": "1.5.92"
+    },
+    "survos/bootstrap-bundle": {
+        "version": "1.5.92"
+    },
     "survos/command-bundle": {
         "version": "1.5",
         "recipe": {
@@ -408,6 +429,9 @@
     },
     "survos/inspection-bundle": {
         "version": "dev-main"
+    },
+    "survos/maker-bundle": {
+        "version": "1.5.92"
     },
     "symfony/apache-pack": {
         "version": "1.0",
@@ -856,5 +880,17 @@
     },
     "willdurand/jsonp-callback-validator": {
         "version": "v1.1.0"
+    },
+    "zenstruck/foundry": {
+        "version": "1.36",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "1.10",
+            "ref": "37c2f894cc098ab4c08874b80cccc8e2f8de7976"
+        },
+        "files": [
+            "config/packages/zenstruck_foundry.yaml"
+        ]
     }
 }

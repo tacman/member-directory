@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Donation;
+use App\Factory\DonationFactory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -11,6 +12,7 @@ class DonationFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
+        DonationFactory::createMany(25);
         $uncleBilly = $this->getReference(MemberFixtures::UNCLE_BILLY);
 
         $donation = new Donation();

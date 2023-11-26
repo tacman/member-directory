@@ -6,7 +6,8 @@ import $ from 'jquery';
 import 'datatables.net-bs5';
 import 'datatables.net-responsive-bs5';
 
-$(document).ready(function () {
+console.log('preparing donations table');
+// $(document).ready(function () {
   var exportButtons = [
     {
       text: '<i class="fas fa-save fa-fw"></i> Download CSV',
@@ -103,4 +104,4 @@ $(document).ready(function () {
     startDateField.val(moment().subtract(30, 'days').format('YYYY-MM-DD'));
     endDateField.val(moment().format('YYYY-MM-DD'));
   });
-});
+// });

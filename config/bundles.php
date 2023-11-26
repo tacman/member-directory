@@ -27,4 +27,10 @@ return [
     Survos\ApiGrid\SurvosApiGridBundle::class => ['all' => true],
     Survos\Grid\SurvosGridBundle::class => ['all' => true],
     Survos\InspectionBundle\SurvosInspectionBundle::class => ['all' => true],
+    Zenstruck\Foundry\ZenstruckFoundryBundle::class => ['dev' => true, 'test' => true],
+    Knp\Bundle\MenuBundle\KnpMenuBundle::class => ['all' => true],
+    Survos\BootstrapBundle\SurvosBootstrapBundle::class => ['all' => true],
+    Survos\Bundle\MakerBundle\SurvosMakerBundle::class => ['dev' => true, 'test' => true],
+    KnpU\OAuth2ClientBundle\KnpUOAuth2ClientBundle::class => ['all' => true],
+    Survos\AuthBundle\SurvosAuthBundle::class => ['all' => true],
 ];
