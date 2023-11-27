@@ -6,13 +6,13 @@ use App\Repository\DirectoryCollectionRepository;
 use App\Repository\TagRepository;
 use Survos\AuthBundle\Services\AuthService;
 use Survos\BootstrapBundle\Event\KnpMenuEvent;
+use Survos\BootstrapBundle\Service\MenuService;
 use Survos\BootstrapBundle\Traits\KnpMenuHelperInterface;
 use Survos\BootstrapBundle\Traits\KnpMenuHelperTrait;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
-use Symfony\Component\Security\Http\Impersonate\ImpersonateUrlGenerator;
 
 #[AsEventListener(event: KnpMenuEvent::NAVBAR_MENU, method: 'navbarMenu')]
 #[AsEventListener(event: KnpMenuEvent::NAVBAR_MENU2, method: 'navbar2Menu')]
@@ -27,7 +27,7 @@ final class AppMenuEventListener implements KnpMenuHelperInterface
     public function __construct(
         private DirectoryCollectionRepository                                             $directoryCollectionRepository,
         private TagRepository                                                             $tagRepository,
-        private AuthService $authService,
+        private MenuService $menuService, // helper for auth menus, etc.
         #[Autowire('%kernel.environment%')] private string                                $env,
         private Security                                                                  $security,
         private ?AuthorizationCheckerInterface                                            $authorizationChecker = null
@@ -38,13 +38,6 @@ final class AppMenuEventListener implements KnpMenuHelperInterface
     public function navbar2Menu(KnpMenuEvent $event): void
     {
         $menu = $event->getMenu();
-        if ($this->isGranted('ROLE_ALLOWED_TO_SWITCH')) {
-            $nestedMenu = $this->addSubmenu($menu, 'Impersonate');
-
-            foreach (['donation.manager@example.com', 'communications.manager@example.com'] as $email) {
-                $this->add($nestedMenu, uri: $this->authService->generateImpersonationPath($email), label: $email);
-            }
-        }
         if ($this->isGranted('ROLE_ADMIN')) {
             $nestedMenu = $this->addSubmenu($menu, 'Admin');
             foreach (['member_status_index', 'tag_index', 'directory_collection_index', 'admin', 'user_index'] as $route) {
@@ -57,7 +50,8 @@ final class AppMenuEventListener implements KnpMenuHelperInterface
     public function appAuthMenu(KnpMenuEvent $event): void
     {
         $menu = $event->getMenu();
-        $this->authMenu($this->authorizationChecker, $this->security, $menu);
+//        $this->authMenu($this->authorizationChecker, $this->security, $menu);
+        $this->menuService->addAuthMenu($menu);
 //        $this->add($menu, 'app_login');
     }
 

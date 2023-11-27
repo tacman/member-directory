@@ -15,31 +15,34 @@
 
 {#    <a href="{{ impersonation_path(customer.username) }}">Impersonate {{ customer.name }}</a>#}
 
-    {{ block('sidebar') }}
+{#    {{ block('sidebar') }}#}
 
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       {% include '_alerts.html.twig' %}
-      {% block body %}
+{#      {% block body %}#}
 {#        {{ block('original_body') }}#}
 {#        {{ block('sidebar') }}#}
 
-      {% endblock %}
+{#      {% endblock %}#}
 
-      <!-- Footer -->
-      <footer>
-        <div class="container my-5">
-          <div class="copyright text-center my-auto">
-            <small class="text-muted">Powered by <a href="https://github.com/utmsigep/member-directory" target="_blank">Member Directory</a> ({{ config.version }})</small>
-          </div>
-        </div>
-      </footer>
-      <!-- End of Footer -->
 
     </main>
 
   </div>
 </div>
 {{ parent() }}
+{% endblock %}
+
+{% block footer %}
+<!-- Footer -->
+<footer>
+  <div class="container my-5">
+    <div class="copyright text-center my-auto">
+      <small class="text-muted">Powered by <a href="https://github.com/utmsigep/member-directory" target="_blank">Member Directory</a> ({{ config.version }})</small>
+    </div>
+  </div>
+</footer>
+<!-- End of Footer -->
 {% endblock %}
 
     {% block sidebar %}

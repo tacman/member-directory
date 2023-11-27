@@ -2,6 +2,13 @@ survos_bootstrap:
   app:
     code: member
     abbr: <b>member</b>Dir
+  impersonate:
+    - email.manager@example.com
+    - event.manager@example.com
+    - donation.manager@example.com
+    - admin@example.com
+    - user@example.com
+
   routes:
     login: app_login
     logout: app_logout

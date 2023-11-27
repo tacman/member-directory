@@ -424,6 +424,9 @@
             "config/routes/survos_crawler.php"
         ]
     },
+    "survos/deployment-bundle": {
+        "version": "1.5.93"
+    },
     "survos/grid-bundle": {
         "version": "dev-main"
     },
