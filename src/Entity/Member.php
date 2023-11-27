@@ -3,6 +3,11 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Delete;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Put;
 use App\Repository\MemberRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -27,7 +32,7 @@ use Symfony\Component\Validator\Constraints as Assert;
     shortName: 'member',
 //    operations: [new Get(), new Put(), new Delete(), new Patch(), new GetCollection()],
     normalizationContext: [
-        'groups' => ['member.read', 'member_main', 'rp'],
+        'groups' => ['member.read', 'member_extended', 'member_main', 'rp'],
     ],
     denormalizationContext: [
         'groups' => ['member.write'],
@@ -35,7 +40,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 )]
 
 #[Gedmo\Loggable]
-//#[Groups(['member.read'])]
+#[Groups(['member.read'])]
 class Member implements Loggable, RouteParametersInterface
 {
     use TimestampableEntity;

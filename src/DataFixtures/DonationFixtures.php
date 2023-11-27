@@ -12,7 +12,7 @@ class DonationFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
-        DonationFactory::createMany(25);
+//        DonationFactory::createMany(25);
         $uncleBilly = $this->getReference(MemberFixtures::UNCLE_BILLY);
 
         $donation = new Donation();

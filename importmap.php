@@ -172,4 +172,8 @@ return [
     'moment' => [
         'version' => '2.29.4',
     ],
+    'bootstrap-icons/font/bootstrap-icons.min.css' => [
+        'version' => '1.11.2',
+        'type' => 'css',
+    ],
 ];

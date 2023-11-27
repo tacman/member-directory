@@ -21,7 +21,7 @@ class Donation
 
     #[ORM\ManyToOne(targetEntity: Member::class, inversedBy: 'donations')]
     #[Gedmo\Versioned]
-    private Member $member;
+    private $member;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     #[Gedmo\Versioned]

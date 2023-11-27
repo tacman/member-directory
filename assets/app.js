@@ -20,3 +20,4 @@ window.$ = $;
 
 import 'datatables.net-bs5';
 import 'datatables.net-responsive-bs5';
+import 'bootstrap-icons/font/bootstrap-icons.min.css'

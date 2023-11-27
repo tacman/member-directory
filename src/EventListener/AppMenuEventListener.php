@@ -68,6 +68,7 @@ final class AppMenuEventListener implements KnpMenuHelperInterface
         if ($this->isGranted('ROLE_DIRECTORY_MANAGER')) {
             $this->add($nestedMenu, 'directory_collection_new', label: 'New', icon: 'fas fa-plus', dividerPrepend: true);
         }
+        $this->add($nestedMenu, 'directory_browse', label: 'Api Grid Browse');
 
         $nestedMenu = $this->addSubmenu($menu, 'Tags');
         $tags = $this->tagRepository->findBy([], ['tagName' => 'ASC']);
@@ -88,10 +89,10 @@ final class AppMenuEventListener implements KnpMenuHelperInterface
 
         $this->add($menu, 'map');
 
-        $this->add($menu, 'event_index', icon: 'fas fa-calendar');
-        $this->add($menu, 'birthdays');
+        $this->add($menu, 'event_index', icon: 'bi bi-calendar');
+        $this->add($menu, 'birthdays', icon: 'bi bi-cake');
 
-        $nestedMenu = $this->addSubmenu($menu, 'Data');
+        $nestedMenu = $this->addSubmenu($menu, 'Data', icon: 'bi bi-cake');
         foreach (['member_changes', 'import', 'export'] as $route) {
             $this->add($nestedMenu, $route);
         }
