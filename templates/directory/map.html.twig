@@ -1,11 +1,10 @@
-{% form_theme form with ['bootstrap_4_horizontal_layout.html.twig'] %}
+{% form_theme form with ['bootstrap_5_horizontal_layout.html.twig'] %}
 {% extends 'base.html.twig' %}
 
 {% block title %}{{ parent() }} - Map{% endblock %}
 
 {% block stylesheets -%}
 {{ parent() }}
-{{ encore_entry_link_tags('map') }}
 {% endblock %}
 
 {% block body %}
@@ -27,7 +26,9 @@
     <div id="mapContainerLoading">
       <div><i class="fas fa-spinner fa-fw fa-spin"></i> Loading ...</div>
     </div>
-    <div id="mapContainer"></div>
+    <div id="mapContainer" style="height: 800px">
+      mapContainer
+    </div>
   </div>
 </div>
 
@@ -72,6 +73,8 @@
 {% endblock %}
 
 {% block javascripts %}
-  {{ importmap('map') }}
-{{ encore_entry_script_tags('map') }}
+  {{ parent() }}
+  <script type="module">
+    import '{{ asset('js/map.js') }}';
+  </script>
 {% endblock %}

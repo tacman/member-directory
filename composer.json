@@ -32,6 +32,7 @@
     "scheb/2fa-totp": "^6.3",
     "scheb/2fa-trusted-device": "^6.3",
     "sebastian/version": "^3.0",
+    "sentry/sentry-symfony": "^4.12",
     "stof/doctrine-extensions-bundle": "^1.7",
     "survos/api-grid-bundle": "^1.5",
     "survos/auth-bundle": "^1.5",
@@ -88,7 +89,8 @@
       "symfony/flex": true,
       "phpstan/extension-installer": true,
       "symfony/runtime": true,
-      "endroid/installer": true
+      "endroid/installer": true,
+      "php-http/discovery": true
     }
   },
   "autoload": {

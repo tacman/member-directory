@@ -16,10 +16,8 @@ import * as L from 'leaflet';
 
 // Routing
 import Routing from 'fos-routing';
-import RoutingData from '../../js/fos_js_routes.js';
+import RoutingData from '/js/fos_js_routes.js';
 Routing.setData(RoutingData);
-console.log(Routing.getHost());
-let path = Routing.generate('lost');
 
 // const routes = require('../js/fos_js_routes.json');
 // import Routing from '../../vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router.min.js';
