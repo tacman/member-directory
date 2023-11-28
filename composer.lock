@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "94bcfcc36a8a457cc62dfc0d0ba2e592",
+    "content-hash": "3d7ec33022bdde5ceaa383047aced956",
     "packages": [
         {
             "name": "api-platform/core",
@@ -6143,58 +6143,6 @@
                 "source": "https://github.com/survos/SurvosCrawlerBundle/tree/1.5.95"
             },
             "time": "2023-11-28T13:04:21+00:00"
-        },
-        {
-            "name": "survos/deployment-bundle",
-            "version": "1.5.95",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/survos/SurvosDeploymentBundle.git",
-                "reference": "14803602743c3462e0d28be9f229c9db812e3a3d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/survos/SurvosDeploymentBundle/zipball/14803602743c3462e0d28be9f229c9db812e3a3d",
-                "reference": "14803602743c3462e0d28be9f229c9db812e3a3d",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^8.1",
-                "symfony/config": "^6.3 || ^7.0",
-                "symfony/console": "^6.3 || ^7.0",
-                "symfony/dependency-injection": "^6.3 || ^7.0",
-                "symfony/form": "^6.3 || ^7.0",
-                "symfony/http-kernel": "^6.3 || ^7.0",
-                "twig/twig": "^3.4",
-                "zenstruck/console-extra": "^1.3"
-            },
-            "require-dev": {
-                "phpstan/phpstan": "^1.7",
-                "symfony/browser-kit": "^6.3 || ^7.0",
-                "symfony/framework-bundle": "^6.3 || ^7.0",
-                "symfony/phpunit-bridge": "^6.3 || ^7.0",
-                "symfony/twig-bundle": "^6.3 || ^7.0",
-                "symfony/var-dumper": "^6.3 || ^7.0"
-            },
-            "type": "symfony-bundle",
-            "autoload": {
-                "psr-4": {
-                    "Survos\\DeploymentBundle\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "keywords": [
-                "symfony-ux",
-                "symfony6"
-            ],
-            "support": {
-                "issues": "https://github.com/survos/SurvosDeploymentBundle/issues",
-                "source": "https://github.com/survos/SurvosDeploymentBundle/tree/1.5.95"
-            },
-            "time": "2023-11-17T13:24:30+00:00"
         },
         {
             "name": "survos/grid-bundle",
@@ -15391,6 +15339,58 @@
             "time": "2023-02-03T06:13:03+00:00"
         },
         {
+            "name": "survos/deployment-bundle",
+            "version": "1.5.95",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/survos/SurvosDeploymentBundle.git",
+                "reference": "14803602743c3462e0d28be9f229c9db812e3a3d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/survos/SurvosDeploymentBundle/zipball/14803602743c3462e0d28be9f229c9db812e3a3d",
+                "reference": "14803602743c3462e0d28be9f229c9db812e3a3d",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.1",
+                "symfony/config": "^6.3 || ^7.0",
+                "symfony/console": "^6.3 || ^7.0",
+                "symfony/dependency-injection": "^6.3 || ^7.0",
+                "symfony/form": "^6.3 || ^7.0",
+                "symfony/http-kernel": "^6.3 || ^7.0",
+                "twig/twig": "^3.4",
+                "zenstruck/console-extra": "^1.3"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^1.7",
+                "symfony/browser-kit": "^6.3 || ^7.0",
+                "symfony/framework-bundle": "^6.3 || ^7.0",
+                "symfony/phpunit-bridge": "^6.3 || ^7.0",
+                "symfony/twig-bundle": "^6.3 || ^7.0",
+                "symfony/var-dumper": "^6.3 || ^7.0"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Survos\\DeploymentBundle\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "keywords": [
+                "symfony-ux",
+                "symfony6"
+            ],
+            "support": {
+                "issues": "https://github.com/survos/SurvosDeploymentBundle/issues",
+                "source": "https://github.com/survos/SurvosDeploymentBundle/tree/1.5.95"
+            },
+            "time": "2023-11-17T13:24:30+00:00"
+        },
+        {
             "name": "survos/maker-bundle",
             "version": "1.5.95",
             "source": {
@@ -16460,6 +16460,7 @@
     "prefer-lowest": false,
     "platform": {
         "php": ">=8.2",
+        "ext-apcu": "*",
         "ext-ctype": "*",
         "ext-iconv": "*"
     },
