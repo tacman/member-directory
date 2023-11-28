@@ -48,7 +48,7 @@ class MemberEmailType extends AbstractType
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('m')
                         ->join('m.status', 's')
-                        ->where('s.isInactive = 0')
+                        ->where('s.isInactive = false') // postgres needs a bool, not 0 like mysql or sqlite
                         ->andWhere('m.primaryEmail != :empty')
                         ->setParameter('empty', '')
                         ->addOrderBy('s.label', 'ASC')
