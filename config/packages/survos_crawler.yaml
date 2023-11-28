@@ -3,8 +3,11 @@ survos_crawler:
     base_url: 'https://member.wip/'
     user_class: App\Entity\User
     users:
-        - admin@example.com
-    initial_path: /admin/
+      - email.manager@example.com
+      - event.manager@example.com
+      - donation.manager@example.com
+      - admin@example.com
+    initial_path: /
     max_depth : 3
     routes_to_ignore :
         - 'app_logout'
