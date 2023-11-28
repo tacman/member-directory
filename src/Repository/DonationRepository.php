@@ -94,7 +94,7 @@ class DonationRepository extends ServiceEntityRepository
             ->andWhere('d.receivedAt <= :endDate')
             ->setParameter('startDate', $this->startDate)
             ->setParameter('endDate', $this->endDate)
-            ->groupBy('d.currency', 'd.member', 'd.isAnonymous')
+            ->groupBy('d.currency', 'd.member', 'd.isAnonymous', 'm.preferredName', 'm.lastName', 'm.localIdentifier')
             ->orderBy('m.lastName', 'ASC')
             ->getQuery()
             ->getResult();
@@ -118,7 +118,8 @@ class DonationRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('d')
             // SUBSTRING(i.timestamp, 1, 10) as date,
-            ->select('SUBSTRING(d.receivedAt, 1, 10) AS aggregatedDate, COUNT(d) AS totalDonations, COUNT(DISTINCT d.member) AS totalDonors, SUM(d.amount) AS totalAmount, SUM(d.processingFee) AS totalProcessingFee, SUM(d.netAmount) AS totalNetAmount, d.currency')
+            ->select('DATE(d.receivedAt) AS aggregatedDate, COUNT(d) AS totalDonations, COUNT(DISTINCT d.member) AS totalDonors, SUM(d.amount) AS totalAmount, SUM(d.processingFee) AS totalProcessingFee, SUM(d.netAmount) AS totalNetAmount, d.currency')
+//            ->select('SUBSTRING(d.receivedAt, 1, 10) AS aggregatedDate, COUNT(d) AS totalDonations, COUNT(DISTINCT d.member) AS totalDonors, SUM(d.amount) AS totalAmount, SUM(d.processingFee) AS totalProcessingFee, SUM(d.netAmount) AS totalNetAmount, d.currency')
 //            ->select('DATE_FORMAT(d.receivedAt, \'%Y-%m-01\') AS aggregatedDate, COUNT(d) AS totalDonations, COUNT(DISTINCT d.member) AS totalDonors, SUM(d.amount) AS totalAmount, SUM(d.processingFee) AS totalProcessingFee, SUM(d.netAmount) AS totalNetAmount, d.currency')
             ->andWhere('d.receivedAt >= :startDate')
             ->andWhere('d.receivedAt <= :endDate')
