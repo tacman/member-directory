@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Welcome!{% endblock %}
+
+{% block body %}
+
+<div class="example-wrapper">
+    <h1>Welcome to Member Directory! ✅</h1>
+
+  {% if app.user %}
+    Welcome, {{ app.user }}.
+    You have role {{ app.user.roles|join(',') }}.
+  {% else %}
+    To access the data, you need to log in.  The password is 'testing'
+
+  <ul>
+    {% for user in users %}
+      <li><a href="{{ path('app_login', {_email: user}) }}">{{ user }}</a></li>
+    {% endfor %}
+
+  </ul>
+  {% endif %}
+</div>
+{% endblock %}

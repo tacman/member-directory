@@ -46,7 +46,7 @@ class DirectoryController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/', name: 'home')]
+    #[Route(path: '/home', name: 'home')]
     public function index(DirectoryCollectionRepository $directoryCollectionRepository)
     {
         return $this->render('getting-started.html.twig');
