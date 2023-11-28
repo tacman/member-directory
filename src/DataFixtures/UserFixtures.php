@@ -27,11 +27,12 @@ class UserFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
+        $password = 'test';
         $user = new User();
         $user->setName('Basic User');
         $user->setEmail('user@example.com');
         $user->setRoles(['ROLE_USER']);
-        $user->setPassword($this->passwordEncoder->hashPassword($user, 'testing'));
+        $user->setPassword($this->passwordEncoder->hashPassword($user, $password));
         $user->setTimezone('America/Chicago');
         $manager->persist($user);
         $manager->flush();
@@ -41,7 +42,7 @@ class UserFixtures extends Fixture
         $user->setName('2FA User');
         $user->setEmail('user.2fa@example.com');
         $user->setRoles(['ROLE_USER']);
-        $user->setPassword($this->passwordEncoder->hashPassword($user, 'testing'));
+        $user->setPassword($this->passwordEncoder->hashPassword($user, $password));
         $user->setTotpSecret('5GA6GEUJ456QCZ4M75W5VOI5ZAYSXL4LNYHRFVHWKGCMQARGXEEA');
         $user->setTimezone('America/Chicago');
         $manager->persist($user);
@@ -52,7 +53,7 @@ class UserFixtures extends Fixture
         $user->setName('Directory Manager');
         $user->setEmail('directory.manager@example.com');
         $user->setRoles(['ROLE_DIRECTORY_MANAGER']);
-        $user->setPassword($this->passwordEncoder->hashPassword($user, 'testing'));
+        $user->setPassword($this->passwordEncoder->hashPassword($user, $password));
         $user->setTimezone('America/Chicago');
         $manager->persist($user);
         $manager->flush();
@@ -62,7 +63,7 @@ class UserFixtures extends Fixture
         $user->setName('Communications Manager');
         $user->setEmail('communications.manager@example.com');
         $user->setRoles(['ROLE_COMMUNICATIONS_MANAGER']);
-        $user->setPassword($this->passwordEncoder->hashPassword($user, 'testing'));
+        $user->setPassword($this->passwordEncoder->hashPassword($user, $password));
         $user->setTimezone('America/Chicago');
         $manager->persist($user);
         $manager->flush();
@@ -72,7 +73,7 @@ class UserFixtures extends Fixture
         $user->setName('Donation Manager');
         $user->setEmail('donation.manager@example.com');
         $user->setRoles(['ROLE_DONATION_MANAGER']);
-        $user->setPassword($this->passwordEncoder->hashPassword($user, 'testing'));
+        $user->setPassword($this->passwordEncoder->hashPassword($user, $password));
         $user->setTimezone('America/Chicago');
         $manager->persist($user);
         $manager->flush();
@@ -82,7 +83,7 @@ class UserFixtures extends Fixture
         $user->setName('Email Manager');
         $user->setEmail('email.manager@example.com');
         $user->setRoles(['ROLE_EMAIL_MANAGER']);
-        $user->setPassword($this->passwordEncoder->hashPassword($user, 'testing'));
+        $user->setPassword($this->passwordEncoder->hashPassword($user, $password));
         $user->setTimezone('America/Chicago');
         $manager->persist($user);
         $manager->flush();
@@ -92,7 +93,7 @@ class UserFixtures extends Fixture
         $user->setName('Event Manager');
         $user->setEmail('event.manager@example.com');
         $user->setRoles(['ROLE_EVENT_MANAGER']);
-        $user->setPassword($this->passwordEncoder->hashPassword($user, 'testing'));
+        $user->setPassword($this->passwordEncoder->hashPassword($user, $password));
         $user->setTimezone('America/Chicago');
         $manager->persist($user);
         $manager->flush();
@@ -102,7 +103,7 @@ class UserFixtures extends Fixture
         $user->setName('Admin User');
         $user->setEmail('admin@example.com');
         $user->setRoles(['ROLE_ADMIN']);
-        $user->setPassword($this->passwordEncoder->hashPassword($user, 'testing'));
+        $user->setPassword($this->passwordEncoder->hashPassword($user, $password));
         $user->setTimezone('America/Chicago');
         $manager->persist($user);
         $manager->flush();

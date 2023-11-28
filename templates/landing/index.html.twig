@@ -11,7 +11,7 @@
     Welcome, {{ app.user }}.
     You have role {{ app.user.roles|join(',') }}.
   {% else %}
-    To access the data, you need to log in.  The password is 'testing'
+    To access the data, you need to log in.  The password is <code>test</code>
 
   <ul>
     {% for user in users %}
