@@ -38,12 +38,10 @@ final class AppMenuEventListener implements KnpMenuHelperInterface
     public function navbar2Menu(KnpMenuEvent $event): void
     {
         $menu = $event->getMenu();
-        if ($this->isGranted('ROLE_ADMIN')) {
             $nestedMenu = $this->addSubmenu($menu, 'Admin');
             foreach (['member_status_index', 'tag_index', 'directory_collection_index', 'admin', 'user_index'] as $route) {
                 $this->add($nestedMenu, $route);
             }
-        }
 
     }
 
@@ -65,8 +63,8 @@ final class AppMenuEventListener implements KnpMenuHelperInterface
         foreach ($directoryCollections as $directoryCollection) {
             $this->add($nestedMenu, 'directory_collection', $directoryCollection, $directoryCollection->getLabel());
         }
+        $this->add($nestedMenu, 'directory_collection_new', label: 'New', icon: 'fas fa-plus', dividerPrepend: true);
         if ($this->isGranted('ROLE_DIRECTORY_MANAGER')) {
-            $this->add($nestedMenu, 'directory_collection_new', label: 'New', icon: 'fas fa-plus', dividerPrepend: true);
         }
         $this->add($nestedMenu, 'directory_browse', label: 'Api Grid Browse');
 

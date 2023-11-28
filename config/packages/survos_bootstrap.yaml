@@ -3,6 +3,7 @@ survos_bootstrap:
     code: member
     abbr: <b>member</b>Dir
   impersonate:
+    - communications.manager@example.com
     - email.manager@example.com
     - event.manager@example.com
     - donation.manager@example.com
