@@ -62,15 +62,19 @@ final class DonationFactory extends ModelFactory
      */
     protected function getDefaults(): array
     {
+        $fee =  self::faker()->randomFloat(0, 0, 5);
+        $amount = self::faker()->randomFloat(0, 0, 1000);
+        $net = $amount - $fee; // this should be a method somewhere in the entity!
+
         return [
             'member' => null,
-            'amount' => self::faker()->randomFloat(),
+            'amount' => $amount,
             'createdAt' => self::faker()->dateTime(),
-            'currency' => self::faker()->text(255),
+            'currency' => 'USD', // self::faker()->text(255),
             'isAnonymous' => self::faker()->boolean(),
             'isRecurring' => self::faker()->boolean(),
-            'netAmount' => self::faker()->randomFloat(),
-            'processingFee' => self::faker()->randomFloat(),
+            'netAmount' => $net,
+            'processingFee' => $fee,
             'receivedAt' => \DateTimeImmutable::createFromMutable(self::faker()->dateTime()),
             'transactionPayload' => [],
             'updatedAt' => self::faker()->dateTime(),

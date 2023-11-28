@@ -70,7 +70,7 @@ final class AppMenuEventListener implements KnpMenuHelperInterface
         }
         $this->add($nestedMenu, 'directory_browse', label: 'Api Grid Browse');
 
-        $nestedMenu = $this->addSubmenu($menu, 'Tags');
+        $nestedMenu = $this->addSubmenu($menu, 'Tags', id: 'tags_submenu');
         $tags = $this->tagRepository->findBy([], ['tagName' => 'ASC']);
         foreach ($tags as $tag) {
             $this->add($nestedMenu, 'tag', $tag, $tag->getTagName());
@@ -93,6 +93,7 @@ final class AppMenuEventListener implements KnpMenuHelperInterface
         $this->add($menu, 'birthdays', icon: 'bi bi-cake');
 
         $nestedMenu = $this->addSubmenu($menu, 'Data', icon: 'bi bi-cake');
+        // @todo: look for ROLE_DIRECTORY_MANAGER in the route IsGranted
         foreach (['member_changes', 'import', 'export'] as $route) {
             $this->add($nestedMenu, $route);
         }

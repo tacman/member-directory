@@ -15,6 +15,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 class ImportController extends AbstractController
 {
     #[Route(path: '/', name: 'import')]
+    #[IsGranted('ROLE_DIRECTORY_MANAGER')]
     public function import(Request $request, CsvToMemberService $csvToMemberService, EntityManagerInterface $entityManager)
     {
         $form = $this->createForm(MemberImportType::class, null);
