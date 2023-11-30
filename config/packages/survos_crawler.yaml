@@ -11,3 +11,8 @@ survos_crawler:
     max_depth : 3
     routes_to_ignore :
         - 'app_logout'
+    paths_to_ignore:
+      - _profiler
+      - _switch_user
+      - mailto
+      - javascript:void
