@@ -451,9 +451,6 @@
     "survos/deployment-bundle": {
         "version": "1.5.93"
     },
-    "survos/grid-bundle": {
-        "version": "dev-main"
-    },
     "survos/inspection-bundle": {
         "version": "dev-main"
     },

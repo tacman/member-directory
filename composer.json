@@ -38,7 +38,6 @@
     "survos/bootstrap-bundle": "^1.5",
     "survos/command-bundle": "^1.5",
     "survos/crawler-bundle": "^1.5",
-    "survos/grid-bundle": "^1.5",
     "survos/inspection-bundle": "^1.5",
     "symfony/apache-pack": "^1.0",
     "symfony/asset": "^6.4 || ^7.0",
