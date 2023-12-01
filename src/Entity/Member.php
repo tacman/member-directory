@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\Get;
@@ -15,6 +16,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Loggable\Loggable;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Survos\ApiGrid\Api\Filter\FacetsFieldSearchFilter;
 use Survos\CoreBundle\Entity\RouteParametersInterface;
 use Survos\CoreBundle\Entity\RouteParametersTrait;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -38,6 +40,8 @@ use Symfony\Component\Validator\Constraints as Assert;
         'groups' => ['member.write'],
     ],
 )]
+
+#[ApiFilter(FacetsFieldSearchFilter::class, properties: ['status','prefix','classYear'])]
 
 #[Gedmo\Loggable]
 #[Groups(['member.read'])]

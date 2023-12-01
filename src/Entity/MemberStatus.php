@@ -33,7 +33,7 @@ class MemberStatus implements RouteParametersInterface
     private $code;
 
     #[ORM\Column(type: 'string', length: 255)]
-    #[Groups(['status_main'])]
+    #[Groups(['status_main', 'member_main'])]
     #[Gedmo\Versioned]
     private $label;
 

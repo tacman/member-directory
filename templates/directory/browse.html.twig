@@ -8,17 +8,34 @@
 
   {#  column('displayName', browseable=false, order=1) // named arguments coming in twig4 #}
   {% set columns = [
-    'displayName',
+    'status',
+    {name: 'prefix', browsable: true},
+    {name: 'classYear', browsable: true},
+    {name: 'displayName', browsable: false},
     'localIdentifier',
     'photoUrl',
   ] %}
   {% set globals = {} %}
 
+  <div class="dtsp-verticalContainer row">
+    <div class="dtsp-verticalPanes col-3">
+    </div>
+    <div class="col-9">
+      {{ block('gridTable') }}
+    </div>
+  </div>
+{% endblock %}
+
+{% block gridTable %}
+
   <twig:api_grid :caller="_self"
                  :class="class"
-                 columns="{{ columns }}"
+                 :columns="columns"
                  :globals="globals">
 
+    <twig:block name="status">
+      {{ row.status.label }}
+    </twig:block>
     <twig:block name="displayName">
 
       <a href="{{ path('member_show', {localIdentifier: row.localIdentifier}) }}">

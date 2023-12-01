@@ -176,4 +176,11 @@ return [
         'version' => '1.11.2',
         'type' => 'css',
     ],
+    'perfect-scrollbar' => [
+        'version' => '1.5.5',
+    ],
+    'perfect-scrollbar/css/perfect-scrollbar.min.css' => [
+        'version' => '1.5.5',
+        'type' => 'css',
+    ],
 ];

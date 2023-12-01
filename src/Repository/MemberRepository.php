@@ -9,6 +9,8 @@ use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
+use Survos\CoreBundle\Traits\QueryBuilderHelperInterface;
+use Survos\CoreBundle\Traits\QueryBuilderHelperTrait;
 
 /**
  * @method Member|null find($id, $lockMode = null, $lockVersion = null)
@@ -16,8 +18,10 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Member[]    findAll()
  * @method Member[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class MemberRepository extends ServiceEntityRepository
+
+class MemberRepository extends ServiceEntityRepository implements QueryBuilderHelperInterface
 {
+    use QueryBuilderHelperTrait;
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Member::class);
