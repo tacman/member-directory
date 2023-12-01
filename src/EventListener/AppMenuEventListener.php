@@ -48,9 +48,7 @@ final class AppMenuEventListener implements KnpMenuHelperInterface
     public function appAuthMenu(KnpMenuEvent $event): void
     {
         $menu = $event->getMenu();
-//        $this->authMenu($this->authorizationChecker, $this->security, $menu);
         $this->menuService->addAuthMenu($menu);
-//        $this->add($menu, 'app_login');
     }
 
 
