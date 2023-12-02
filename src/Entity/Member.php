@@ -19,6 +19,7 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Survos\ApiGrid\Api\Filter\FacetsFieldSearchFilter;
 use Survos\ApiGrid\Filter\MeiliSearch\MultiFieldSearchFilter;
 use Survos\ApiGrid\Filter\MeiliSearch\SortFilter;
+use Survos\ApiGrid\State\MeilliSearchStateProvider;
 use Survos\CoreBundle\Entity\RouteParametersInterface;
 use Survos\CoreBundle\Entity\RouteParametersTrait;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -37,11 +38,16 @@ use Symfony\Component\Validator\Constraints as Assert;
 //    operations: [new Get(), new Put(), new Delete(), new Patch(), new GetCollection()],
     normalizationContext: [
         'groups' => ['member.read', 'member_extended', 'member_main', 'rp'],
+        'sa'
     ],
     denormalizationContext: [
         'groups' => ['member.write'],
     ],
+    operations: [new Get(), new Put(), new Delete(), new Patch(), new GetCollection(
+        provider: MeilliSearchStateProvider::class
+    )],
 )]
+
 #[ApiFilter(MultiFieldSearchFilter::class, properties: ['prefix', 'classYear'])]
 #[ApiFilter(SortFilter::class, properties: ['status', 'classYear', 'localIdentifier'])]
 #[ApiFilter(FacetsFieldSearchFilter::class, properties: ['prefix','classYear', 'localIdentifier'])]
