@@ -197,6 +197,18 @@
     "lorenzo/pinky": {
         "version": "1.0.5"
     },
+    "meilisearch/search-bundle": {
+        "version": "0.13",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "0.10",
+            "ref": "f0730f97441a5391832fb176305f69abe86b70a3"
+        },
+        "files": [
+            "config/packages/meilisearch.yaml"
+        ]
+    },
     "monolog/monolog": {
         "version": "1.24.0"
     },

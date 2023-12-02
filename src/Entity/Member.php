@@ -44,7 +44,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ApiFilter(FacetsFieldSearchFilter::class, properties: ['status','prefix','classYear'])]
 
 #[Gedmo\Loggable]
-#[Groups(['member.read'])]
+#[Groups(['member.read', 'search'])]
 class Member implements Loggable, RouteParametersInterface
 {
     use TimestampableEntity;
