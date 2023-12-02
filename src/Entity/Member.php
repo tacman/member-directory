@@ -17,6 +17,8 @@ use Gedmo\Loggable\Loggable;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Survos\ApiGrid\Api\Filter\FacetsFieldSearchFilter;
+use Survos\ApiGrid\Filter\MeiliSearch\MultiFieldSearchFilter;
+use Survos\ApiGrid\Filter\MeiliSearch\SortFilter;
 use Survos\CoreBundle\Entity\RouteParametersInterface;
 use Survos\CoreBundle\Entity\RouteParametersTrait;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -40,8 +42,9 @@ use Symfony\Component\Validator\Constraints as Assert;
         'groups' => ['member.write'],
     ],
 )]
-
-#[ApiFilter(FacetsFieldSearchFilter::class, properties: ['status','prefix','classYear'])]
+#[ApiFilter(MultiFieldSearchFilter::class, properties: ['prefix', 'classYear'])]
+#[ApiFilter(SortFilter::class, properties: ['status', 'classYear', 'localIdentifier'])]
+#[ApiFilter(FacetsFieldSearchFilter::class, properties: ['prefix','classYear', 'localIdentifier'])]
 
 #[Gedmo\Loggable]
 #[Groups(['member.read', 'search'])]
