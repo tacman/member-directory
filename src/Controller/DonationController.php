@@ -18,7 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[IsGranted('ROLE_DONATION_MANAGER')]
-#[Route(path: '/donations')]
+#[Route(path: '/{_locale}/donations')]
 class DonationController extends AbstractController
 {
     protected $session;

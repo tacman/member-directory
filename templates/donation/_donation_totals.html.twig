@@ -32,9 +32,9 @@
 <div class="row">
   {{ _self.totalCell(total.latestDonation, 'Latest Donation', 'fas fa-calendar', 'dark', 'date') }}
   {% if total.totalDonors is defined %}
-  {{ _self.totalCell(total.totalDonors, 'Donors', 'fas fa-users', 'primary', 'number_format') }}
+  {{ _self.totalCell(total.totalDonors, 'donors'|trans|title, 'fas fa-users', 'primary', 'number_format') }}
   {% endif %}
-  {{ _self.totalCell(total.totalDonations, 'Donations', 'fas fa-hand-holding-usd', 'primary', 'number_format') }}
+  {{ _self.totalCell(total.totalDonations, 'donations'|trans|title, 'fas fa-hand-holding-usd', 'primary', 'number_format') }}
   {{ _self.totalCell(total.totalAmount, 'Total Amount', 'fas fa-dollar-sign', 'primary', 'currency', total.currency) }}
   {{ _self.totalCell(total.totalProcessingFee, 'Processing Fees', 'fas fa-file-invoice-dollar', 'danger', 'currency', total.currency) }}
   {{ _self.totalCell(total.totalNetAmount, 'Net Amount', 'fas fa-equals', 'success', 'currency', total.currency) }}
