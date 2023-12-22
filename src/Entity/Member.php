@@ -49,7 +49,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 )]
 
 #[ApiFilter(MultiFieldSearchFilter::class, properties: ['prefix', 'classYear'])]
-#[ApiFilter(SortFilter::class, properties: ['status', 'classYear', 'localIdentifier'])]
+#[ApiFilter(SortFilter::class, properties: ['classYear', 'localIdentifier'])]
 #[ApiFilter(FacetsFieldSearchFilter::class, properties: ['prefix','classYear', 'localIdentifier'])]
 
 #[Gedmo\Loggable]

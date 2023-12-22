@@ -5,5 +5,5 @@ meilisearch:
     indices:
         # Define entities or documents that should be indexed to Meilisearch.
         # See https://github.com/meilisearch/meilisearch-symfony/wiki/configure-searchable-data
-        - name: members
+        - name: Member
           class: App\Entity\Member

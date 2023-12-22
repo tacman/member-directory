@@ -23,7 +23,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[IsGranted('ROLE_USER')]
-#[Route(path: '/directory')]
+#[Route(path: '/{_locale}/directory')]
 class DirectoryController extends AbstractController
 {
     public const COLUMN_MAP = [

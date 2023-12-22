@@ -57,7 +57,7 @@ final class AppMenuEventListener implements KnpMenuHelperInterface
         $menu = $event->getMenu();
         $options = $event->getOptions();
         $directoryCollections = $this->directoryCollectionRepository->findBy([], ['position' => 'ASC', 'label' => 'ASC']);
-        $nestedMenu = $this->addSubmenu($menu, 'Collections');
+        $nestedMenu = $this->addSubmenu($menu, id: 'collections');
         foreach ($directoryCollections as $directoryCollection) {
             $this->add($nestedMenu, 'directory_collection', $directoryCollection, $directoryCollection->getLabel());
         }
