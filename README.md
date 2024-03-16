@@ -1,6 +1,6 @@
 # Member Directory
 
-## Develoer Quickstart
+## Developer Quickstart
 
 ```bash
 git clone git@github.com:tacman/member-directory.git --branch sy64-with-assetmapper && cd member-directory
@@ -36,3 +36,11 @@ When using MySQL, note the following:
 * migrations won't work
 * change doctrine.yaml to the MySQL date functions (for birthdays)
 * Change the DATABASE_URL
+
+## Notes
+
+Additional member fixtures from
+
+```bash
+curl 'https://dummyjson.com/users?limit=100' > src/DataFixtures/dummyusers.json
+```
