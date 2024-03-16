@@ -119,8 +119,8 @@ class Member implements Loggable, RouteParametersInterface
     #[Gedmo\Versioned]
     private $suffix;
 
-    #[ORM\Column(type: Types::DATE_IMMUTABLE, nullable: true)]
-    #[Assert\Type(DateType::class)]
+    #[ORM\Column(type: 'date', nullable: true)]
+//    #[Assert\Type(DateType::class)]
     #[Gedmo\Versioned]
     private $birthDate;
 
@@ -379,11 +379,13 @@ class Member implements Loggable, RouteParametersInterface
 
     public function setBirthDate(?\DateTimeInterface $birthDate): self
     {
-        if ($this->assertEqualDates($this->birthDate, $birthDate)) {
-            return $this;
+//        if ($this->assertEqualDates($this->birthDate, $birthDate)) {
+//            return $this;
+//        }
+        if ($birthDate) {
+            $this->birthDate = $birthDate;
         }
 
-        $this->birthDate = $birthDate;
 
         return $this;
     }
@@ -627,7 +629,7 @@ class Member implements Loggable, RouteParametersInterface
         return $this->photoUrl;
     }
 
-    public function setPhotoUrl(?string $photoUrl): ?string
+    public function setPhotoUrl(?string $photoUrl): self
     {
         $this->photoUrl = $photoUrl;
 
