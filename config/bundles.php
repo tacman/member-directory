@@ -34,5 +34,4 @@ return [
     Survos\AuthBundle\SurvosAuthBundle::class => ['all' => true],
     Survos\DeploymentBundle\SurvosDeploymentBundle::class => ['dev' => true],
     Sentry\SentryBundle\SentryBundle::class => ['prod' => true],
-    Meilisearch\Bundle\MeilisearchBundle::class => ['all' => true],
 ];

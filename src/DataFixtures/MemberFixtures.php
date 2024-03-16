@@ -21,6 +21,7 @@ class MemberFixtures extends Fixture implements DependentFixtureInterface
 
     public function load(ObjectManager $manager)
     {
+
         $memberStatusMember = $this->getReference(MemberStatusFixtures::MEMBER);
         $memberStatusAlumnus = $this->getReference(MemberStatusFixtures::ALUMNUS);
         $memberStatusExpelled = $this->getReference(MemberStatusFixtures::EXPELLED);

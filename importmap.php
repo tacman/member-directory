@@ -95,13 +95,13 @@ return [
         'version' => '1.6.1',
     ],
     'datatables.net-bs5' => [
-        'version' => '1.13.8',
+        'version' => '1.13.11',
     ],
     'datatables.net' => [
-        'version' => '1.13.8',
+        'version' => '1.13.11',
     ],
     'datatables.net-bs5/css/dataTables.bootstrap5.min.css' => [
-        'version' => '1.13.8',
+        'version' => '1.13.11',
         'type' => 'css',
     ],
     'datatables.net-responsive' => [
@@ -179,6 +179,16 @@ return [
     ],
     'perfect-scrollbar/css/perfect-scrollbar.min.css' => [
         'version' => '1.5.5',
+        'type' => 'css',
+    ],
+    'datatables.net-searchbuilder-bs5' => [
+        'version' => '1.7.0',
+    ],
+    'datatables.net-searchbuilder' => [
+        'version' => '1.7.0',
+    ],
+    'datatables.net-searchbuilder-bs5/css/searchBuilder.bootstrap5.min.css' => [
+        'version' => '1.7.0',
         'type' => 'css',
     ],
 ];
