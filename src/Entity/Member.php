@@ -12,6 +12,8 @@ use ApiPlatform\Metadata\Put;
 use App\Repository\MemberRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\DateType;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Loggable\Loggable;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -117,12 +119,12 @@ class Member implements Loggable, RouteParametersInterface
     #[Gedmo\Versioned]
     private $suffix;
 
-    #[ORM\Column(type: 'date', nullable: true)]
-    #[Assert\Type('\DateTimeInterface')]
+    #[ORM\Column(type: Types::DATE_IMMUTABLE, nullable: true)]
+    #[Assert\Type(DateType::class)]
     #[Gedmo\Versioned]
     private $birthDate;
 
-    #[ORM\Column(type: 'date', nullable: true)]
+    #[ORM\Column(type: Types::DATE_IMMUTABLE, nullable: true)]
     #[Assert\Type('\DateTimeInterface')]
     #[Gedmo\Versioned]
     private $joinDate;

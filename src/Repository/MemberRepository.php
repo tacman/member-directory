@@ -278,8 +278,13 @@ class MemberRepository extends ServiceEntityRepository implements QueryBuilderHe
         $qb = $this->createQueryBuilder('m')
             ->addSelect('t')
             ->addSelect('s')
-            ->addSelect('SUBSTRING(m.birthDate, 6, 2) AS bdMonth')
-            ->addSelect('SUBSTRING(m.birthDate, 9, 2) AS bdDay')
+            ;
+//        $dbMonth = $qb->expr()->substring("m.birthDate::string",6,2);
+//        dd($dbMonth, (string)$dbMonth);
+$qb
+        // https://stackoverflow.com/questions/45058158/doctrine-query-builder-substring
+//            ->addSelect($dbMonth)
+//            ->addSelect('SUBSTRING(m.birthDate, 9, 2) AS bdDay')
 //            ->addSelect('MONTH(m.birthDate) AS bdMonth')
 //            ->addSelect('DAY(m.birthDate) AS bdDay')
             ->join('m.status', 's')
@@ -288,6 +293,7 @@ class MemberRepository extends ServiceEntityRepository implements QueryBuilderHe
             ->andWhere('m.isLocalDoNotContact = false')
             ->andWhere('s.isInactive = false')
         ;
+//dd($qb->getQuery()->getSQL());
         $this->processParams($qb, $params);
 
 //        // Override ordering defaults

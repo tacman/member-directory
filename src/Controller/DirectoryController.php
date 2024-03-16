@@ -346,11 +346,17 @@ class DirectoryController extends AbstractController
     {
         $birthdays = $memberRepository->findBirthdays();
         $birthdayMap = [];
-        foreach ($birthdays as $birthday) {
-            $member = $birthday[0];
-            $month = $birthday['bdMonth'];
-            $day = $birthday['bdDay'];
+        /** @var Member $member */
+        foreach ($birthdays as $member) {
+//            dd($birthday);
+//            $member = $birthday[0];
+            $birthday = $member->getBirthDate();
+            $month = $birthday->format('m');
+            $day = $birthday->format('d');
+//            $month = $birthday['bdMonth'];
+//            $day = $birthday['bdDay'];
             $birthdayMap[$month][$day][] = $member;
+//            dd($birthdayMap);
         }
 
         return $this->render('directory/birthdays.html.twig', [
