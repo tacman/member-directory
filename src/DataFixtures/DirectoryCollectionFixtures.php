@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\DirectoryCollection;
+use App\Entity\MemberStatus;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -11,9 +12,9 @@ class DirectoryCollectionFixtures extends Fixture implements DependentFixtureInt
 {
     public function load(ObjectManager $manager)
     {
-        $memberStatusMember = $this->getReference(MemberStatusFixtures::MEMBER);
-        $memberStatusAlumnus = $this->getReference(MemberStatusFixtures::ALUMNUS);
-        $memberStatusExpelled = $this->getReference(MemberStatusFixtures::EXPELLED);
+        $memberStatusMember = $this->getReference(MemberStatusFixtures::MEMBER, MemberStatus::class);
+        $memberStatusAlumnus = $this->getReference(MemberStatusFixtures::ALUMNUS, MemberStatus::class);
+        $memberStatusExpelled = $this->getReference(MemberStatusFixtures::EXPELLED, MemberStatus::class);
 
         $directoryCollection = new DirectoryCollection();
         $directoryCollection->setLabel($memberStatusMember->getLabel());

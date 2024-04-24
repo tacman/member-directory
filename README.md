@@ -1,6 +1,6 @@
 # Member Directory
 
-## Develoer Quickstart
+## Developer Quickstart
 
 ```bash
 git clone git@github.com:tacman/member-directory.git --branch sy64-with-assetmapper && cd member-directory
@@ -28,3 +28,19 @@ Member Directory is a [Symfony](https://symfony.com/) project to manage membersh
 
 - [Feature Highlights](https://utmsigep.github.io/member-directory)
 - [Developer Quick Start](https://github.com/utmsigep/member-directory/wiki/Developer-Quick-Start)
+
+## Database
+
+When using MySQL, note the following:
+
+* migrations won't work
+* change doctrine.yaml to the MySQL date functions (for birthdays)
+* Change the DATABASE_URL
+
+## Notes
+
+Additional member fixtures from
+
+```bash
+curl 'https://dummyjson.com/users?limit=100' > src/DataFixtures/dummyusers.json
+```

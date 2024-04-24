@@ -19,11 +19,11 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[IsGranted('ROLE_USER')]
-#[Route(path: '/{_locale}/directory')]
+#[Route(path: '/{_locale}/directory', defaults: ['_locale' => 'en'])]
 class DirectoryController extends AbstractController
 {
     public const COLUMN_MAP = [
@@ -346,11 +346,17 @@ class DirectoryController extends AbstractController
     {
         $birthdays = $memberRepository->findBirthdays();
         $birthdayMap = [];
-        foreach ($birthdays as $birthday) {
-            $member = $birthday[0];
-            $month = $birthday['bdMonth'];
-            $day = $birthday['bdDay'];
+        /** @var Member $member */
+        foreach ($birthdays as $member) {
+//            dd($birthday);
+//            $member = $birthday[0];
+            $birthday = $member->getBirthDate();
+            $month = $birthday->format('m');
+            $day = $birthday->format('d');
+//            $month = $birthday['bdMonth'];
+//            $day = $birthday['bdDay'];
             $birthdayMap[$month][$day][] = $member;
+//            dd($birthdayMap);
         }
 
         return $this->render('directory/birthdays.html.twig', [

@@ -12,6 +12,8 @@ use ApiPlatform\Metadata\Put;
 use App\Repository\MemberRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\DateType;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Loggable\Loggable;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -118,11 +120,11 @@ class Member implements Loggable, RouteParametersInterface
     private $suffix;
 
     #[ORM\Column(type: 'date', nullable: true)]
-    #[Assert\Type('\DateTimeInterface')]
+//    #[Assert\Type(DateType::class)]
     #[Gedmo\Versioned]
     private $birthDate;
 
-    #[ORM\Column(type: 'date', nullable: true)]
+    #[ORM\Column(type: Types::DATE_IMMUTABLE, nullable: true)]
     #[Assert\Type('\DateTimeInterface')]
     #[Gedmo\Versioned]
     private $joinDate;
@@ -377,11 +379,13 @@ class Member implements Loggable, RouteParametersInterface
 
     public function setBirthDate(?\DateTimeInterface $birthDate): self
     {
-        if ($this->assertEqualDates($this->birthDate, $birthDate)) {
-            return $this;
+//        if ($this->assertEqualDates($this->birthDate, $birthDate)) {
+//            return $this;
+//        }
+        if ($birthDate) {
+            $this->birthDate = $birthDate;
         }
 
-        $this->birthDate = $birthDate;
 
         return $this;
     }
@@ -625,7 +629,7 @@ class Member implements Loggable, RouteParametersInterface
         return $this->photoUrl;
     }
 
-    public function setPhotoUrl(?string $photoUrl): ?string
+    public function setPhotoUrl(?string $photoUrl): self
     {
         $this->photoUrl = $photoUrl;
 

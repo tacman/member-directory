@@ -49,7 +49,7 @@ class MemberRepository extends ServiceEntityRepository implements QueryBuilderHe
         }
         if ($directoryCollection->getFilterDeceased()) {
             $qb->andWhere('m.isDeceased = :isDeceased')
-                ->setParameter('isDeceased', 'include' == $directoryCollection->getFilterDeceased());
+                ->setParameter('isDeceased', (bool)'include' == $directoryCollection->getFilterDeceased());
         }
 
         $this->processParams($qb, $params);
@@ -125,11 +125,11 @@ class MemberRepository extends ServiceEntityRepository implements QueryBuilderHe
             ->join('m.status', 's')
             ->leftJoin('m.tags', 't')
             ->where('m.mailingLatitude IS NOT NULL')
-            ->andWhere('m.mailingLatitude != 0')
+            ->andWhere('m.mailingLatitude IS NOT NULL')
             ->andWhere('m.mailingLongitude IS NOT NULL')
-            ->andWhere('m.mailingLongitude != 0')
-            ->andWhere('m.isDeceased = 0')
-            ->andWhere('s.isInactive = 0')
+//            ->andWhere('m.mailingLongitude != 0')
+            ->andWhere('m.isDeceased = false')
+            ->andWhere('s.isInactive = false')
         ;
         $this->processParams($qb, $params);
 
@@ -216,10 +216,10 @@ class MemberRepository extends ServiceEntityRepository implements QueryBuilderHe
             ->orderBy('m.localIdentifier', 'ASC');
         // Default Filters
         if (isset($filters['default_filters']) && $filters['default_filters']) {
-            $qb->andWhere('m.isDeceased = 0');
-            $qb->andWhere('m.isLost = 0');
-            $qb->andWhere('m.isLocalDoNotContact = 0');
-            $qb->andWhere('s.isInactive = 0');
+            $qb->andWhere('m.isDeceased = false');
+            $qb->andWhere('m.isLost = false');
+            $qb->andWhere('m.isLocalDoNotContact = false');
+            $qb->andWhere('s.isInactive = false');
         }
         // Return only mailable records
         if (isset($filters['mailable']) && $filters['mailable']) {
@@ -278,16 +278,22 @@ class MemberRepository extends ServiceEntityRepository implements QueryBuilderHe
         $qb = $this->createQueryBuilder('m')
             ->addSelect('t')
             ->addSelect('s')
-            ->addSelect('SUBSTRING(m.birthDate, 6, 2) AS bdMonth')
-            ->addSelect('SUBSTRING(m.birthDate, 9, 2) AS bdDay')
+            ;
+//        $dbMonth = $qb->expr()->substring("m.birthDate::string",6,2);
+//        dd($dbMonth, (string)$dbMonth);
+$qb
+        // https://stackoverflow.com/questions/45058158/doctrine-query-builder-substring
+//            ->addSelect($dbMonth)
+//            ->addSelect('SUBSTRING(m.birthDate, 9, 2) AS bdDay')
 //            ->addSelect('MONTH(m.birthDate) AS bdMonth')
 //            ->addSelect('DAY(m.birthDate) AS bdDay')
             ->join('m.status', 's')
             ->leftJoin('m.tags', 't')
             ->where('m.birthDate IS NOT NULL')
-            ->andWhere('m.isLocalDoNotContact = 0')
-            ->andWhere('s.isInactive = 0')
+            ->andWhere('m.isLocalDoNotContact = false')
+            ->andWhere('s.isInactive = false')
         ;
+//dd($qb->getQuery()->getSQL());
         $this->processParams($qb, $params);
 
 //        // Override ordering defaults
