@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bdaf6745057228539b3135bfb582826b",
+    "content-hash": "17f97ae4229afaae2e7c707bfb97aaa9",
     "packages": [
         {
             "name": "api-platform/core",
@@ -1996,61 +1996,48 @@
         },
         {
             "name": "doctrine/orm",
-            "version": "2.19.6",
+            "version": "3.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/orm.git",
-                "reference": "c1bb2ccf4b19c845f91ff7c4c01dc7cbba7f4073"
+                "reference": "722cea6536775206e81744542b36fa7c9a4ea3e5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/orm/zipball/c1bb2ccf4b19c845f91ff7c4c01dc7cbba7f4073",
-                "reference": "c1bb2ccf4b19c845f91ff7c4c01dc7cbba7f4073",
+                "url": "https://api.github.com/repos/doctrine/orm/zipball/722cea6536775206e81744542b36fa7c9a4ea3e5",
+                "reference": "722cea6536775206e81744542b36fa7c9a4ea3e5",
                 "shasum": ""
             },
             "require": {
                 "composer-runtime-api": "^2",
-                "doctrine/cache": "^1.12.1 || ^2.1.1",
-                "doctrine/collections": "^1.5 || ^2.1",
-                "doctrine/common": "^3.0.3",
-                "doctrine/dbal": "^2.13.1 || ^3.2",
+                "doctrine/collections": "^2.2",
+                "doctrine/dbal": "^3.8.2 || ^4",
                 "doctrine/deprecations": "^0.5.3 || ^1",
                 "doctrine/event-manager": "^1.2 || ^2",
                 "doctrine/inflector": "^1.4 || ^2.0",
                 "doctrine/instantiator": "^1.3 || ^2",
-                "doctrine/lexer": "^2 || ^3",
-                "doctrine/persistence": "^2.4 || ^3",
+                "doctrine/lexer": "^3",
+                "doctrine/persistence": "^3.3.1",
                 "ext-ctype": "*",
-                "php": "^7.1 || ^8.0",
+                "php": "^8.1",
                 "psr/cache": "^1 || ^2 || ^3",
-                "symfony/console": "^4.2 || ^5.0 || ^6.0 || ^7.0",
-                "symfony/polyfill-php72": "^1.23",
-                "symfony/polyfill-php80": "^1.16"
-            },
-            "conflict": {
-                "doctrine/annotations": "<1.13 || >= 3.0"
+                "symfony/console": "^5.4 || ^6.0 || ^7.0",
+                "symfony/var-exporter": "^6.3.9 || ^7.0"
             },
             "require-dev": {
-                "doctrine/annotations": "^1.13 || ^2",
-                "doctrine/coding-standard": "^9.0.2 || ^12.0",
-                "phpbench/phpbench": "^0.16.10 || ^1.0",
-                "phpstan/phpstan": "~1.4.10 || 1.11.1",
-                "phpunit/phpunit": "^7.5 || ^8.5 || ^9.6",
+                "doctrine/coding-standard": "^12.0",
+                "phpbench/phpbench": "^1.0",
+                "phpstan/phpstan": "1.11.1",
+                "phpunit/phpunit": "^10.4.0",
                 "psr/log": "^1 || ^2 || ^3",
                 "squizlabs/php_codesniffer": "3.7.2",
-                "symfony/cache": "^4.4 || ^5.4 || ^6.4 || ^7.0",
-                "symfony/var-exporter": "^4.4 || ^5.4 || ^6.2 || ^7.0",
-                "symfony/yaml": "^3.4 || ^4.0 || ^5.0 || ^6.0 || ^7.0",
-                "vimeo/psalm": "4.30.0 || 5.24.0"
+                "symfony/cache": "^5.4 || ^6.2 || ^7.0",
+                "vimeo/psalm": "5.24.0"
             },
             "suggest": {
                 "ext-dom": "Provides support for XSD validation for XML mapping files",
-                "symfony/cache": "Provides cache support for Setup Tool with doctrine/cache 2.0",
-                "symfony/yaml": "If you want to use YAML Metadata Mapping Driver"
+                "symfony/cache": "Provides cache support for Setup Tool with doctrine/cache 2.0"
             },
-            "bin": [
-                "bin/doctrine"
-            ],
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -2091,9 +2078,9 @@
             ],
             "support": {
                 "issues": "https://github.com/doctrine/orm/issues",
-                "source": "https://github.com/doctrine/orm/tree/2.19.6"
+                "source": "https://github.com/doctrine/orm/tree/3.2.1"
             },
-            "time": "2024-06-26T17:24:40+00:00"
+            "time": "2024-06-26T21:48:58+00:00"
         },
         {
             "name": "doctrine/persistence",
@@ -3222,64 +3209,6 @@
                 }
             ],
             "time": "2024-07-18T11:15:46+00:00"
-        },
-        {
-            "name": "http-interop/http-factory-guzzle",
-            "version": "1.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/http-interop/http-factory-guzzle.git",
-                "reference": "8f06e92b95405216b237521cc64c804dd44c4a81"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/http-interop/http-factory-guzzle/zipball/8f06e92b95405216b237521cc64c804dd44c4a81",
-                "reference": "8f06e92b95405216b237521cc64c804dd44c4a81",
-                "shasum": ""
-            },
-            "require": {
-                "guzzlehttp/psr7": "^1.7||^2.0",
-                "php": ">=7.3",
-                "psr/http-factory": "^1.0"
-            },
-            "provide": {
-                "psr/http-factory-implementation": "^1.0"
-            },
-            "require-dev": {
-                "http-interop/http-factory-tests": "^0.9",
-                "phpunit/phpunit": "^9.5"
-            },
-            "suggest": {
-                "guzzlehttp/psr7": "Includes an HTTP factory starting in version 2.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Http\\Factory\\Guzzle\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "PHP-FIG",
-                    "homepage": "http://www.php-fig.org/"
-                }
-            ],
-            "description": "An HTTP Factory using Guzzle PSR7",
-            "keywords": [
-                "factory",
-                "http",
-                "psr-17",
-                "psr-7"
-            ],
-            "support": {
-                "issues": "https://github.com/http-interop/http-factory-guzzle/issues",
-                "source": "https://github.com/http-interop/http-factory-guzzle/tree/1.2.0"
-            },
-            "time": "2021-07-21T13:50:14+00:00"
         },
         {
             "name": "jean85/pretty-package-versions",
@@ -4845,61 +4774,6 @@
             "time": "2024-03-07T13:22:09+00:00"
         },
         {
-            "name": "php-http/message-factory",
-            "version": "1.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/php-http/message-factory.git",
-                "reference": "4d8778e1c7d405cbb471574821c1ff5b68cc8f57"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/php-http/message-factory/zipball/4d8778e1c7d405cbb471574821c1ff5b68cc8f57",
-                "reference": "4d8778e1c7d405cbb471574821c1ff5b68cc8f57",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4",
-                "psr/http-message": "^1.0 || ^2.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Http\\Message\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Márk Sági-Kazár",
-                    "email": "mark.sagikazar@gmail.com"
-                }
-            ],
-            "description": "Factory interfaces for PSR-7 HTTP Message",
-            "homepage": "http://php-http.org",
-            "keywords": [
-                "factory",
-                "http",
-                "message",
-                "stream",
-                "uri"
-            ],
-            "support": {
-                "issues": "https://github.com/php-http/message-factory/issues",
-                "source": "https://github.com/php-http/message-factory/tree/1.1.0"
-            },
-            "abandoned": "psr/http-factory",
-            "time": "2023-04-14T14:16:17+00:00"
-        },
-        {
             "name": "php-http/promise",
             "version": "1.3.1",
             "source": {
@@ -6029,111 +5903,41 @@
             "time": "2020-09-28T06:39:44+00:00"
         },
         {
-            "name": "sentry/sdk",
-            "version": "3.6.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/getsentry/sentry-php-sdk.git",
-                "reference": "24c235ff2027401cbea099bf88689e1a1f197c7a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/getsentry/sentry-php-sdk/zipball/24c235ff2027401cbea099bf88689e1a1f197c7a",
-                "reference": "24c235ff2027401cbea099bf88689e1a1f197c7a",
-                "shasum": ""
-            },
-            "require": {
-                "http-interop/http-factory-guzzle": "^1.0",
-                "sentry/sentry": "^3.22",
-                "symfony/http-client": "^4.3|^5.0|^6.0|^7.0"
-            },
-            "type": "metapackage",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Sentry",
-                    "email": "accounts@sentry.io"
-                }
-            ],
-            "description": "This is a metapackage shipping sentry/sentry with a recommended HTTP client.",
-            "homepage": "http://sentry.io",
-            "keywords": [
-                "crash-reporting",
-                "crash-reports",
-                "error-handler",
-                "error-monitoring",
-                "log",
-                "logging",
-                "sentry"
-            ],
-            "support": {
-                "issues": "https://github.com/getsentry/sentry-php-sdk/issues",
-                "source": "https://github.com/getsentry/sentry-php-sdk/tree/3.6.0"
-            },
-            "funding": [
-                {
-                    "url": "https://sentry.io/",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://sentry.io/pricing/",
-                    "type": "custom"
-                }
-            ],
-            "time": "2023-12-04T10:49:33+00:00"
-        },
-        {
             "name": "sentry/sentry",
-            "version": "3.22.1",
+            "version": "4.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/getsentry/sentry-php.git",
-                "reference": "8859631ba5ab15bc1af420b0eeed19ecc6c9d81d"
+                "reference": "61770efd8b7888e0bdd7d234f0ba67b066e47d04"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getsentry/sentry-php/zipball/8859631ba5ab15bc1af420b0eeed19ecc6c9d81d",
-                "reference": "8859631ba5ab15bc1af420b0eeed19ecc6c9d81d",
+                "url": "https://api.github.com/repos/getsentry/sentry-php/zipball/61770efd8b7888e0bdd7d234f0ba67b066e47d04",
+                "reference": "61770efd8b7888e0bdd7d234f0ba67b066e47d04",
                 "shasum": ""
             },
             "require": {
+                "ext-curl": "*",
                 "ext-json": "*",
                 "ext-mbstring": "*",
-                "guzzlehttp/promises": "^1.5.3|^2.0",
+                "guzzlehttp/psr7": "^1.8.4|^2.1.1",
                 "jean85/pretty-package-versions": "^1.5|^2.0.4",
                 "php": "^7.2|^8.0",
-                "php-http/async-client-implementation": "^1.0",
-                "php-http/client-common": "^1.5|^2.0",
-                "php-http/discovery": "^1.15",
-                "php-http/httplug": "^1.1|^2.0",
-                "php-http/message": "^1.5",
-                "php-http/message-factory": "^1.1",
-                "psr/http-factory": "^1.0",
-                "psr/http-factory-implementation": "^1.0",
                 "psr/log": "^1.0|^2.0|^3.0",
-                "symfony/options-resolver": "^3.4.43|^4.4.30|^5.0.11|^6.0|^7.0",
-                "symfony/polyfill-php80": "^1.17"
+                "symfony/options-resolver": "^4.4.30|^5.0.11|^6.0|^7.0"
             },
             "conflict": {
-                "php-http/client-common": "1.8.0",
                 "raven/raven": "*"
             },
             "require-dev": {
-                "friendsofphp/php-cs-fixer": "^2.19|3.4.*",
+                "friendsofphp/php-cs-fixer": "^3.4",
+                "guzzlehttp/promises": "^1.0|^2.0",
                 "guzzlehttp/psr7": "^1.8.4|^2.1.1",
-                "http-interop/http-factory-guzzle": "^1.0",
                 "monolog/monolog": "^1.6|^2.0|^3.0",
-                "nikic/php-parser": "^4.10.3",
-                "php-http/mock-client": "^1.3",
                 "phpbench/phpbench": "^1.0",
-                "phpstan/extension-installer": "^1.0",
                 "phpstan/phpstan": "^1.3",
-                "phpstan/phpstan-phpunit": "^1.0",
                 "phpunit/phpunit": "^8.5.14|^9.4",
-                "symfony/phpunit-bridge": "^5.2|^6.0",
+                "symfony/phpunit-bridge": "^5.2|^6.0|^7.0",
                 "vimeo/psalm": "^4.17"
             },
             "suggest": {
@@ -6158,7 +5962,7 @@
                     "email": "accounts@sentry.io"
                 }
             ],
-            "description": "A PHP SDK for Sentry (http://sentry.io)",
+            "description": "PHP SDK for Sentry (http://sentry.io)",
             "homepage": "http://sentry.io",
             "keywords": [
                 "crash-reporting",
@@ -6167,11 +5971,13 @@
                 "error-monitoring",
                 "log",
                 "logging",
-                "sentry"
+                "profiling",
+                "sentry",
+                "tracing"
             ],
             "support": {
                 "issues": "https://github.com/getsentry/sentry-php/issues",
-                "source": "https://github.com/getsentry/sentry-php/tree/3.22.1"
+                "source": "https://github.com/getsentry/sentry-php/tree/4.8.1"
             },
             "funding": [
                 {
@@ -6183,28 +5989,27 @@
                     "type": "custom"
                 }
             ],
-            "time": "2023-11-13T11:47:28+00:00"
+            "time": "2024-07-16T13:45:27+00:00"
         },
         {
             "name": "sentry/sentry-symfony",
-            "version": "4.14.0",
+            "version": "5.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/getsentry/sentry-symfony.git",
-                "reference": "001c4cfd8fe93cbb00edaca903ffbfac28259170"
+                "reference": "0fdcda670e3a2674dfea98253800d213b9cd82ed"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getsentry/sentry-symfony/zipball/001c4cfd8fe93cbb00edaca903ffbfac28259170",
-                "reference": "001c4cfd8fe93cbb00edaca903ffbfac28259170",
+                "url": "https://api.github.com/repos/getsentry/sentry-symfony/zipball/0fdcda670e3a2674dfea98253800d213b9cd82ed",
+                "reference": "0fdcda670e3a2674dfea98253800d213b9cd82ed",
                 "shasum": ""
             },
             "require": {
-                "guzzlehttp/psr7": "^1.7 || ^2.0",
-                "jean85/pretty-package-versions": "^1.5 || ^2.0",
+                "guzzlehttp/psr7": "^2.1.1",
+                "jean85/pretty-package-versions": "^1.5||^2.0",
                 "php": "^7.2||^8.0",
-                "sentry/sdk": "^3.6",
-                "sentry/sentry": "^3.22.1",
+                "sentry/sentry": "^4.6.1",
                 "symfony/cache-contracts": "^1.1||^2.4||^3.0",
                 "symfony/config": "^4.4.20||^5.0.11||^6.0||^7.0",
                 "symfony/console": "^4.4.20||^5.0.11||^6.0||^7.0",
@@ -6246,13 +6051,6 @@
                 "symfony/twig-bundle": "Allow distributed tracing of Twig template rendering using Sentry."
             },
             "type": "symfony-bundle",
-            "extra": {
-                "branch-alias": {
-                    "releases/3.2.x": "3.2.x-dev",
-                    "releases/2.x": "2.x-dev",
-                    "releases/1.x": "1.x-dev"
-                }
-            },
             "autoload": {
                 "files": [
                     "src/aliases.php"
@@ -6267,12 +6065,8 @@
             ],
             "authors": [
                 {
-                    "name": "David Cramer",
-                    "email": "dcramer@gmail.com"
-                },
-                {
-                    "name": "Alessandro Lai",
-                    "email": "alessandro.lai85@gmail.com"
+                    "name": "Sentry",
+                    "email": "accounts@sentry.io"
                 }
             ],
             "description": "Symfony integration for Sentry (http://getsentry.com)",
@@ -6285,7 +6079,7 @@
             ],
             "support": {
                 "issues": "https://github.com/getsentry/sentry-symfony/issues",
-                "source": "https://github.com/getsentry/sentry-symfony/tree/4.14.0"
+                "source": "https://github.com/getsentry/sentry-symfony/tree/5.0.0"
             },
             "funding": [
                 {
@@ -6297,7 +6091,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2024-02-26T09:27:19+00:00"
+            "time": "2024-04-09T05:14:27+00:00"
         },
         {
             "name": "spomky-labs/otphp",
@@ -7154,38 +6948,38 @@
         },
         {
             "name": "symfony/asset-mapper",
-            "version": "v6.4.9",
+            "version": "v7.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/asset-mapper.git",
-                "reference": "cfef86386f7f09132eb78afd4deea7c6c59e0c58"
+                "reference": "5a388ee31d6536103b8a6a9d4e63b18670578fe0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/asset-mapper/zipball/cfef86386f7f09132eb78afd4deea7c6c59e0c58",
-                "reference": "cfef86386f7f09132eb78afd4deea7c6c59e0c58",
+                "url": "https://api.github.com/repos/symfony/asset-mapper/zipball/5a388ee31d6536103b8a6a9d4e63b18670578fe0",
+                "reference": "5a388ee31d6536103b8a6a9d4e63b18670578fe0",
                 "shasum": ""
             },
             "require": {
                 "composer/semver": "^3.0",
-                "php": ">=8.1",
-                "symfony/deprecation-contracts": "^2.5|^3",
-                "symfony/filesystem": "^5.4|^6.0|^7.0",
-                "symfony/http-client": "^6.3|^7.0"
+                "php": ">=8.2",
+                "symfony/deprecation-contracts": "^2.1|^3",
+                "symfony/filesystem": "^7.1",
+                "symfony/http-client": "^6.4|^7.0"
             },
             "conflict": {
                 "symfony/framework-bundle": "<6.4"
             },
             "require-dev": {
-                "symfony/asset": "^5.4|^6.0|^7.0",
-                "symfony/browser-kit": "^5.4|^6.0|^7.0",
-                "symfony/console": "^5.4|^6.0|^7.0",
+                "symfony/asset": "^6.4|^7.0",
+                "symfony/browser-kit": "^6.4|^7.0",
+                "symfony/console": "^6.4|^7.0",
                 "symfony/event-dispatcher-contracts": "^3.0",
-                "symfony/finder": "^5.4|^6.0|^7.0",
+                "symfony/finder": "^6.4|^7.0",
                 "symfony/framework-bundle": "^6.4|^7.0",
-                "symfony/http-foundation": "^5.4|^6.0|^7.0",
-                "symfony/http-kernel": "^5.4|^6.0|^7.0",
-                "symfony/web-link": "^5.4|^6.0|^7.0"
+                "symfony/http-foundation": "^6.4|^7.0",
+                "symfony/http-kernel": "^6.4|^7.0",
+                "symfony/web-link": "^6.4|^7.0"
             },
             "type": "library",
             "autoload": {
@@ -7213,7 +7007,7 @@
             "description": "Maps directories of assets & makes them available in a public directory with versioned filenames.",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/asset-mapper/tree/v6.4.9"
+                "source": "https://github.com/symfony/asset-mapper/tree/v7.1.2"
             },
             "funding": [
                 {
@@ -7229,7 +7023,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-06-28T07:15:22+00:00"
+            "time": "2024-06-28T08:00:31+00:00"
         },
         {
             "name": "symfony/browser-kit",
