@@ -69,6 +69,7 @@
     "symfony/translation": "^6.4 || ^7.0",
     "symfony/twig-bundle": "^6.4 || ^7.0",
     "symfony/twilio-notifier": "^6.4 || ^7.0",
+    "symfony/ux-icons": "^2.21",
     "symfony/validator": "^6.4 || ^7.0",
     "symfony/yaml": "^6.4 || ^7.0",
     "symfonycasts/reset-password-bundle": "^1.17",

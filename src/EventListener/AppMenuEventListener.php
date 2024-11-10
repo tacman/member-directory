@@ -28,7 +28,7 @@ final class AppMenuEventListener implements KnpMenuHelperInterface
         private DirectoryCollectionRepository                                             $directoryCollectionRepository,
         private TagRepository                                                             $tagRepository,
         private MenuService $menuService, // helper for auth menus, etc.
-        #[Autowire('%kernel.environment%')] private string                                $env,
+        #[Autowire('%kernel.environment%')] protected string                                $env,
         private Security                                                                  $security,
         private ?AuthorizationCheckerInterface                                            $authorizationChecker = null
     )
@@ -38,10 +38,12 @@ final class AppMenuEventListener implements KnpMenuHelperInterface
     public function navbar2Menu(KnpMenuEvent $event): void
     {
         $menu = $event->getMenu();
+        if ($this->isGranted('ROLE_ADMIN')) {
             $nestedMenu = $this->addSubmenu($menu, 'Admin');
             foreach (['member_status_index', 'tag_index', 'directory_collection_index', 'admin', 'user_index', 'survos_crawler_results'] as $route) {
                 $this->add($nestedMenu, $route);
             }
+        }
 
     }
 

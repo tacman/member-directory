@@ -92,7 +92,7 @@ return [
         'version' => '2.0.16',
     ],
     'axios' => [
-        'version' => '1.6.1',
+        'version' => '1.7.7',
     ],
     'datatables.net-bs5' => [
         'version' => '2.0.3',
@@ -190,5 +190,11 @@ return [
     'datatables.net-searchbuilder-bs5/css/searchBuilder.bootstrap5.min.css' => [
         'version' => '1.7.1',
         'type' => 'css',
+    ],
+    'datatables.net-plugins/i18n/es-ES.mjs' => [
+        'version' => '2.1.7',
+    ],
+    'datatables.net-plugins/i18n/de-DE.mjs' => [
+        'version' => '2.1.7',
     ],
 ];
