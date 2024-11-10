@@ -232,8 +232,5 @@ class DirectoryCollection implements \Stringable, RouteParametersInterface
         return $this->label;
     }
 
-    public function getUniqueIdentifiers(): array
-    {
-        return ['slug' => $this->getSlug()];
-    }
+    const UNIQUE_PARAMETERS = ['slug'=>'slug'];
 }

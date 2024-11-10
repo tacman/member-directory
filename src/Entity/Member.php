@@ -38,16 +38,15 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ApiResource(
     shortName: 'member',
 //    operations: [new Get(), new Put(), new Delete(), new Patch(), new GetCollection()],
+    operations: [new Get(), new Put(), new Delete(), new Patch(), new GetCollection(
+        provider: MeiliSearchStateProvider::class
+    )],
     normalizationContext: [
-        'groups' => ['member.read', 'member_extended', 'member_main', 'rp'],
-        'sa'
+        'groups' => ['member.read', 'member_extended', 'member_main', 'rp']
     ],
     denormalizationContext: [
         'groups' => ['member.write'],
     ],
-    operations: [new Get(), new Put(), new Delete(), new Patch(), new GetCollection(
-        provider: MeiliSearchStateProvider::class
-    )],
 )]
 
 #[ApiFilter(MultiFieldSearchFilter::class, properties: ['prefix', 'classYear'])]
@@ -879,8 +878,6 @@ class Member implements Loggable, RouteParametersInterface
         return $this;
     }
 
-    public function getUniqueIdentifiers(): array
-    {
-        return ['localIdentifier' => $this->getLocalIdentifier()];
-    }
+    const UNIQUE_PARAMETERS = ['localIdentifier'=>'localIdentifier'];
+
 }

@@ -87,10 +87,10 @@ final class AppMenuEventListener implements KnpMenuHelperInterface
 
         $this->add($menu, 'map');
 
-        $this->add($menu, 'event_index', icon: 'bi bi-calendar');
-        $this->add($menu, 'birthdays', icon: 'bi bi-cake');
+        $this->add($menu, 'event_index', icon: 'tabler:calendar');
+        $this->add($menu, 'birthdays', icon: 'tabler:cake');
 
-        $nestedMenu = $this->addSubmenu($menu, 'Data', icon: 'bi bi-cake');
+        $nestedMenu = $this->addSubmenu($menu, 'Data', icon: 'tabler:database');
         // @todo: look for ROLE_DIRECTORY_MANAGER in the route IsGranted
         foreach (['member_changes', 'import', 'export'] as $route) {
             $this->add($nestedMenu, $route);

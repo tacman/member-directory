@@ -6,12 +6,12 @@ import './bootstrap.js';
  * which should already be in your base.html.twig.
  */
 import './styles/app.css'
-import 'bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css'
+// import 'bootstrap';
+// import 'bootstrap/dist/css/bootstrap.min.css'
 
-console.log('importing @fortawesome free');
-import '@fortawesome/fontawesome-free'
-import '@fortawesome/fontawesome-free/css/fontawesome.min.css'
+// console.log('importing @fortawesome free');
+// import '@fortawesome/fontawesome-free'
+// import '@fortawesome/fontawesome-free/css/fontawesome.min.css'
 
 console.log('This log comes from assets/app.js - bootstrap, etc.')
 
@@ -21,3 +21,6 @@ window.$ = $;
 import 'datatables.net-bs5';
 import 'datatables.net-responsive-bs5';
 import 'bootstrap-icons/font/bootstrap-icons.min.css'
+
+import '@tabler/core';
+import '@tabler/core/dist/css/tabler.min.css'
