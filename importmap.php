@@ -197,4 +197,7 @@ return [
     'datatables.net-plugins/i18n/de-DE.mjs' => [
         'version' => '2.1.7',
     ],
+    '@symfony/ux-leaflet-map' => [
+        'path' => './vendor/symfony/ux-leaflet-map/assets/dist/map_controller.js',
+    ],
 ];

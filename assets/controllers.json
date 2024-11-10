@@ -39,6 +39,12 @@
                 "fetch": "lazy",
                 "autoimport": []
             }
+        },
+        "@symfony/ux-leaflet-map": {
+            "map": {
+                "enabled": true,
+                "fetch": "lazy"
+            }
         }
     },
     "entrypoints": []

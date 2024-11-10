@@ -3,7 +3,7 @@
 ## Developer Quickstart
 
 ```bash
-git clone git@github.com:tacman/member-directory.git --branch sy64-with-assetmapper && cd member-directory
+git clone git@github.com:tacman/member-directory.git --branch symfony7 && cd member-directory
 echo "DATABASE_URL=sqlite:///%kernel.project_dir%/var/data.db" > .env.local
 composer install
 bin/console importmap:install

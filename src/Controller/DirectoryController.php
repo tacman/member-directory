@@ -21,6 +21,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
+use Symfony\UX\Map\InfoWindow;
+use Symfony\UX\Map\Map;
+use Symfony\UX\Map\Marker;
+use Symfony\UX\Map\Point;
+use Symfony\UX\Map\Polygon;
 
 #[IsGranted('ROLE_USER')]
 #[Route(path: '/{_locale}/directory', defaults: ['_locale' => 'en'])]
@@ -37,6 +42,13 @@ class DirectoryController extends AbstractController
         'm.primaryTelephoneNumber',
         null,
     ];
+
+    public function __construct(
+        private readonly MemberRepository $memberRepository,
+    )
+    {
+    }
+
 
     #[Route(path: '/browse', name: 'directory_browse')]
     public function browse(DirectoryCollectionRepository $directoryCollectionRepository)
@@ -289,8 +301,62 @@ class DirectoryController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $filters = $form->getData();
         }
+        $members = $this->memberRepository->findGeocodedAddresses([]);
 
-        return $this->render('directory/map.html.twig', [
+        // using ux_map component
+        $myMap = (new Map());
+        $myMap
+            // Explicitly set the center and zoom
+            ->center(new Point(46.903354, 1.888334))
+            ->zoom(0)
+
+            // Or automatically fit the bounds to the markers
+            ->fitBoundsToMarkers();
+
+        /** @var Member $member */
+        if (0)
+        foreach ($members as $member) {
+            $myMap
+                ->addMarker(new Marker(
+                    position: new Point($member->getMailingLatitude(), $member->getMailingLongitude()),
+                    title: $member->getDisplayName()
+                ));
+        }
+
+//        $myMap
+//            // With an info window associated to the marker:
+//            ->addMarker(new Marker(
+//                position: new Point(45.7640, 4.8357),
+//                title: 'Lyon',
+//                infoWindow: new InfoWindow(
+//                    headerContent: '<b>Lyon</b>',
+//                    content: 'The French town in the historic Rhône-Alpes region, located at the junction of the Rhône and Saône rivers.'
+//                )
+//            ));
+//
+//        $myMap
+//
+//            // You can also pass arbitrary data via the `extra` option in both the marker
+//            // and the infoWindow; you can later use this data in your custom Stimulus controllers
+//            ->addMarker(new Marker(
+//            // ...
+//                position: new Point(48.8566, 2.3522),
+//                extra: [
+//                    'icon_mask_url' => 'https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet.svg',
+//                ],
+//                infoWindow: new InfoWindow(
+//                    extra: [
+//                        'num_items' => 3,
+//                        'includes_link' => true,
+//                    ],
+//                ),
+//            )
+//            )
+//;
+
+
+        return $this->render('directory/ux-map.html.twig', [
+            'my_map' => $myMap,
             'form' => $form->createView(),
         ]);
     }

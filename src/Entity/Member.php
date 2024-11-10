@@ -21,7 +21,7 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Survos\ApiGrid\Api\Filter\FacetsFieldSearchFilter;
 use Survos\ApiGrid\Filter\MeiliSearch\MultiFieldSearchFilter;
 use Survos\ApiGrid\Filter\MeiliSearch\SortFilter;
-use Survos\ApiGrid\State\MeilliSearchStateProvider;
+use Survos\ApiGrid\State\MeiliSearchStateProvider;
 use Survos\CoreBundle\Entity\RouteParametersInterface;
 use Survos\CoreBundle\Entity\RouteParametersTrait;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -46,7 +46,7 @@ use Symfony\Component\Validator\Constraints as Assert;
         'groups' => ['member.write'],
     ],
     operations: [new Get(), new Put(), new Delete(), new Patch(), new GetCollection(
-        provider: MeilliSearchStateProvider::class
+        provider: MeiliSearchStateProvider::class
     )],
 )]
 

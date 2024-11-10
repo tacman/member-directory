@@ -35,4 +35,5 @@ return [
     Survos\DeploymentBundle\SurvosDeploymentBundle::class => ['dev' => true],
     Sentry\SentryBundle\SentryBundle::class => ['prod' => true],
     Symfony\UX\Icons\UXIconsBundle::class => ['all' => true],
+    Symfony\UX\Map\UXMapBundle::class => ['all' => true],
 ];

@@ -4,8 +4,8 @@ namespace App\EventListener;
 
 use App\Entity\Member;
 use App\Service\EmailService;
-use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
+use Doctrine\Persistence\Event\LifecycleEventArgs;
 
 class EmailServiceSubscriber
 {
