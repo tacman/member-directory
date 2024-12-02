@@ -27,7 +27,7 @@ class DonationController extends AbstractController
 
     protected $endDate;
 
-    public function __construct(RequestStack $requestStack)
+    public function __construct()
     {
         // this won't work anymore,
 //        $this->session = $requestStack->getSession();

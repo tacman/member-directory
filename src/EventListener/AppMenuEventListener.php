@@ -36,15 +36,16 @@ final class AppMenuEventListener implements KnpMenuHelperInterface
         private TagRepository                                                             $tagRepository,
         private MenuService $menuService, // helper for auth menus, etc.
         #[Autowire('%kernel.environment%')] protected string                                $env,
-        private Security                                                                  $security,
         private Collection $dictionaries,
-        private ?AuthorizationCheckerInterface                                            $authorizationChecker = null,
+        private AuthorizationCheckerInterface $authorizationChecker,
         private ?Dictionary $actionIcons=null,
         private ?Dictionary $classIcons=null,
+        protected ?Security $security=null,
     )
     {
-        $this->actionIcons = $dictionaries['action_icons'];
-        $this->classIcons = $dictionaries['class_icons'];
+        $this->actionIcons = $this->dictionaries['action_icons'];
+        $this->classIcons = $this->dictionaries['class_icons'];
+        $this->menuService->setAuthorizationChecker($this->authorizationChecker);
     }
 
     public function navbar2Menu(KnpMenuEvent $event): void

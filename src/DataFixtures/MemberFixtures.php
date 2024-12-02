@@ -21,7 +21,7 @@ class MemberFixtures extends Fixture implements DependentFixtureInterface
         $this->validator = $validator;
     }
 
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         $json = json_decode(file_get_contents(__DIR__ . '/./dummyusers.json'), false);
         $memberStatusMember = $this->getReference(MemberStatusFixtures::MEMBER, MemberStatus::class);
@@ -55,16 +55,16 @@ class MemberFixtures extends Fixture implements DependentFixtureInterface
             $member->setStatus($memberStatusMember);
 
             $manager->persist($member);
-            continue;
-            $member->setPrefix('Rev.');
-            $member->setFirstName('Carter');
-            $member->setPreferredName('Carter');
-            $member->setMiddleName('Ashton');
-            $member->setLastName('Jenkens');
-            $member->setPrimaryEmail('cjenkens@example.com');
-            $member->setBirthDate(new \DateTimeImmutable('1882-04-09'));
-            $member->setClassYear(1902);
-            dd($data);
+//            continue;
+//            $member->setPrefix('Rev.');
+//            $member->setFirstName('Carter');
+//            $member->setPreferredName('Carter');
+//            $member->setMiddleName('Ashton');
+//            $member->setLastName('Jenkens');
+//            $member->setPrimaryEmail('cjenkens@example.com');
+//            $member->setBirthDate(new \DateTimeImmutable('1882-04-09'));
+//            $member->setClassYear(1902);
+//            dd($data);
         }
         $manager->flush();
 
@@ -305,7 +305,7 @@ class MemberFixtures extends Fixture implements DependentFixtureInterface
         $manager->flush();
     }
 
-    public function getDependencies()
+    public function getDependencies(): array
     {
         return [
             TagFixtures::class,

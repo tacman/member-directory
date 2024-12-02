@@ -13,6 +13,7 @@ use App\Service\PostalValidatorService;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\Tools\Pagination\Paginator;
+use Symfony\Bridge\Twig\Attribute\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -59,15 +60,19 @@ class DirectoryController extends AbstractController
     }
 
     #[Route(path: '/home', name: 'home')]
-    public function index(DirectoryCollectionRepository $directoryCollectionRepository)
+    #[Template('getting-started.html.twig')]
+    public function index(
+//        DirectoryCollectionRepository $directoryCollectionRepository
+    ): array
     {
-        return $this->render('getting-started.html.twig');
-        try {
-            $records = $directoryCollectionRepository->getDefaultDirectoryCollection();
-            return $this->redirectToRoute('directory_collection', ['slug' => $records->getSlug()]);
-        } catch (NoResultException $e) {
-            return $this->render('getting-started.html.twig');
-        }
+        return [];
+//        return $this->render('getting-started.html.twig');
+//        try {
+//            $records = $directoryCollectionRepository->getDefaultDirectoryCollection();
+//            return $this->redirectToRoute('directory_collection', ['slug' => $records->getSlug()]);
+//        } catch (NoResultException $e) {
+//            return $this->render('getting-started.html.twig');
+//        }
     }
 
 
@@ -314,7 +319,6 @@ class DirectoryController extends AbstractController
             ->fitBoundsToMarkers();
 
         /** @var Member $member */
-        if (0)
         foreach ($members as $member) {
             $myMap
                 ->addMarker(new Marker(

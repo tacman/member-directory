@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Donation;
+use App\Entity\Member;
 use App\Factory\DonationFactory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -10,12 +11,12 @@ use Doctrine\Persistence\ObjectManager;
 
 class DonationFixtures extends Fixture implements DependentFixtureInterface
 {
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         DonationFactory::createMany(250);
         $manager->flush();
 
-        $uncleBilly = $this->getReference(MemberFixtures::UNCLE_BILLY);
+        $uncleBilly = $this->getReference(MemberFixtures::UNCLE_BILLY, Member::class);
 
         $donation = new Donation();
         $donation->setReceivedAt(new \DateTimeImmutable('2016-11-01 10:00 EST'));
@@ -90,7 +91,7 @@ class DonationFixtures extends Fixture implements DependentFixtureInterface
         $manager->flush();
     }
 
-    public function getDependencies()
+    public function getDependencies(): array
     {
         return [
             MemberFixtures::class,

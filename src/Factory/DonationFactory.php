@@ -5,9 +5,10 @@ namespace App\Factory;
 use App\Entity\Donation;
 use App\Repository\DonationRepository;
 use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
+use Zenstruck\Foundry\Persistence\Proxy;
 
 /**
- * @extends ModelFactory<Donation>
+ * @extends PersistentProxyObjectFactory<Donation>
  *
  * @method        Donation|Proxy                     create(array|callable $attributes = [])
  * @method static Donation|Proxy                     createOne(array $attributes = [])

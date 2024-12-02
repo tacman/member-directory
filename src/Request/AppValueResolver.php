@@ -34,6 +34,9 @@ class AppValueResolver implements ValueResolverInterface
                 $repository = $this->entityManager->getRepository($argumentType);
                 // Find the entity by its uniqueParameters.
                 $value = $repository->findOneBy(['code' => $idFieldValue]);
+                break;
+            default:
+                $value = null;
         }
 
         $request->attributes->set($argument->getName(), $value);

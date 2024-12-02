@@ -10,7 +10,7 @@ use Doctrine\Persistence\ObjectManager;
 
 class DirectoryCollectionFixtures extends Fixture implements DependentFixtureInterface
 {
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         $memberStatusMember = $this->getReference(MemberStatusFixtures::MEMBER, MemberStatus::class);
         $memberStatusAlumnus = $this->getReference(MemberStatusFixtures::ALUMNUS, MemberStatus::class);
@@ -49,7 +49,7 @@ class DirectoryCollectionFixtures extends Fixture implements DependentFixtureInt
         $manager->flush();
     }
 
-    public function getDependencies()
+    public function getDependencies(): array
     {
         return [
             MemberStatusFixtures::class,

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Form\ProfileType;
 use App\Form\TwoFactorVerifyType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -16,6 +17,7 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
@@ -128,23 +130,25 @@ class SecurityController extends AbstractController
     #[Route(path: '/two-factor-qr-code/{totpSecret}', name: 'app_two_factor_qr_code')]
     public function renderTotpQrCode($totpSecret, TotpAuthenticatorInterface $totpAuthenticatorService)
     {
+        /** @var TotpAuthenticatorInterface|User $user */
         $user = $this->getUser();
         $user->setTotpSecret($totpSecret);
 
         $qrCodeContent = $totpAuthenticatorService->getQRContent($user);
-
-        $result = Builder::create()
-            ->writer(new PngWriter())
-            ->writerOptions([])
-            ->data($qrCodeContent)
-            ->encoding(new Encoding('UTF-8'))
-            ->errorCorrectionLevel(new ErrorCorrectionLevelHigh())
-            ->size(400)
-            ->margin(0)
-            ->roundBlockSizeMode(new RoundBlockSizeModeMargin())
-            ->build();
-
-        return new Response($result->getString(), 200, ['Content-Type' => 'image/png']);
+        // @todo: fix with latest version of bundle
+        return new NotFoundHttpException("@todo: fix this");
+//        $result = Builder::create()
+//            ->writer(new PngWriter())
+//            ->writerOptions([])
+//            ->data($qrCodeContent)
+//            ->encoding(new Encoding('UTF-8'))
+//            ->errorCorrectionLevel(new ErrorCorrectionLevelHigh())
+//            ->size(400)
+//            ->margin(0)
+//            ->roundBlockSizeMode(new RoundBlockSizeModeMargin())
+//            ->build();
+//
+//        return new Response($result->getString(), 200, ['Content-Type' => 'image/png']);
     }
 
     #[Route(path: '/disable-two-factor', name: 'app_disable_two_factor', methods: ['POST'])]
