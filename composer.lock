@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "be47270b8efc1eb0e6b10ce03287d8a1",
+    "content-hash": "8babccffa444ce8e4c80e9377b50f6dc",
     "packages": [
         {
             "name": "api-platform/core",
@@ -12663,34 +12663,40 @@
         },
         {
             "name": "tacman/dictionary-bundle",
-            "version": "dev-master",
+            "version": "4.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tacman/DictionaryBundle.git",
+                "reference": "a9e4fb3b91c893df5cc77957a54c5c8cbde6422c"
+            },
             "dist": {
-                "type": "path",
-                "url": "/home/tac/g/tacman/DictionaryBundle",
-                "reference": "1e0560882e91d1a911fd52649ef7d09e86ba4d1e"
+                "type": "zip",
+                "url": "https://api.github.com/repos/tacman/DictionaryBundle/zipball/a9e4fb3b91c893df5cc77957a54c5c8cbde6422c",
+                "reference": "a9e4fb3b91c893df5cc77957a54c5c8cbde6422c",
+                "shasum": ""
             },
             "require": {
-                "php": "^8.1",
-                "symfony/config": "^6.4 || ^7.0",
-                "symfony/dependency-injection": "^6.4 || ^7.0",
-                "symfony/form": "^6.4 || ^7.0",
-                "symfony/http-foundation": "^6.4 || ^7.0",
-                "symfony/http-kernel": "^6.4 || ^7.0",
-                "symfony/validator": "^6.4 || ^7.0",
+                "php": ">=8.1",
+                "symfony/config": "^6.3 || ^7.0",
+                "symfony/dependency-injection": "^6.3 || ^7.0",
+                "symfony/form": "^6.3 || ^7.0",
+                "symfony/http-foundation": "^6.3 || ^7.0",
+                "symfony/http-kernel": "^6.3 || ^7.0",
+                "symfony/validator": "^6.3 || ^7.0",
                 "twig/twig": "^3.4.3"
             },
             "require-dev": {
                 "beberlei/assert": "^3.3",
                 "fakerphp/faker": "^1.20",
-                "friends-of-phpspec/phpspec-code-coverage": "^6.4 || ^7.0",
+                "friends-of-phpspec/phpspec-code-coverage": "^6.3 || ^7.0",
                 "friendsofphp/php-cs-fixer": "^3.13",
                 "pedrotroller/php-cs-custom-fixer": "^2.28",
                 "phpspec/phpspec": "^7.2",
                 "phpspec/prophecy": "^1.15",
                 "phpstan/phpstan": "^1.10",
-                "rector/rector": "^1.2",
-                "symfony/twig-bridge": "^6.4 || ^7.0",
-                "symfony/var-dumper": "^6.4 || ^7.0",
+                "rector/rector": "^0.18.1",
+                "symfony/twig-bridge": "^6.3 || ^7.0",
+                "symfony/var-dumper": "^6.3 || ^7.0",
                 "webmozart/assert": "^1.11"
             },
             "type": "symfony-bundle",
@@ -12704,12 +12710,7 @@
                     "Knp\\DictionaryBundle\\": "src/Knp/DictionaryBundle"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "spec\\Knp\\": "spec/Knp",
-                    "spec\\PHPSpec\\": "spec/PHPSpec"
-                }
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -12727,9 +12728,10 @@
             "keywords": [
                 "dictionary"
             ],
-            "transport-options": {
-                "relative": false
-            }
+            "support": {
+                "source": "https://github.com/tacman/DictionaryBundle/tree/4.0.6"
+            },
+            "time": "2024-01-05T00:27:39+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
@@ -16438,9 +16440,7 @@
     ],
     "aliases": [],
     "minimum-stability": "RC",
-    "stability-flags": {
-        "tacman/dictionary-bundle": 20
-    },
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

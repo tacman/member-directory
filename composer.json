@@ -74,7 +74,7 @@
     "symfony/validator": "^7.1",
     "symfony/yaml": "^7.1",
     "symfonycasts/reset-password-bundle": "^1.17",
-    "tacman/dictionary-bundle": "*@dev",
+    "tacman/dictionary-bundle": "^4.0.6",
     "twig/cssinliner-extra": "^3.6",
     "twig/extra-bundle": "^3.6",
     "twig/inky-extra": "^3.6",
@@ -156,11 +156,5 @@
     "symfony/var-dumper": "^7.1",
     "symfony/web-profiler-bundle": "^7.1",
     "zenstruck/foundry": "^2.0"
-  },
-  "repositories": {
-    "tacman_dictionary": {
-      "type": "path",
-      "url": "/home/tac/g/tacman/DictionaryBundle"
-    }
   }
 }
