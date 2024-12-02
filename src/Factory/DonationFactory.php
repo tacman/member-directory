@@ -4,9 +4,7 @@ namespace App\Factory;
 
 use App\Entity\Donation;
 use App\Repository\DonationRepository;
-use Zenstruck\Foundry\ModelFactory;
-use Zenstruck\Foundry\Proxy;
-use Zenstruck\Foundry\RepositoryProxy;
+use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 
 /**
  * @extends ModelFactory<Donation>
@@ -43,7 +41,7 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @phpstan-method static list<Proxy<Donation>> randomRange(int $min, int $max, array $attributes = [])
  * @phpstan-method static list<Proxy<Donation>> randomSet(int $number, array $attributes = [])
  */
-final class DonationFactory extends ModelFactory
+final class DonationFactory extends PersistentProxyObjectFactory
 {
     /**
      * @see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#factories-as-services
@@ -60,7 +58,7 @@ final class DonationFactory extends ModelFactory
      *
      * @todo add your default values here
      */
-    protected function getDefaults(): array
+    protected function defaults(): array|callable
     {
         $fee =  self::faker()->randomFloat(0, 0, 5);
         $amount = self::faker()->randomFloat(0, 0, 1000);
@@ -84,14 +82,14 @@ final class DonationFactory extends ModelFactory
     /**
      * @see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#initialization
      */
-    protected function initialize(): self
+    protected function initialize(): static
     {
         return $this
             // ->afterInstantiate(function(Donation $donation): void {})
         ;
     }
 
-    protected static function getClass(): string
+    public static function class(): string
     {
         return Donation::class;
     }

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "03ec9979f343a086ca4bc4ace6ae522d",
+    "content-hash": "be47270b8efc1eb0e6b10ce03287d8a1",
     "packages": [
         {
             "name": "api-platform/core",
@@ -6110,30 +6110,30 @@
         },
         {
             "name": "survos/command-bundle",
-            "version": "1.5.378",
+            "version": "1.5.383",
             "source": {
                 "type": "git",
                 "url": "https://github.com/survos/SurvosCommandBundle.git",
-                "reference": "63dfbe1c337236a3b58322f570836fa1e94a96ea"
+                "reference": "38bc25a3d07726fc53275e165df56d3613ab47b3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/survos/SurvosCommandBundle/zipball/63dfbe1c337236a3b58322f570836fa1e94a96ea",
-                "reference": "63dfbe1c337236a3b58322f570836fa1e94a96ea",
+                "url": "https://api.github.com/repos/survos/SurvosCommandBundle/zipball/38bc25a3d07726fc53275e165df56d3613ab47b3",
+                "reference": "38bc25a3d07726fc53275e165df56d3613ab47b3",
                 "shasum": ""
             },
             "require": {
-                "php": "^8.1",
-                "symfony/config": "^6.3 || ^7.0",
-                "symfony/console": "^6.3 || ^7.0",
-                "symfony/dependency-injection": "^6.3 || ^7.0",
-                "symfony/form": "^6.3 || ^7.0",
-                "symfony/framework-bundle": "^6.3 || ^7.0",
-                "symfony/http-kernel": "^6.3 || ^7.0",
-                "zenstruck/console-extra": "^1.3"
+                "php": "^8.2",
+                "symfony/config": "^6.4 || ^7.0",
+                "symfony/console": "^6.4 || ^7.0",
+                "symfony/dependency-injection": "^6.4 || ^7.0",
+                "symfony/form": "^6.4 || ^7.0",
+                "symfony/framework-bundle": "^6.4 || ^7.0",
+                "symfony/http-kernel": "^6.4 || ^7.0",
+                "zenstruck/console-extra": "^1.4"
             },
             "require-dev": {
-                "phpstan/phpstan": "^1.8"
+                "phpstan/phpstan": "^1.12"
             },
             "type": "symfony-bundle",
             "autoload": {
@@ -6155,7 +6155,7 @@
             "description": "Run Symfony console commands from a web interface",
             "support": {
                 "issues": "https://github.com/survos/SurvosCommandBundle/issues",
-                "source": "https://github.com/survos/SurvosCommandBundle/tree/1.5.378"
+                "source": "https://github.com/survos/SurvosCommandBundle/tree/1.5.383"
             },
             "funding": [
                 {
@@ -6163,7 +6163,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-10-27T09:21:40+00:00"
+            "time": "2024-11-17T17:12:44+00:00"
         },
         {
             "name": "survos/core-bundle",
@@ -12580,6 +12580,76 @@
             "time": "2024-06-06T11:59:57+00:00"
         },
         {
+            "name": "tacman/dictionary-bundle",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "/home/tac/g/tacman/DictionaryBundle",
+                "reference": "37154b33eab488d59fe6ba2b062412e4eed46122"
+            },
+            "require": {
+                "php": ">=8.2",
+                "symfony/config": "^7.1",
+                "symfony/dependency-injection": "^7.1",
+                "symfony/form": "^7.1",
+                "symfony/http-foundation": "^7.1",
+                "symfony/http-kernel": "^7.1",
+                "symfony/validator": "^7.1",
+                "twig/twig": "^3.14"
+            },
+            "require-dev": {
+                "beberlei/assert": "^3.3",
+                "fakerphp/faker": "^1.20",
+                "friends-of-phpspec/phpspec-code-coverage": "^v6.4.1",
+                "friendsofphp/php-cs-fixer": "^3.13",
+                "pedrotroller/php-cs-custom-fixer": "^2.28",
+                "phpspec/phpspec": "^7.2",
+                "phpspec/prophecy": "^1.15",
+                "phpstan/phpstan": "^1.10",
+                "rector/rector": "^1.2.0",
+                "symfony/twig-bridge": "^7.1",
+                "symfony/var-dumper": "^7.1",
+                "webmozart/assert": "^1.11"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Knp\\DictionaryBundle\\": "src/Knp/DictionaryBundle"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "spec\\Knp\\": "spec/Knp",
+                    "spec\\PHPSpec\\": "spec/PHPSpec"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Knplabs",
+                    "homepage": "http://knplabs.com"
+                },
+                {
+                    "name": "Shivoham",
+                    "homepage": "https://github.com/Shivoham"
+                }
+            ],
+            "description": "Are you often tired to repeat static choices like gender or civility in your apps ?",
+            "keywords": [
+                "dictionary"
+            ],
+            "transport-options": {
+                "relative": false
+            }
+        },
+        {
             "name": "tijsverkoyen/css-to-inline-styles",
             "version": "v2.2.7",
             "source": {
@@ -16284,7 +16354,9 @@
     ],
     "aliases": [],
     "minimum-stability": "RC",
-    "stability-flags": [],
+    "stability-flags": {
+        "tacman/dictionary-bundle": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

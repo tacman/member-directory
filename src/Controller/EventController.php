@@ -24,7 +24,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 class EventController extends AbstractController
 {
     #[Route(path: '/', name: 'event_index', methods: ['GET'])]
-    public function index(EventRepository $eventRepository): Response
+    public function events(EventRepository $eventRepository): Response
     {
         return $this->render('event/index.html.twig', [
             'events' => $eventRepository->findBy([], ['startAt' => 'DESC']),

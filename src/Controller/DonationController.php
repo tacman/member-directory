@@ -29,9 +29,10 @@ class DonationController extends AbstractController
 
     public function __construct(RequestStack $requestStack)
     {
-        $this->session = $requestStack->getSession();
-        $this->startDate = new \DateTime($this->session->get('donation_start_date', DonationRepository::DEFAULT_START_DATE));
-        $this->endDate = new \DateTime($this->session->get('donation_end_date', DonationRepository::DEFAULT_END_DATE));
+        // this won't work anymore,
+//        $this->session = $requestStack->getSession();
+//        $this->startDate = new \DateTime($this->session->get('donation_start_date', DonationRepository::DEFAULT_START_DATE));
+//        $this->endDate = new \DateTime($this->session->get('donation_end_date', DonationRepository::DEFAULT_END_DATE));
     }
 
     #[Route(path: '/', name: 'donation_index', methods: ['GET'])]

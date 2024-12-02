@@ -406,11 +406,11 @@
             "repo": "github.com/symfony/recipes-contrib",
             "branch": "main",
             "version": "1.5",
-            "ref": "31483097a99800fa6b049af3c61ad0ebf5727751"
+            "ref": "5cdebe13850442f53dae9a5e33aeada55a22e606"
         },
         "files": [
             "config/packages/survos_command.yaml",
-            "config/routes/survos_command.php"
+            "config/routes/survos_command.yaml"
         ]
     },
     "survos/core-bundle": {
@@ -879,6 +879,9 @@
         "files": [
             "config/packages/reset_password.yaml"
         ]
+    },
+    "tacman/dictionary-bundle": {
+        "version": "4.0.6"
     },
     "theseer/tokenizer": {
         "version": "1.2.0"

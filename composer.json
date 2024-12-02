@@ -39,7 +39,7 @@
     "survos/api-grid-bundle": "^1.5",
     "survos/auth-bundle": "^1.5",
     "survos/bootstrap-bundle": "^1.5",
-    "survos/command-bundle": "^1.5",
+    "survos/command-bundle": "*",
     "survos/crawler-bundle": "^1.5",
     "survos/inspection-bundle": "^1.5",
     "symfony/apache-pack": "^1.0",
@@ -74,6 +74,7 @@
     "symfony/validator": "^7.1",
     "symfony/yaml": "^7.1",
     "symfonycasts/reset-password-bundle": "^1.17",
+    "tacman/dictionary-bundle": "*@dev",
     "twig/cssinliner-extra": "^3.6",
     "twig/extra-bundle": "^3.6",
     "twig/inky-extra": "^3.6",
@@ -156,5 +157,9 @@
     "zenstruck/foundry": "^2.0"
   },
   "repositories": {
+    "tacman_dictionary": {
+      "type": "path",
+      "url": "/home/tac/g/tacman/DictionaryBundle"
+    }
   }
 }

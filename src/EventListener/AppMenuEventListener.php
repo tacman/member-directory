@@ -2,8 +2,15 @@
 
 namespace App\EventListener;
 
+use App\Entity\CommunicationLog;
+use App\Entity\DirectoryCollection;
+use App\Entity\Donation;
+use App\Entity\Event;
+use App\Entity\Tag;
 use App\Repository\DirectoryCollectionRepository;
 use App\Repository\TagRepository;
+use Knp\DictionaryBundle\Dictionary;
+use Knp\DictionaryBundle\Dictionary\Collection;
 use Survos\AuthBundle\Services\AuthService;
 use Survos\BootstrapBundle\Event\KnpMenuEvent;
 use Survos\BootstrapBundle\Service\MenuService;
@@ -30,9 +37,14 @@ final class AppMenuEventListener implements KnpMenuHelperInterface
         private MenuService $menuService, // helper for auth menus, etc.
         #[Autowire('%kernel.environment%')] protected string                                $env,
         private Security                                                                  $security,
-        private ?AuthorizationCheckerInterface                                            $authorizationChecker = null
+        private Collection $dictionaries,
+        private ?AuthorizationCheckerInterface                                            $authorizationChecker = null,
+        private ?Dictionary $actionIcons=null,
+        private ?Dictionary $classIcons=null,
     )
     {
+        $this->actionIcons = $dictionaries['action_icons'];
+        $this->classIcons = $dictionaries['class_icons'];
     }
 
     public function navbar2Menu(KnpMenuEvent $event): void
@@ -59,35 +71,50 @@ final class AppMenuEventListener implements KnpMenuHelperInterface
         $menu = $event->getMenu();
         $options = $event->getOptions();
         $directoryCollections = $this->directoryCollectionRepository->findBy([], ['position' => 'ASC', 'label' => 'ASC']);
-        $nestedMenu = $this->addSubmenu($menu, id: 'collections');
+        $nestedMenu = $this->addSubmenu($menu, id: 'collections',
+            icon: $this->classIcons[DirectoryCollection::class]
+
+        );
         foreach ($directoryCollections as $directoryCollection) {
-            $this->add($nestedMenu, 'directory_collection', $directoryCollection, $directoryCollection->getLabel());
+            $this->add($nestedMenu, 'directory_collection',
+
+                $directoryCollection, $directoryCollection->getLabel(),
+            );
         }
-        $this->add($nestedMenu, 'directory_collection_new', label: 'New', icon: 'fas fa-plus', dividerPrepend: true);
+
+        $this->add($nestedMenu, 'directory_collection_new', label: 'New',
+            icon: $this->actionIcons['add'], dividerPrepend: true);
         if ($this->isGranted('ROLE_DIRECTORY_MANAGER')) {
+            // bootstrap bundle should handle not printing links that aren't valid
         }
         $this->add($nestedMenu, 'directory_browse', label: 'Api Grid Browse');
 
-        $nestedMenu = $this->addSubmenu($menu, 'Tags', id: 'tags_submenu');
+        $nestedMenu = $this->addSubmenu($menu, 'Tags', id: 'tags_submenu',
+            icon: $this->classIcons[Tag::class]
+        );
         $tags = $this->tagRepository->findBy([], ['tagName' => 'ASC']);
         foreach ($tags as $tag) {
             $this->add($nestedMenu, 'tag', $tag, $tag->getTagName());
         }
         $this->add($nestedMenu, 'tag_index', label: 'Admin', dividerPrepend: true);
 
-        $nestedMenu = $this->addSubmenu($menu, 'Donations',);
+        $nestedMenu = $this->addSubmenu($menu, 'Donations',
+            icon: $this->classIcons[Donation::class]
+        );
         foreach (['donation_index', 'donation_donors', 'donation_campaigns'] as $route) {
             $this->add($nestedMenu, $route);
         }
 
-        $nestedMenu = $this->addSubmenu($menu, 'Communications');
+        $nestedMenu = $this->addSubmenu($menu, 'Communications',
+                    icon: $this->classIcons[CommunicationLog::class]
+        );
         foreach (['messenger_email', 'messenger_sms', 'communication_index'] as $route) {
             $this->add($nestedMenu, $route);
         }
 
-        $this->add($menu, 'map');
+        $this->add($menu, 'map', icon: 'mdi:map');
 
-        $this->add($menu, 'event_index', icon: 'tabler:calendar');
+        $this->add($menu, 'event_index', icon: $this->classIcons[Event::class]);
         $this->add($menu, 'birthdays', icon: 'tabler:cake');
 
         $nestedMenu = $this->addSubmenu($menu, 'Data', icon: 'tabler:database');

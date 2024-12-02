@@ -1,7 +1,7 @@
 when@dev:
 # see https://github.com/symfony/symfony/issues/45241 for an idea to disable the profiler
     web_profiler:
-        toolbar: true
+        toolbar: false
         intercept_redirects: false
 
     framework:
