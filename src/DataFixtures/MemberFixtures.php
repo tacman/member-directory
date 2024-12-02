@@ -55,7 +55,6 @@ class MemberFixtures extends Fixture implements DependentFixtureInterface
             $member->setStatus($memberStatusMember);
 
             $manager->persist($member);
-            $manager->flush();
             continue;
             $member->setPrefix('Rev.');
             $member->setFirstName('Carter');
