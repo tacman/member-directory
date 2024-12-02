@@ -150,7 +150,9 @@ class DonationRepository extends ServiceEntityRepository
     public function getTotalDonationsByMonthForMember(Member $member)
     {
         return $this->createQueryBuilder('d')
-            ->select('SUBSTRING(d.receivedAt, 1, 10) AS aggregatedDate, COUNT(d) AS totalDonations, COUNT(DISTINCT d.member) AS totalDonors, SUM(d.amount) AS totalAmount, SUM(d.processingFee) AS totalProcessingFee, SUM(d.netAmount) AS totalNetAmount, d.currency')
+//            ->select('SUBSTRING(d.receivedAt, 1, 10) AS aggregatedDate,
+            ->select("date_format(field, '%b %D %Y')," .
+            'COUNT(d) AS totalDonations, COUNT(DISTINCT d.member) AS totalDonors, SUM(d.amount) AS totalAmount, SUM(d.processingFee) AS totalProcessingFee, SUM(d.netAmount) AS totalNetAmount, d.currency')
             ->groupBy('d.currency', 'aggregatedDate')
             ->orderBy('aggregatedDate', 'ASC')
             ->join('d.member', 'm')
