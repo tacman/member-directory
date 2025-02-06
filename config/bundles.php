@@ -37,4 +37,5 @@ return [
     Symfony\UX\Map\UXMapBundle::class => ['all' => true],
     Knp\DictionaryBundle\KnpDictionaryBundle::class => ['all' => true],
     Survos\CommandBundle\SurvosCommandBundle::class => ['all' => true],
+    Bizkit\VersioningBundle\BizkitVersioningBundle::class => ['all' => true],
 ];

@@ -7,7 +7,7 @@ git clone git@github.com:tacman/member-directory.git --branch symfony7 && cd mem
 echo "DATABASE_URL=sqlite:///%kernel.project_dir%/var/data.db" > .env.local
 composer install
 bin/console importmap:install
-bin/console doctrine:schema:update --force --complete
+bin/console doctrine:schema:update --force
 bin/console doctrine:fixtures:load -n
 symfony server:start -d
 symfony open:local
