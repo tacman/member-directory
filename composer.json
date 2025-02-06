@@ -10,6 +10,7 @@
     "ext-iconv": "*",
     "api-platform/core": "^4.0",
     "beberlei/doctrineextensions": "^1.2",
+    "bizkit/versioning-bundle": "^1.2",
     "campaignmonitor/createsend-php": "^7.0",
     "cmen/google-charts-bundle": "^7.0",
     "composer/package-versions-deprecated": "^1.11",
