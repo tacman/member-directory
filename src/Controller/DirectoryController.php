@@ -54,6 +54,7 @@ class DirectoryController extends AbstractController
     #[Route(path: '/browse', name: 'directory_browse')]
     public function browse(DirectoryCollectionRepository $directoryCollectionRepository)
     {
+        return $this->json(['message' => "Browse directory collections isn't right."]);
         return $this->render('directory/browse.html.twig', [
             'class' => Member::class
         ]);
@@ -268,6 +269,7 @@ class DirectoryController extends AbstractController
     {
         $tag = $tagRepository->find($tagId);
         if (is_null($tag)) {
+            dd($tagRepository->findAll());
             throw $this->createNotFoundException('Tag not found.');
         }
 

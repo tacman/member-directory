@@ -1,6 +1,6 @@
 survos_crawler:
 # if you've run symfony proxy:domain:attach my-project, then the error messages will be displayed with this prefix.  That way, you can simply click on a link to open the page.
-    base_url: 'https://member.wip/'
+    base_url: 'https://member.wip'
     user_class: App\Entity\User
     users:
       - email.manager@example.com
@@ -11,6 +11,7 @@ survos_crawler:
     max_depth : 3
     routes_to_ignore :
         - 'app_logout'
+        - export_by_location # requires lat/long in the querystring
     paths_to_ignore:
       - _profiler
       - _switch_user

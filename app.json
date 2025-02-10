@@ -5,7 +5,7 @@
         "php",
         "symfony"
     ],
-    "repository": "https:\/\/github.com\/survos-sites\/member-directory",
+    "repository": "https:\/\/github.com\/tacman\/member-directory",
     "scripts": {
         "dokku": {
             "predeploy": "bin\/console importmap:install && bin\/console asset-map:compile",

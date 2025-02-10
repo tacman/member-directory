@@ -53,7 +53,7 @@ final class AppMenuEventListener implements KnpMenuHelperInterface
         $menu = $event->getMenu();
         if ($this->isGranted('ROLE_ADMIN')) {
             $nestedMenu = $this->addSubmenu($menu, 'Admin');
-            foreach (['member_status_index', 'tag_index', 'directory_collection_index', 'admin', 'user_index', 'survos_crawler_results'] as $route) {
+            foreach (['member_status_index', 'tag_index', 'directory_collection_index', 'admin', 'user_index'] as $route) {
                 $this->add($nestedMenu, $route);
             }
         }
