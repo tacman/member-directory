@@ -16,7 +16,7 @@
     "campaignmonitor/createsend-php": "^7.0",
     "cmen/google-charts-bundle": "^7.0",
     "composer/package-versions-deprecated": "^1.11",
-    "doctrine/dbal": "^4.0",
+    "doctrine/dbal": "^3.3",
     "doctrine/doctrine-bundle": "^2.5",
     "doctrine/doctrine-fixtures-bundle": "^3.5 || ^4.0",
     "doctrine/doctrine-migrations-bundle": "^3.2",

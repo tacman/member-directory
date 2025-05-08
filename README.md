@@ -44,3 +44,7 @@ Additional member fixtures from
 ```bash
 curl 'https://dummyjson.com/users?limit=100' > src/DataFixtures/dummyusers.json
 ```
+
+## Upgrade Notes
+
+Cannot upgrade to dbal 4 because gedmo loggable is not compatible.
