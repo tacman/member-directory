@@ -36,13 +36,10 @@ final class AppMenuEventListener implements KnpMenuHelperInterface
         private TagRepository                                $tagRepository,
         private MenuService                                  $menuService, // helper for auth menus, etc.
         #[Autowire('%kernel.environment%')] protected string $env,
-        private Collection                                   $dictionaries,
         private AuthorizationCheckerInterface                $authorizationChecker,
-        private ?Dictionary                                  $actionIcons = null,
         protected ?Security                                  $security = null,
     )
     {
-        $this->actionIcons = $this->dictionaries['action_icons'];
         $this->menuService->setAuthorizationChecker($this->authorizationChecker);
     }
 
@@ -82,7 +79,7 @@ final class AppMenuEventListener implements KnpMenuHelperInterface
         }
 
         $this->add($nestedMenu, 'directory_collection_new', label: 'New',
-            icon: $this->actionIcons['add'], dividerPrepend: true);
+            icon: 'add', dividerPrepend: true);
         if ($this->isGranted('ROLE_DIRECTORY_MANAGER')) {
             // bootstrap bundle should handle not printing links that aren't valid
         }

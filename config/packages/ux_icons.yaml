@@ -2,6 +2,7 @@
 ux_icons:
   aliases:
     home: tabler:home
+    add: mdi:plus
     database: tabler:database
     App\Entity\Member: 'mdi:user'
     App\Entity\DirectoryCollection: 'mdi:users'

@@ -883,9 +883,6 @@
             "config/packages/reset_password.yaml"
         ]
     },
-    "tacman/dictionary-bundle": {
-        "version": "4.0.6"
-    },
     "theseer/tokenizer": {
         "version": "1.2.0"
     },

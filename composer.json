@@ -77,7 +77,6 @@
     "symfony/validator": "^7.1",
     "symfony/yaml": "^7.1",
     "symfonycasts/reset-password-bundle": "^1.17",
-    "tacman/dictionary-bundle": "^4.0.6",
     "twig/cssinliner-extra": "^3.6",
     "twig/extra-bundle": "^3.6",
     "twig/inky-extra": "^3.6",
