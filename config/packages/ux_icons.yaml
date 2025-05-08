@@ -1,0 +1,60 @@
+# config/packages/ux_icons.yaml
+ux_icons:
+  aliases:
+    home: tabler:home
+    database: tabler:database
+    App\Entity\Member: 'mdi:user'
+    App\Entity\DirectoryCollection: 'mdi:users'
+    App\Entity\Tag: 'mdi:tag'
+    App\Entity\Donation: 'mdi:dollar'
+    App\Entity\CommunicationLog: 'mdi:envelope'
+    App\Entity\Event: 'tabler:calendar'
+
+  default_icon_attributes:
+    width: 30px
+      # Default:
+    fill:                currentColor
+
+      # Example:
+      # class:               icon
+
+    # Icon sets configuration.
+  icon_sets:
+
+      # Prototype: the icon set prefix (e.g. "acme")
+      prefix:
+
+        # The local icon set directory path.
+        # (cannot be used with 'alias')
+        path:                 ~ # Example: '%kernel.project_dir%/assets/svg/acme'
+
+        # The remote icon set identifier.
+        # (cannot be used with 'path')
+        alias:                ~ # Example: simple-icons
+
+        # Override default icon attributes for icons in this set.
+        icon_attributes:      []
+
+          # Examples:
+          # class:               'icon icon-acme'
+        # fill:                none
+
+
+      # Examples:
+      # dots:                'clarity:ellipsis-horizontal-line'
+    # privacy:             'bi:cookie'
+
+    # Configuration for the remote icon service.
+  iconify:
+      enabled:              true
+
+      # Whether to download icons "on demand".
+      on_demand:            false
+
+      # The endpoint for the Iconify icons API.
+      endpoint:             'https://api.iconify.design'
+
+    # Ignore error when an icon is not found.
+    # Set to 'true' to fail silently.
+  ignore_not_found:     true
+

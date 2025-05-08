@@ -32,19 +32,17 @@ final class AppMenuEventListener implements KnpMenuHelperInterface
     use KnpMenuHelperTrait;
 
     public function __construct(
-        private DirectoryCollectionRepository                                             $directoryCollectionRepository,
-        private TagRepository                                                             $tagRepository,
-        private MenuService $menuService, // helper for auth menus, etc.
-        #[Autowire('%kernel.environment%')] protected string                                $env,
-        private Collection $dictionaries,
-        private AuthorizationCheckerInterface $authorizationChecker,
-        private ?Dictionary $actionIcons=null,
-        private ?Dictionary $classIcons=null,
-        protected ?Security $security=null,
+        private DirectoryCollectionRepository                $directoryCollectionRepository,
+        private TagRepository                                $tagRepository,
+        private MenuService                                  $menuService, // helper for auth menus, etc.
+        #[Autowire('%kernel.environment%')] protected string $env,
+        private Collection                                   $dictionaries,
+        private AuthorizationCheckerInterface                $authorizationChecker,
+        private ?Dictionary                                  $actionIcons = null,
+        protected ?Security                                  $security = null,
     )
     {
         $this->actionIcons = $this->dictionaries['action_icons'];
-        $this->classIcons = $this->dictionaries['class_icons'];
         $this->menuService->setAuthorizationChecker($this->authorizationChecker);
     }
 
@@ -73,7 +71,7 @@ final class AppMenuEventListener implements KnpMenuHelperInterface
         $options = $event->getOptions();
         $directoryCollections = $this->directoryCollectionRepository->findBy([], ['position' => 'ASC', 'label' => 'ASC']);
         $nestedMenu = $this->addSubmenu($menu, id: 'collections',
-            icon: $this->classIcons[DirectoryCollection::class]
+            icon: DirectoryCollection::class
 
         );
         foreach ($directoryCollections as $directoryCollection) {
@@ -91,7 +89,7 @@ final class AppMenuEventListener implements KnpMenuHelperInterface
         $this->add($nestedMenu, 'directory_browse', label: 'Api Grid Browse');
 
         $nestedMenu = $this->addSubmenu($menu, 'Tags', id: 'tags_submenu',
-            icon: $this->classIcons[Tag::class]
+            icon: Tag::class
         );
         $tags = $this->tagRepository->findBy([], ['tagName' => 'ASC']);
         foreach ($tags as $tag) {
@@ -100,25 +98,23 @@ final class AppMenuEventListener implements KnpMenuHelperInterface
         $this->add($nestedMenu, 'tag_index', label: 'Admin', dividerPrepend: true);
 
         $nestedMenu = $this->addSubmenu($menu, 'Donations',
-            icon: $this->classIcons[Donation::class]
+            icon: Donation::class
         );
         foreach (['donation_index', 'donation_donors', 'donation_campaigns'] as $route) {
             $this->add($nestedMenu, $route);
         }
 
-        $nestedMenu = $this->addSubmenu($menu, 'Communications',
-                    icon: $this->classIcons[CommunicationLog::class]
-        );
+        $nestedMenu = $this->addSubmenu($menu, 'Communications', icon: CommunicationLog::class);
         foreach (['messenger_email', 'messenger_sms', 'communication_index'] as $route) {
             $this->add($nestedMenu, $route);
         }
 
         $this->add($menu, 'map', icon: 'mdi:map');
 
-        $this->add($menu, 'event_index', icon: $this->classIcons[Event::class]);
+        $this->add($menu, 'event_index', icon: Event::class);
         $this->add($menu, 'birthdays', icon: 'tabler:cake');
 
-        $nestedMenu = $this->addSubmenu($menu, 'Data', icon: 'tabler:database');
+        $nestedMenu = $this->addSubmenu($menu, 'Data', icon: 'database');
         // @todo: look for ROLE_DIRECTORY_MANAGER in the route IsGranted
         foreach (['member_changes', 'import', 'export'] as $route) {
             $this->add($nestedMenu, $route);
