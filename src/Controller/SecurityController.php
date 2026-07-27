@@ -59,13 +59,13 @@ class SecurityController extends AbstractController
                 'label' => 'Password',
                 'mapped' => false,
                 'constraints' => [
-                    new NotBlank([
-                        'message' => 'Choose a password!',
-                    ]),
-                    new Length([
-                        'min' => 5,
-                        'minMessage' => 'Come on, you can think of a password longer than that!',
-                    ]),
+                    new NotBlank(
+                        message: 'Choose a password!',
+                    ),
+                    new Length(
+                        min: 5,
+                        minMessage: 'Come on, you can think of a password longer than that!',
+                    ),
                 ],
                 'type' => PasswordType::class,
                 'invalid_message' => 'The password fields must match.',
