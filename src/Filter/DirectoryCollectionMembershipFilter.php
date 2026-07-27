@@ -76,7 +76,6 @@ class DirectoryCollectionMembershipFilter extends AbstractFilter implements Filt
     {
         return [
             'directoryCollectionSlug' => [
-                'property' => null,
                 'type' => 'string',
                 'required' => false,
                 'description' => 'Filter members by DirectoryCollection slug (via MemberStatus membership).',

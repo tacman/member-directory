@@ -22,6 +22,6 @@ class CrawlAsVisitorTest extends BaseVisitLinksTest
 	#[TestWith(['', '/reset-password', 200])]
 	public function testRoute(string $username, string $url, string|int|null $expected): void
 	{
-		parent::testWithLogin($username, $url, (int)$expected);
+		parent::loginAsUserAndVisit($username, $url, (int)$expected);
 	}
 }

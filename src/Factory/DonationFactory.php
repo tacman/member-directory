@@ -17,7 +17,7 @@ use Zenstruck\Foundry\Persistence\PersistentObjectFactory;
  * @method static Donation                           last(string $sortedField = 'id')
  * @method static Donation                           random(array $attributes = [])
  * @method static Donation                           randomOrCreate(array $attributes = [])
- * @method static DonationRepository|RepositoryProxy repository()
+ * @method static DonationRepository                 repository()
  * @method static Donation[]                         all()
  * @method static Donation[]                         createMany(int $number, array|callable $attributes = [])
  * @method static Donation[]                         createSequence(iterable|callable $sequence)

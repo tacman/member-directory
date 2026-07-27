@@ -63,6 +63,6 @@ class CrawlAsEmailmanagerTest extends BaseVisitLinksTest
 	#[TestWith(['email.manager@example.com', '/directory/member/d-19/message?_switch_user=user%40example.com', 200])]
 	public function testRoute(string $username, string $url, string|int|null $expected): void
 	{
-		parent::testWithLogin($username, $url, (int)$expected);
+		parent::loginAsUserAndVisit($username, $url, (int)$expected);
 	}
 }

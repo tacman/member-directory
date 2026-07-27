@@ -274,7 +274,6 @@ class DirectoryController extends AbstractController
     {
         $tag = $tagRepository->find($tagId);
         if (is_null($tag)) {
-            dd($tagRepository->findAll());
             throw $this->createNotFoundException('Tag not found.');
         }
 
@@ -376,11 +375,11 @@ class DirectoryController extends AbstractController
     #[Route(path: '/map-search', name: 'map_search', options: ['expose' => true])]
     public function mapSearch(MemberRepository $memberRepository, Request $request)
     {
-        $memberStatuses = $request->query->get('member_statuses', []);
+        $memberStatuses = $request->query->all('member_statuses');
         $members = $memberRepository->findMembersWithinRadius(
-            $request->query->get('latitude'),
-            $request->query->get('longitude'),
-            $request->query->get('radius'),
+            (float) $request->query->get('latitude'),
+            (float) $request->query->get('longitude'),
+            (int) $request->query->get('radius'),
             ['member_statuses' => $memberStatuses]
         );
 
@@ -395,7 +394,7 @@ class DirectoryController extends AbstractController
     #[Route(path: '/map-data', name: 'map_data', options: ['expose' => true])]
     public function mapData(MemberRepository $memberRepository, Request $request)
     {
-        $memberStatuses = $request->query->get('member_statuses', []);
+        $memberStatuses = $request->query->all('member_statuses');
         $members = $memberRepository->findGeocodedAddresses(['member_statuses' => $memberStatuses]);
 
         return $this->json($members, 200, [], [
