@@ -1,7 +1,10 @@
-survos_bootstrap:
+survos_tabler:
   app:
     code: member
     abbr: <b>member</b>Dir
+    header:
+      auth:
+        show_login: false
   impersonate:
     - communications.manager@example.com
     - email.manager@example.com
@@ -15,12 +18,8 @@ survos_bootstrap:
     logout: app_logout
     register: app_register
   options:
-    # consider https://startbootstrap.com/previews/simple-sidebar as another theme
-    theme: tabler
-    allow_login: false
-    offcanvas: end
+    layout: horizontal
+    show_locale_dropdown: true
   menu_options:
     frontPage: false
     showAppMenu: false
-
-

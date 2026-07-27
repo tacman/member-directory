@@ -1,0 +1,19 @@
+{# override of vendor/survos/api-grid-bundle/templates/components/js_twig.html.twig #}
+{# upstream hardcodes '@survos/api-grid/js_twig' but that stimulus controller only exists in survos/js-twig-bundle #}
+
+{% set _sc = '@survos/js-twig-bundle/js_twig' %}
+{{ _sc }}
+<div {{ stimulus_controller(_sc, {
+    blocks: this.twigBlocks,
+    apiUrl: this.apiUrl,
+    data: data|default(false),
+    globals: {
+        isAdmin: is_granted('ROLE_ADMIN')
+    }
+}) }}>
+
+    <div {{ stimulus_target(_sc, 'message') }}>
+        a message here.
+    </div>
+
+</div>

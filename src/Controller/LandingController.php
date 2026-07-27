@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use Survos\BootstrapBundle\Service\MenuService;
+use Survos\TablerBundle\Service\MenuService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;

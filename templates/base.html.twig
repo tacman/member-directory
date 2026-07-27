@@ -1,110 +1,21 @@
-{% extends "@SurvosBootstrap/%s/base.html.twig"|format(theme_option('theme')) %}
-{#{% extends "@SurvosBootstrap/bootswatch/base.html.twig" %}#}
-{#{% extends 'layout.html.twig' %}#}
-    {% block javascripts %}
-      {{ importmap('app') }}
-    {% endblock %}
+{% extends '@SurvosTabler/layout/base.html.twig' %}
 
-
-{% block body_content %}
-
-
-
-<div class="container-fluid">
-  <div class="row">
-
-{#    <a href="{{ impersonation_path(customer.username) }}">Impersonate {{ customer.name }}</a>#}
-
-{#    {{ block('sidebar') }}#}
-
-    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-      {% include '_alerts.html.twig' %}
-{#      {% block body %}#}
-{#        {{ block('original_body') }}#}
-{#        {{ block('sidebar') }}#}
-
-{#      {% endblock %}#}
-
-
-    </main>
-
-  </div>
-</div>
-{{ parent() }}
+{% block javascripts %}
+    {{ importmap('app') }}
 {% endblock %}
+
+{# app pages render their own header via {% embed '_page_header.html.twig' %} inside body, #}
+{# so tabler's built-in page_header block (title/pretitle/actions) stays unused here. #}
+{% block page_header %}{% endblock %}
 
 {% block footer %}
-<!-- Footer -->
-<footer>
-  <div class="container my-5">
-    <div class="copyright text-center my-auto">
-      <small class="text-muted">Powered by <a href="https://github.com/utmsigep/member-directory" target="_blank">Member Directory</a> ({{ config.version }})</small>
-    </div>
-  </div>
-</footer>
-<!-- End of Footer -->
-{% endblock %}
-
-    {% block sidebar %}
-      <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar collapse">
-        <div class="position-sticky pt-3 sidebar-sticky">
-          <ul class="nav flex-column">
-            {% if app.user and is_granted('ROLE_USER') %}
-              {% include '_main_nav.html.twig' %}
-            {% endif %}
-          </ul>
+    <footer class="footer footer-transparent d-print-none">
+        <div class="container-xl">
+            <div class="row text-center">
+                <div class="col-12">
+                    <small class="text-muted">Powered by <a href="https://github.com/utmsigep/member-directory" target="_blank">Member Directory</a> ({{ config.version }})</small>
+                </div>
+            </div>
         </div>
-      </nav>
-    {% endblock %}
-
-
-{% block original_body %}
-<span class="fas fa-user"></span>User
-{% if app.user and is_granted('ROLE_USER') %}
-  <form action="{{ path('search') }}" method="GET">
-    <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-      <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-center" href="{{ path('home') }}">Member Directory</a>
-      <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <input class="form-control form-control-dark w-100 rounded-0 border-0 member-search-autocomplete" type="search" name="q" value="{{ app.request.get('q')|escape('html_attr') }}" placeholder="Directory Search" aria-label="Search" autocomplete="off">
-
-      <div class="nav-menu text-nowrap">
-        <!-- Nav Item - User Information -->
-        <div class="nav-item dropdown no-arrow">
-          <a class="btn rounded-0 border-dark dropdown-toggle text-bg-dark" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span class="mr-2 text-gray-600 small">{{ (app.user.name ? app.user.name : app.user.email)|u.truncate(45, '...') }}</span>
-            <i class="fas {% if is_granted('ROLE_ADMIN') %}fa-user-shield{% else %}fa-user{% endif %} fa-fw"></i>
-          </a>
-          <!-- Dropdown - User Actions -->
-          <div class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="userDropdown">
-            <a class="dropdown-item" href="{{ path('app_profile') }}">
-              <i class="fas fa-id-card fa-sm fa-fw mr-2 text-gray-400"></i>
-              Edit Profile
-            </a>
-            <a class="dropdown-item" href="{{ path('app_change_password')}}">
-              <i class="fas fa-lock fa-sm fa-fw mr-2 text-gray-400"></i>
-              Change Password
-            </a>
-            <a class="dropdown-item" href="{{ path('app_manage_two_factor')}}">
-              <i class="fas fa-stopwatch fa-sm fa-fw mr-2 text-gray-400"></i>
-              Two-Factor Security
-            </a>
-            <a class="dropdown-item" href="{{ path('api_entrypoint')}}" target="_blank">
-              <i class="fas fa-stopwatch fa-sm fa-fw mr-2 text-gray-400"></i>
-              API
-            </a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{{ path('app_logout') }}">
-              <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-              Logout
-            </a>
-          </div>
-        </div>
-      </div>
-    </header>
-  </form>
-{% else %}
-  <div class="nav-item"><a class="" href="{{ path('app_login')}}"><i class="fas fa-sign-in-alt fa-fw"></i> <span>Sign In</span></a></div>
-{% endif %}
+    </footer>
 {% endblock %}

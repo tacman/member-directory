@@ -9,8 +9,8 @@ use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
-use Survos\CoreBundle\Traits\QueryBuilderHelperInterface;
-use Survos\CoreBundle\Traits\QueryBuilderHelperTrait;
+use Survos\FieldBundle\Repository\QueryBuilderHelperInterface;
+use Survos\FieldBundle\Repository\QueryBuilderHelperTrait;
 
 /**
  * @method Member|null find($id, $lockMode = null, $lockVersion = null)

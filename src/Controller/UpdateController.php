@@ -19,10 +19,10 @@ class UpdateController extends AbstractController
     #[Route(path: '/update-my-info')]
     public function updateFromQueryString(Request $request)
     {
-        if ($request->get('externalIdentifier') && $request->get('updateToken')) {
+        if ($request->query->get('externalIdentifier') && $request->query->get('updateToken')) {
             return $this->redirectToRoute('self_service_update', [
-                'externalIdentifier' => $request->get('externalIdentifier'),
-                'updateToken' => $request->get('updateToken'),
+                'externalIdentifier' => $request->query->get('externalIdentifier'),
+                'updateToken' => $request->query->get('updateToken'),
             ]);
         }
         throw $this->createNotFoundException('Member not found.');
@@ -32,10 +32,10 @@ class UpdateController extends AbstractController
     public function update(Request $request, EmailService $emailService, MemberRepository $memberRepository, EntityManagerInterface $entityManager)
     {
         $member = $memberRepository->findOneBy([
-            'externalIdentifier' => $request->get('externalIdentifier'),
+            'externalIdentifier' => $request->attributes->get('externalIdentifier'),
         ]);
         // If mismatch of updated token, deceased, or in inactive statuses, ignore
-        if (!$member || $request->get('updateToken') != $member->getUpdateToken()
+        if (!$member || $request->attributes->get('updateToken') != $member->getUpdateToken()
             || $member->getIsDeceased()
             || $member->getStatus()->getIsInactive()
         ) {

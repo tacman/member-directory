@@ -4,45 +4,28 @@ namespace App\Factory;
 
 use App\Entity\Donation;
 use App\Repository\DonationRepository;
-use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
-use Zenstruck\Foundry\Persistence\Proxy;
+use Zenstruck\Foundry\Persistence\PersistentObjectFactory;
 
 /**
- * @extends PersistentProxyObjectFactory<Donation>
+ * @extends PersistentObjectFactory<Donation>
  *
- * @method        Donation|Proxy                     create(array|callable $attributes = [])
- * @method static Donation|Proxy                     createOne(array $attributes = [])
- * @method static Donation|Proxy                     find(object|array|mixed $criteria)
- * @method static Donation|Proxy                     findOrCreate(array $attributes)
- * @method static Donation|Proxy                     first(string $sortedField = 'id')
- * @method static Donation|Proxy                     last(string $sortedField = 'id')
- * @method static Donation|Proxy                     random(array $attributes = [])
- * @method static Donation|Proxy                     randomOrCreate(array $attributes = [])
+ * @method        Donation                           create(array|callable $attributes = [])
+ * @method static Donation                           createOne(array $attributes = [])
+ * @method static Donation                           find(object|array|mixed $criteria)
+ * @method static Donation                           findOrCreate(array $attributes)
+ * @method static Donation                           first(string $sortedField = 'id')
+ * @method static Donation                           last(string $sortedField = 'id')
+ * @method static Donation                           random(array $attributes = [])
+ * @method static Donation                           randomOrCreate(array $attributes = [])
  * @method static DonationRepository|RepositoryProxy repository()
- * @method static Donation[]|Proxy[]                 all()
- * @method static Donation[]|Proxy[]                 createMany(int $number, array|callable $attributes = [])
- * @method static Donation[]|Proxy[]                 createSequence(iterable|callable $sequence)
- * @method static Donation[]|Proxy[]                 findBy(array $attributes)
- * @method static Donation[]|Proxy[]                 randomRange(int $min, int $max, array $attributes = [])
- * @method static Donation[]|Proxy[]                 randomSet(int $number, array $attributes = [])
- *
- * @phpstan-method        Proxy<Donation> create(array|callable $attributes = [])
- * @phpstan-method static Proxy<Donation> createOne(array $attributes = [])
- * @phpstan-method static Proxy<Donation> find(object|array|mixed $criteria)
- * @phpstan-method static Proxy<Donation> findOrCreate(array $attributes)
- * @phpstan-method static Proxy<Donation> first(string $sortedField = 'id')
- * @phpstan-method static Proxy<Donation> last(string $sortedField = 'id')
- * @phpstan-method static Proxy<Donation> random(array $attributes = [])
- * @phpstan-method static Proxy<Donation> randomOrCreate(array $attributes = [])
- * @phpstan-method static RepositoryProxy<Donation> repository()
- * @phpstan-method static list<Proxy<Donation>> all()
- * @phpstan-method static list<Proxy<Donation>> createMany(int $number, array|callable $attributes = [])
- * @phpstan-method static list<Proxy<Donation>> createSequence(iterable|callable $sequence)
- * @phpstan-method static list<Proxy<Donation>> findBy(array $attributes)
- * @phpstan-method static list<Proxy<Donation>> randomRange(int $min, int $max, array $attributes = [])
- * @phpstan-method static list<Proxy<Donation>> randomSet(int $number, array $attributes = [])
+ * @method static Donation[]                         all()
+ * @method static Donation[]                         createMany(int $number, array|callable $attributes = [])
+ * @method static Donation[]                         createSequence(iterable|callable $sequence)
+ * @method static Donation[]                         findBy(array $attributes)
+ * @method static Donation[]                         randomRange(int $min, int $max, array $attributes = [])
+ * @method static Donation[]                         randomSet(int $number, array $attributes = [])
  */
-final class DonationFactory extends PersistentProxyObjectFactory
+final class DonationFactory extends PersistentObjectFactory
 {
     /**
      * @see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#factories-as-services

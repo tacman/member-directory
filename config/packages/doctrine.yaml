@@ -13,15 +13,15 @@ doctrine:
         # IMPORTANT: You MUST configure your server version,
         # either here or in the DATABASE_URL env var (see .env file)
         #server_version: '15'
+
+        # DBAL 4 removed the legacy `array` type (gedmo/doctrine-extensions' LogEntry.data
+        # column still maps to it as of 3.22). JsonType has the same convertTo*Value contract.
+        types:
+            array: Doctrine\DBAL\Types\JsonType
     orm:
-        auto_generate_proxy_classes: true
-        enable_lazy_ghost_objects: true
-        report_fields_where_declared: true
         validate_xml_mapping: true
         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
         auto_mapping: true
-        controller_resolver:
-          auto_mapping: false
         mappings:
             App:
                 is_bundle: false
@@ -168,13 +168,10 @@ when@test:
         dbal:
             # "TEST_TOKEN" is typically set by ParaTest
             dbname_suffix: '_test%env(default::TEST_TOKEN)%'
-            use_savepoints: true
 
 when@prod:
     doctrine:
         orm:
-            auto_generate_proxy_classes: false
-            proxy_dir: '%kernel.build_dir%/doctrine/orm/Proxies'
             query_cache_driver:
                 type: pool
                 pool: doctrine.system_cache_pool

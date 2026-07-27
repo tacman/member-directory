@@ -1,3 +1,6 @@
 survos_auth:
-  resource: '@SurvosAuthBundle/config/routes.yaml'
+  resource:
+    path: '@SurvosAuthBundle/src/Controller/'
+    namespace: Survos\AuthBundle\Controller
+  type: attribute
   prefix: '/auth'

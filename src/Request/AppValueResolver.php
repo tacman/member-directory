@@ -5,7 +5,7 @@ namespace App\Request;
 use App\Entity\MemberStatus;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
-use Survos\CoreBundle\Entity\RouteParametersInterface;
+use Survos\FieldBundle\Entity\RouteParametersInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Controller\ValueResolverInterface;
 use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadata;
@@ -36,7 +36,8 @@ class AppValueResolver implements ValueResolverInterface
                 $value = $repository->findOneBy(['code' => $idFieldValue]);
                 break;
             default:
-                $value = null;
+                // Not ours — let other resolvers (e.g. field-bundle's RouteIdentityValueResolver) try.
+                return [];
         }
 
         $request->attributes->set($argument->getName(), $value);

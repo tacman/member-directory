@@ -9,41 +9,43 @@ use App\Entity\Event;
 use App\Entity\Tag;
 use App\Repository\DirectoryCollectionRepository;
 use App\Repository\TagRepository;
-use Knp\DictionaryBundle\Dictionary;
-use Knp\DictionaryBundle\Dictionary\Collection;
-use Survos\AuthBundle\Services\AuthService;
-use Survos\BootstrapBundle\Event\KnpMenuEvent;
-use Survos\BootstrapBundle\Service\MenuService;
-use Survos\BootstrapBundle\Traits\KnpMenuHelperInterface;
-use Survos\BootstrapBundle\Traits\KnpMenuHelperTrait;
-use Symfony\Bundle\SecurityBundle\Security;
+use Survos\TablerBundle\Event\MenuEvent;
+use Survos\TablerBundle\Menu\MenuBuilderTrait;
+use Survos\TablerBundle\Service\IconService;
+use Survos\TablerBundle\Service\RouteAliasService;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
+use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
-#[AsEventListener(event: KnpMenuEvent::NAVBAR_MENU, method: 'navbarMenu')]
-#[AsEventListener(event: KnpMenuEvent::NAVBAR_MENU2, method: 'navbar2Menu')]
-#[AsEventListener(event: KnpMenuEvent::SIDEBAR_MENU, method: 'sidebarMenu')]
-#[AsEventListener(event: KnpMenuEvent::PAGE_MENU, method: 'pageMenu')]
-#[AsEventListener(event: KnpMenuEvent::FOOTER_MENU, method: 'footerMenu')]
-#[AsEventListener(event: KnpMenuEvent::AUTH_MENU, method: 'appAuthMenu')]
-final class AppMenuEventListener implements KnpMenuHelperInterface
+// AUTH slot is populated automatically by tabler-bundle's AuthSlotMenuSubscriber
+// (app_login/app_logout/app_register already match its route-name fallbacks).
+#[AsEventListener(event: MenuEvent::NAVBAR_MENU, method: 'navbarMenu')]
+#[AsEventListener(event: MenuEvent::NAVBAR_MENU_END, method: 'navbar2Menu')]
+#[AsEventListener(event: MenuEvent::SIDEBAR, method: 'sidebarMenu')]
+#[AsEventListener(event: MenuEvent::PAGE_NAV, method: 'pageMenu')]
+#[AsEventListener(event: MenuEvent::FOOTER, method: 'footerMenu')]
+final class AppMenuEventListener
 {
-    use KnpMenuHelperTrait;
+    use MenuBuilderTrait;
 
     public function __construct(
         private DirectoryCollectionRepository                $directoryCollectionRepository,
         private TagRepository                                $tagRepository,
-        private MenuService                                  $menuService, // helper for auth menus, etc.
         #[Autowire('%kernel.environment%')] protected string $env,
         private AuthorizationCheckerInterface                $authorizationChecker,
-        protected ?Security                                  $security = null,
-    )
-    {
-        $this->menuService->setAuthorizationChecker($this->authorizationChecker);
+        protected readonly ?RouterInterface                  $router = null,
+        protected readonly ?RouteAliasService                $routeAliasService = null,
+        protected readonly ?IconService                      $iconService = null,
+    ) {
     }
 
-    public function navbar2Menu(KnpMenuEvent $event): void
+    private function isGranted(string $attribute): bool
+    {
+        return $this->authorizationChecker->isGranted($attribute);
+    }
+
+    public function navbar2Menu(MenuEvent $event): void
     {
         $menu = $event->getMenu();
         if ($this->isGranted('ROLE_ADMIN')) {
@@ -55,21 +57,12 @@ final class AppMenuEventListener implements KnpMenuHelperInterface
 
     }
 
-    public function appAuthMenu(KnpMenuEvent $event): void
+    public function navbarMenu(MenuEvent $event): void
     {
         $menu = $event->getMenu();
-        $this->menuService->addAuthMenu($menu);
-    }
-
-
-    public function navbarMenu(KnpMenuEvent $event): void
-    {
-        $menu = $event->getMenu();
-        $options = $event->getOptions();
         $directoryCollections = $this->directoryCollectionRepository->findBy([], ['position' => 'ASC', 'label' => 'ASC']);
-        $nestedMenu = $this->addSubmenu($menu, id: 'collections',
+        $nestedMenu = $this->addSubmenu($menu, 'Collections',
             icon: DirectoryCollection::class
-
         );
         foreach ($directoryCollections as $directoryCollection) {
             $this->add($nestedMenu, 'directory_collection',
@@ -79,20 +72,20 @@ final class AppMenuEventListener implements KnpMenuHelperInterface
         }
 
         $this->add($nestedMenu, 'directory_collection_new', label: 'New',
-            icon: 'add', dividerPrepend: true);
+            icon: 'add', dividerBefore: true);
         if ($this->isGranted('ROLE_DIRECTORY_MANAGER')) {
             // bootstrap bundle should handle not printing links that aren't valid
         }
         $this->add($nestedMenu, 'directory_browse', label: 'Api Grid Browse');
 
-        $nestedMenu = $this->addSubmenu($menu, 'Tags', id: 'tags_submenu',
+        $nestedMenu = $this->addSubmenu($menu, 'Tags',
             icon: Tag::class
         );
         $tags = $this->tagRepository->findBy([], ['tagName' => 'ASC']);
         foreach ($tags as $tag) {
             $this->add($nestedMenu, 'tag', $tag, $tag->getTagName());
         }
-        $this->add($nestedMenu, 'tag_index', label: 'Admin', dividerPrepend: true);
+        $this->add($nestedMenu, 'tag_index', label: 'Admin', dividerBefore: true);
 
         $nestedMenu = $this->addSubmenu($menu, 'Donations',
             icon: Donation::class
@@ -120,23 +113,20 @@ final class AppMenuEventListener implements KnpMenuHelperInterface
 
     }
 
-    public function sidebarMenu(KnpMenuEvent $event): void
+    public function sidebarMenu(MenuEvent $event): void
     {
         $menu = $event->getMenu();
-        $options = $event->getOptions();
     }
 
-    public function footerMenu(KnpMenuEvent $event): void
+    public function footerMenu(MenuEvent $event): void
     {
         $menu = $event->getMenu();
-        $options = $event->getOptions();
         $this->add($menu, uri: 'https://github.com');
     }
 
     // this could also be called the content menu, as it's below the navbar, e.g. a menu for an entity, like show, edit
-    public function pageMenu(KnpMenuEvent $event): void
+    public function pageMenu(MenuEvent $event): void
     {
         $menu = $event->getMenu();
-        $options = $event->getOptions();
     }
 }

@@ -18,12 +18,13 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Loggable\Loggable;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
-use Survos\ApiGrid\Api\Filter\FacetsFieldSearchFilter;
-use Survos\ApiGrid\Filter\MeiliSearch\MultiFieldSearchFilter;
-use Survos\ApiGrid\Filter\MeiliSearch\SortFilter;
-use Survos\ApiGrid\State\MeiliSearchStateProvider;
-use Survos\CoreBundle\Entity\RouteParametersInterface;
-use Survos\CoreBundle\Entity\RouteParametersTrait;
+use Survos\ApiGridBundle\Api\Filter\FacetsFieldSearchFilter;
+use Survos\ApiGridBundle\Filter\MeiliSearch\MultiFieldSearchFilter;
+use Survos\ApiGridBundle\Filter\MeiliSearch\SortFilter;
+use Survos\ApiGridBundle\State\MeiliSearchStateProvider;
+use Survos\FieldBundle\Attribute\RouteIdentity;
+use Survos\FieldBundle\Entity\RouteIdentityTrait;
+use Survos\FieldBundle\Entity\RouteParametersInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Serializer\Attribute\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -55,10 +56,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 #[Gedmo\Loggable]
 #[Groups(['member.read', 'search'])]
+#[RouteIdentity(field: 'localIdentifier', key: 'localIdentifier')]
 class Member implements Loggable, RouteParametersInterface
 {
     use TimestampableEntity;
-    use RouteParametersTrait;
+    use RouteIdentityTrait;
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -118,7 +120,7 @@ class Member implements Loggable, RouteParametersInterface
     #[Gedmo\Versioned]
     private $suffix;
 
-    #[ORM\Column(type: 'date', nullable: true)]
+    #[ORM\Column(type: Types::DATE_IMMUTABLE, nullable: true)]
 //    #[Assert\Type(DateType::class)]
     #[Gedmo\Versioned]
     private $birthDate;
@@ -877,7 +879,5 @@ class Member implements Loggable, RouteParametersInterface
 
         return $this;
     }
-
-    const UNIQUE_PARAMETERS = ['localIdentifier'=>'localIdentifier'];
 
 }
