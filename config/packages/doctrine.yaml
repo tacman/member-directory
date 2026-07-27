@@ -1,5 +1,9 @@
 doctrine:
     dbal:
+        # Postgres servers with the timescaledb extension expose catalog/internal
+        # schemas Doctrine shouldn't try to manage (it'll otherwise generate
+        # migrations that DROP their sequences). Same filter used elsewhere.
+        schema_filter: '~^(?!(?:_timescaledb_|timescaledb_|toolkit_))~'
         # configure these for your database server
         driver: 'pdo_mysql'
         server_version: '5.6'
