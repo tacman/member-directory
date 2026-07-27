@@ -1,6 +1,7 @@
 /* jshint esversion: 6 */
-/* globals Routing, $ */
+/* globals $ */
 
+import { path } from '@survos/js-twig/generated/fos_routes.js';
 import 'leaflet/dist/leaflet.css';
 import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css'; // Re-uses images from ~leaflet package
 import * as L from 'leaflet';
@@ -69,7 +70,7 @@ $(document).ready(function () {
   verifyAddressButton.on('click', function () {
     verifyAddressStatusIndicator.removeClass('d-none');
 
-    $.getJSON(Routing.generate('verify_address_data'), {
+    $.getJSON(path('verify_address_data'), {
       mailingAddressLine1: mailingAddressLine1.val(),
       mailingAddressLine2: mailingAddressLine2.val(),
       mailingCity: mailingCity.val(),

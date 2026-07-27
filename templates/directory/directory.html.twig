@@ -1,4 +1,3 @@
-{#{% extends 'layout.html.twig' %}#}
 {% extends 'base.html.twig' %}
 
 {% block title %}{{ parent() }} - {{ view_name }}{% endblock %}
@@ -29,35 +28,86 @@
 {{ view_description|e('html')|markdown_to_html }}
 {% endif %}
 
+{% set columns = [
+    col(name: 'localIdentifier', title: 'Roll #', sortable: true, width: '5rem'),
+    col(name: 'photoUrl', title: '', sortable: false),
+    col(name: 'displayName', title: 'Name', sortable: false, searchable: true, width: '16rem'),
+    col(name: 'status', title: 'Status', sortable: true, browsable: true, visible: show_status|default(true)),
+    col(name: 'classYear', title: 'Class', sortable: true, browsable: true),
+    col(name: 'primaryEmail', title: 'Email', searchable: true),
+    col(name: 'facebookUrl', title: 'Social', sortable: false),
+    col(name: 'primaryTelephoneNumber', title: 'Phone Number'),
+    col(name: 'mailingPostalCode', title: 'Mailing Address', sortable: false),
+    col(name: 'mailingState', title: 'State', visible: false, browsable: true),
+] %}
+
 <div class="card shadow">
   <div class="card-body">
-    <div class="table-responsive">
-      <table class="table table-sm" id="memberDataTable" data-source="{{ data_source }}" data-show-status="{{ show_status }}" data-group-by="{{ group_by|default('') }}">
-        <thead>
-          <tr>
-            <th class="text-center">Roll #</th>
-            <th data-sortable="false" data-searchable="false"></th>
-            <th>Name</th>
-            <th>Status</th>
-            <th>Class</th>
-            <th>Email</th>
-            <th data-sortable="false" data-searchable="false">Social</th>
-            <th>Phone Number</th>
-            <th>Mailing Address</th>
-          </tr>
-        </thead>
-        <tbody>
-        </tbody>
-      </table>
-    </div>
+    <twig:api_grid
+        class="App\\Entity\\Member"
+        :apiGetCollectionUrl="apiGetCollectionUrl"
+        :filter="filter|default({})"
+        :columns="columns"
+        :caller="_self"
+        pageLength="25"
+    >
+        <twig:block name="photoUrl">
+            <a href="{{ path('member_show', {localIdentifier: row.localIdentifier}) }}">
+                <img src="{{ row.photoUrl|default(null) ?: row.gravatarUrl }}" class="img-fluid" alt="Profile Photo" />
+            </a>
+        </twig:block>
+
+        <twig:block name="displayName">
+            <a href="{{ path('member_show', {localIdentifier: row.localIdentifier}) }}">{{ row.displayName }}</a>
+            <div class="mt-1">
+                {% if row.isDeceased %}
+                    <a href="{{ path('deceased') }}"><sup class="badge bg-black text-white" title="Deceased">Deceased</sup></a>
+                {% endif %}
+                {% if row.isLost %}
+                    <a href="{{ path('lost') }}"><sup class="badge bg-warning text-bg-warning" title="Lost">Lost</sup></a>
+                {% endif %}
+                {% if row.isLocalDoNotContact %}
+                    <a href="{{ path('do_not_contact') }}"><sup class="badge bg-danger text-bg-danger" title="Do Not Contact">Do Not Contact</sup></a>
+                {% endif %}
+                {% for tag in row.tags|default([]) %}
+                    <a href="{{ path('tag', {tagId: tag.id}) }}"><sup class="badge bg-secondary text-bg-secondary" title="{{ tag.tagName }}">{{ tag.tagName }}</sup></a>
+                {% endfor %}
+            </div>
+        </twig:block>
+
+        <twig:block name="status">
+            {{ row.status.label|default('') }}
+        </twig:block>
+
+        <twig:block name="primaryEmail">
+            {% if row.primaryEmail %}
+                <a href="mailto:{{ row.primaryEmail }}">{{ row.primaryEmail }}</a>
+            {% endif %}
+        </twig:block>
+
+        <twig:block name="facebookUrl">
+            {% if row.linkedinUrl %}
+                <a href="{{ row.linkedinUrl }}"><i class="fab fa-linkedin fa-lg fa-fw"></i></a>
+            {% else %}
+                <i class="fab fa-linkedin fa-lg fa-fw" style="opacity:0.2"></i>
+            {% endif %}
+            {% if row.facebookUrl %}
+                <a href="{{ row.facebookUrl }}"><i class="fab fa-facebook fa-lg fa-fw"></i></a>
+            {% else %}
+                <i class="fab fa-facebook fa-lg fa-fw" style="opacity:0.2"></i>
+            {% endif %}
+        </twig:block>
+
+        <twig:block name="mailingPostalCode">
+            {% if row.mailingCity and row.mailingState %}
+                {% if row.mailingAddressLine1 %}{{ row.mailingAddressLine1 }}<br />{% endif %}
+                {% if row.mailingAddressLine2 %}{{ row.mailingAddressLine2 }}<br />{% endif %}
+                {{ row.mailingCity }}, {{ row.mailingState }} {{ row.mailingPostalCode }}<br />
+                {% if row.mailingCountry not in ['United States', 'US'] %}{{ row.mailingCountry }}{% endif %}
+            {% endif %}
+        </twig:block>
+    </twig:api_grid>
   </div>
 </div>
 
-{% endblock %}
-
-{% block javascripts %}
-{{ parent() }}
-  <script type="module">
-    import '{{ asset('js/directory.js') }}';
-  </script>
 {% endblock %}

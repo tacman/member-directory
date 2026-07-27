@@ -1482,19 +1482,6 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     generate_final_classes?: bool|Param, // Default: true
  *     generate_final_entities?: bool|Param, // Default: false
  * }
- * @psalm-type FosJsRoutingConfig = array{
- *     serializer?: scalar|Param|null,
- *     routes_to_expose?: list<scalar|Param|null>,
- *     router?: scalar|Param|null, // Default: "router"
- *     request_context_base_url?: scalar|Param|null, // Default: null
- *     cache_control?: array{
- *         public?: bool|Param, // Default: false
- *         expires?: scalar|Param|null, // Default: null
- *         maxage?: scalar|Param|null, // Default: null
- *         smaxage?: scalar|Param|null, // Default: null
- *         vary?: list<scalar|Param|null>,
- *     },
- * }
  * @psalm-type TwigExtraConfig = array{
  *     cache?: bool|array{
  *         enabled?: bool|Param, // Default: false
@@ -2284,7 +2271,6 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     twig?: TwigConfig,
  *     monolog?: MonologConfig,
  *     stof_doctrine_extensions?: StofDoctrineExtensionsConfig,
- *     fos_js_routing?: FosJsRoutingConfig,
  *     twig_extra?: TwigExtraConfig,
  *     cmen_google_charts?: CmenGoogleChartsConfig,
  *     symfonycasts_reset_password?: SymfonycastsResetPasswordConfig,
@@ -2318,7 +2304,6 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         web_profiler?: WebProfilerConfig,
  *         stof_doctrine_extensions?: StofDoctrineExtensionsConfig,
  *         maker?: MakerConfig,
- *         fos_js_routing?: FosJsRoutingConfig,
  *         twig_extra?: TwigExtraConfig,
  *         cmen_google_charts?: CmenGoogleChartsConfig,
  *         symfonycasts_reset_password?: SymfonycastsResetPasswordConfig,
@@ -2353,7 +2338,6 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         twig?: TwigConfig,
  *         monolog?: MonologConfig,
  *         stof_doctrine_extensions?: StofDoctrineExtensionsConfig,
- *         fos_js_routing?: FosJsRoutingConfig,
  *         twig_extra?: TwigExtraConfig,
  *         cmen_google_charts?: CmenGoogleChartsConfig,
  *         symfonycasts_reset_password?: SymfonycastsResetPasswordConfig,
@@ -2388,7 +2372,6 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         monolog?: MonologConfig,
  *         web_profiler?: WebProfilerConfig,
  *         stof_doctrine_extensions?: StofDoctrineExtensionsConfig,
- *         fos_js_routing?: FosJsRoutingConfig,
  *         twig_extra?: TwigExtraConfig,
  *         cmen_google_charts?: CmenGoogleChartsConfig,
  *         symfonycasts_reset_password?: SymfonycastsResetPasswordConfig,

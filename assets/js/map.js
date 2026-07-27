@@ -1,5 +1,5 @@
 /* jshint esversion: 6 */
-/* globals Routing, $ */
+/* globals $ */
 
 // import './styles/app.css'
 import 'bootstrap';
@@ -15,13 +15,7 @@ import * as L from 'leaflet';
 // import 'leaflet-defaulticon-compatibility';
 
 // Routing
-import Routing from 'fos-routing';
-import RoutingData from '/js/fos_js_routes.js';
-Routing.setData(RoutingData);
-
-// const routes = require('../js/fos_js_routes.json');
-// import Routing from '../../vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router.min.js';
-// Routing.setRoutingData(routes);
+import { path } from '@survos/js-twig/generated/fos_routes.js';
 
 var sanitizeHTML = function (str) {
   if (!str) { return ''; }
@@ -85,8 +79,8 @@ var drawMap = function () {
           fillOpacity: 0.1,
           radius: (radius * 1609.344)
       }).addTo(directoryMap);
-      mapExportButton.attr('href', Routing.generate('export_by_location', {latitude: ev.latlng.lat, longitude: ev.latlng.lng, radius: radius, member_statuses: memberStatuses()}));
-      $.getJSON(Routing.generate('map_search', {latitude: ev.latlng.lat, longitude: ev.latlng.lng, radius: radius, member_statuses: memberStatuses()}), {}, function(data) {
+      mapExportButton.attr('href', path('export_by_location', {latitude: ev.latlng.lat, longitude: ev.latlng.lng, radius: radius, member_statuses: memberStatuses()}));
+      $.getJSON(path('map_search', {latitude: ev.latlng.lat, longitude: ev.latlng.lng, radius: radius, member_statuses: memberStatuses()}), {}, function(data) {
           searchResultsContainer.empty();
           searchNoResultsFoundContainer.show();
           searchResultsExport.hide();
@@ -107,7 +101,7 @@ var drawMap = function () {
 
   var addMarkers = function () {
     searchResultsExport.hide();
-    $.getJSON(Routing.generate('map_data'), {member_statuses: memberStatuses()}, function(data) {
+    $.getJSON(path('map_data'), {member_statuses: memberStatuses()}, function(data) {
       if (data.length === 0) {
         return;
       }
@@ -161,7 +155,7 @@ var formatMemberData = function (data) {
   data.mailingCity = data.mailingCity ? sanitizeHTML(data.mailingCity) : '';
   data.mailingState = data.mailingState ? sanitizeHTML(data.mailingState) : '';
   data.mailingPostalCode = data.mailingPostalCode ? sanitizeHTML(data.mailingPostalCode) : '';
-  data.link = Routing.generate('member_show', {localIdentifier: data.localIdentifier});
+  data.link = path('member_show', {localIdentifier: data.localIdentifier});
   data.classYear = data.classYear ? '(' + data.classYear + ')' : '';
   data.tags = formatTags(data);
   return data;

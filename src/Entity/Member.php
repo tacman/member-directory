@@ -2,6 +2,9 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Doctrine\Orm\Filter\ExactFilter;
+use ApiPlatform\Doctrine\Orm\Filter\OrderFilter;
+use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
 use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Delete;
@@ -9,6 +12,8 @@ use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Put;
+use ApiPlatform\Metadata\QueryParameter;
+use App\Filter\DirectoryCollectionMembershipFilter;
 use App\Repository\MemberRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -19,9 +24,8 @@ use Gedmo\Loggable\Loggable;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Survos\ApiGridBundle\Api\Filter\FacetsFieldSearchFilter;
-use Survos\ApiGridBundle\Filter\MeiliSearch\MultiFieldSearchFilter;
-use Survos\ApiGridBundle\Filter\MeiliSearch\SortFilter;
-use Survos\ApiGridBundle\State\MeiliSearchStateProvider;
+use Survos\ApiGridBundle\Api\Filter\MultiFieldSearchFilter;
+use Survos\FieldBundle\Attribute\Field;
 use Survos\FieldBundle\Attribute\RouteIdentity;
 use Survos\FieldBundle\Entity\RouteIdentityTrait;
 use Survos\FieldBundle\Entity\RouteParametersInterface;
@@ -38,9 +42,12 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[UniqueEntity('primaryEmail')]
 #[ApiResource(
     shortName: 'member',
-//    operations: [new Get(), new Put(), new Delete(), new Patch(), new GetCollection()],
     operations: [new Get(), new Put(), new Delete(), new Patch(), new GetCollection(
-        provider: MeiliSearchStateProvider::class
+        parameters: [
+            'isLost' => new QueryParameter(filter: new ExactFilter(), property: 'isLost'),
+            'isLocalDoNotContact' => new QueryParameter(filter: new ExactFilter(), property: 'isLocalDoNotContact'),
+            'isDeceased' => new QueryParameter(filter: new ExactFilter(), property: 'isDeceased'),
+        ],
     )],
     normalizationContext: [
         'groups' => ['member.read', 'member_extended', 'member_main', 'rp']
@@ -51,8 +58,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 )]
 
 #[ApiFilter(MultiFieldSearchFilter::class, properties: ['prefix', 'classYear'])]
-#[ApiFilter(SortFilter::class, properties: ['classYear', 'localIdentifier'])]
+#[ApiFilter(OrderFilter::class, properties: ['classYear', 'localIdentifier'])]
 #[ApiFilter(FacetsFieldSearchFilter::class, properties: ['prefix','classYear', 'localIdentifier'])]
+#[ApiFilter(DirectoryCollectionMembershipFilter::class, properties: ['directoryCollectionSlug'])]
+#[ApiFilter(SearchFilter::class, properties: ['tags' => 'exact'])]
 
 #[Gedmo\Loggable]
 #[Groups(['member.read', 'search'])]
@@ -73,6 +82,7 @@ class Member implements Loggable, RouteParametersInterface
     #[Assert\Regex(pattern: '/^[a-z0-9\-\_]+$/i', htmlPattern: '[a-zA-Z0-9\-\_]+', match: true, message: 'Only alphanumeric characters, dashes and underscores are allowed.')]
     #[Groups(['member_main'])]
     #[Gedmo\Versioned]
+    #[Field(sortable: true, order: 10, width: '5rem')]
     private $localIdentifier;
 
     #[ORM\Column(type: 'string', nullable: true, length: 255, unique: true)]
@@ -86,6 +96,7 @@ class Member implements Loggable, RouteParametersInterface
     #[Assert\NotBlank]
     #[Groups(['member_main'])]
     #[Gedmo\Versioned]
+    #[Field(sortable: true, filterable: true, facet: true, order: 40)]
     private $status;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
@@ -133,6 +144,7 @@ class Member implements Loggable, RouteParametersInterface
     #[ORM\Column(type: 'integer', nullable: true)]
     #[Groups(['member_main'])]
     #[Gedmo\Versioned]
+    #[Field(searchable: true, sortable: true, filterable: true, facet: true, order: 50, width: '6rem')]
     private $classYear;
 
     #[ORM\Column(type: 'boolean', nullable: true)]
@@ -144,11 +156,13 @@ class Member implements Loggable, RouteParametersInterface
     #[Assert\Email]
     #[Groups(['member_main'])]
     #[Gedmo\Versioned]
+    #[Field(searchable: true, order: 60)]
     private $primaryEmail;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     #[Groups(['member_main'])]
     #[Gedmo\Versioned]
+    #[Field(order: 80)]
     private $primaryTelephoneNumber;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
@@ -169,11 +183,13 @@ class Member implements Loggable, RouteParametersInterface
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     #[Groups(['member_main'])]
     #[Gedmo\Versioned]
+    #[Field(filterable: true, facet: true, visible: false, order: 90)]
     private $mailingState;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     #[Groups(['member_main'])]
     #[Gedmo\Versioned]
+    #[Field(order: 90)]
     private $mailingPostalCode;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
@@ -209,6 +225,7 @@ class Member implements Loggable, RouteParametersInterface
     #[Assert\Regex(pattern: '/^https?\:\/\/(www\.)?facebook.com\/(.*)$/i', htmlPattern: 'https?://(www.)?facebook.com/.+', message: 'Please provide a Facebook URL')]
     #[Groups(['member_main'])]
     #[Gedmo\Versioned]
+    #[Field(sortable: false, order: 70)]
     private $facebookUrl;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
@@ -220,6 +237,7 @@ class Member implements Loggable, RouteParametersInterface
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     #[Groups(['member_main'])]
     #[Gedmo\Versioned]
+    #[Field(sortable: false, order: 20, width: '4rem')]
     private $photoUrl;
 
     #[ORM\Column(type: 'boolean', nullable: true)]
@@ -759,9 +777,21 @@ class Member implements Loggable, RouteParametersInterface
     }
 
     #[Groups(['member_main'])]
+    #[Field(sortable: false, order: 30, width: '16rem')]
     public function getDisplayName(): string
     {
         return $this->preferredName.' '.$this->lastName;
+    }
+
+    /**
+     * Fallback avatar when photoUrl is empty. Computed server-side (rather than
+     * calling the `gravatar()` Twig function from an api_grid <twig:block>) since
+     * that function isn't resolvable from within the component's rendering context.
+     */
+    #[Groups(['member_main'])]
+    public function getGravatarUrl(): string
+    {
+        return sprintf('https://www.gravatar.com/avatar/%s?size=100&default=mm', md5($this->primaryEmail ?: 'unknown-user@example.com'));
     }
 
     #[Groups(['member_main'])]

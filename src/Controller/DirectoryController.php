@@ -84,15 +84,15 @@ class DirectoryController extends AbstractController
             return $this->render('directory/directory.html.twig', [
                 'view_name' => $directoryCollection->getLabel(),
                 'view_description' => $directoryCollection->getDescription(),
-                'group_by' => $directoryCollection->getGroupBy(),
-                'data_source' => $this->generateUrl('directory_collection', ['slug' => $directoryCollection->getSlug(), '_format' => 'json']),
+                'apiGetCollectionUrl' => '/api/members',
+                'filter' => ['directoryCollectionSlug' => $directoryCollection->getSlug()],
                 'show_status' => $directoryCollection->getShowMemberStatus(),
             ]);
         }
 
         $members = $memberRepository->findByDirectoryCollection($directoryCollection, [
-            'limit' => $request->get('length', 100),
-            'offset' => $request->get('start', 0),
+            'limit' => $request->query->get('length', 100),
+            'offset' => $request->query->get('start', 0),
             'group_by' => $this->getGroupBy($directoryCollection),
             'sort_by' => $this->getSortBy($request),
             'sort_direction' => $this->getSortDirection($request),
@@ -114,12 +114,13 @@ class DirectoryController extends AbstractController
             return $this->render('directory/directory.html.twig', [
                 'view_name' => 'Lost',
                 'show_status' => true,
-                'data_source' => $this->generateUrl('lost', ['_format' => 'json']),
+                'apiGetCollectionUrl' => '/api/members',
+                'filter' => ['isLost' => true],
             ]);
         }
         $members = $memberRepository->findLost([
-            'limit' => $request->get('length', 100),
-            'offset' => $request->get('start', 0),
+            'limit' => $request->query->get('length', 100),
+            'offset' => $request->query->get('start', 0),
             'sort_by' => $this->getSortBy($request),
             'sort_direction' => $this->getSortDirection($request),
         ]);
@@ -140,12 +141,13 @@ class DirectoryController extends AbstractController
             return $this->render('directory/directory.html.twig', [
                 'view_name' => 'Do Not Contact',
                 'show_status' => true,
-                'data_source' => $this->generateUrl('do_not_contact', ['_format' => 'json']),
+                'apiGetCollectionUrl' => '/api/members',
+                'filter' => ['isLocalDoNotContact' => true],
             ]);
         }
         $members = $memberRepository->findDoNotContact([
-            'limit' => $request->get('length', 100),
-            'offset' => $request->get('start', 0),
+            'limit' => $request->query->get('length', 100),
+            'offset' => $request->query->get('start', 0),
             'sort_by' => $this->getSortBy($request),
             'sort_direction' => $this->getSortDirection($request),
         ]);
@@ -166,12 +168,13 @@ class DirectoryController extends AbstractController
             return $this->render('directory/directory.html.twig', [
                 'view_name' => 'Deceased',
                 'show_status' => true,
-                'data_source' => $this->generateUrl('deceased', ['_format' => 'json']),
+                'apiGetCollectionUrl' => '/api/members',
+                'filter' => ['isDeceased' => true],
             ]);
         }
         $members = $memberRepository->findDeceased([
-            'limit' => $request->get('length', 100),
-            'offset' => $request->get('start', 0),
+            'limit' => $request->query->get('length', 100),
+            'offset' => $request->query->get('start', 0),
             'sort_by' => $this->getSortBy($request),
             'sort_direction' => $this->getSortDirection($request),
         ]);
@@ -238,8 +241,10 @@ class DirectoryController extends AbstractController
     public function recentChanges(Request $request, EntityManagerInterface $entityManager)
     {
         $form = $this->createFormBuilder([
-            'since' => $request->get('since', new \DateTime(date('Y-m-d', strtotime('-30 day')))),
-            'exclude_inactive' => $request->get('exclude_inactive', true),
+            'since' => $request->query->has('since')
+                ? $request->query->get('since')
+                : new \DateTime(date('Y-m-d', strtotime('-30 day'))),
+            'exclude_inactive' => $request->query->get('exclude_inactive', true),
         ])
             ->add('since', DateType::class, [
                 'widget' => 'single_text',
@@ -277,7 +282,8 @@ class DirectoryController extends AbstractController
             return $this->render('directory/directory.html.twig', [
                 'view_name' => $tag->getTagName(),
                 'show_status' => true,
-                'data_source' => $this->generateUrl('tag', ['tagId' => $tagId, '_format' => 'json']),
+                'apiGetCollectionUrl' => '/api/members',
+                'filter' => ['tags' => $tag->getId()],
                 'messenger' => [
                     'key' => 'tag_id',
                     'value' => $tag->getId(),
@@ -285,8 +291,8 @@ class DirectoryController extends AbstractController
             ]);
         }
         $members = $memberRepository->findByTags([$tag], [
-            'limit' => $request->get('length', 100),
-            'offset' => $request->get('start', 0),
+            'limit' => $request->query->get('length', 100),
+            'offset' => $request->query->get('start', 0),
             'sort_by' => $this->getSortBy($request),
             'sort_direction' => $this->getSortDirection($request),
         ]);
@@ -370,11 +376,11 @@ class DirectoryController extends AbstractController
     #[Route(path: '/map-search', name: 'map_search', options: ['expose' => true])]
     public function mapSearch(MemberRepository $memberRepository, Request $request)
     {
-        $memberStatuses = $request->get('member_statuses', []);
+        $memberStatuses = $request->query->get('member_statuses', []);
         $members = $memberRepository->findMembersWithinRadius(
-            $request->get('latitude'),
-            $request->get('longitude'),
-            $request->get('radius'),
+            $request->query->get('latitude'),
+            $request->query->get('longitude'),
+            $request->query->get('radius'),
             ['member_statuses' => $memberStatuses]
         );
 
@@ -389,7 +395,7 @@ class DirectoryController extends AbstractController
     #[Route(path: '/map-data', name: 'map_data', options: ['expose' => true])]
     public function mapData(MemberRepository $memberRepository, Request $request)
     {
-        $memberStatuses = $request->get('member_statuses', []);
+        $memberStatuses = $request->query->get('member_statuses', []);
         $members = $memberRepository->findGeocodedAddresses(['member_statuses' => $memberStatuses]);
 
         return $this->json($members, 200, [], [
@@ -441,7 +447,7 @@ class DirectoryController extends AbstractController
 
     private function getSortBy(Request $request): string
     {
-        $order = $request->get('order');
+        $order = $request->query->get('order');
         if (isset($order[0]['column'], self::COLUMN_MAP[(int) $order[0]['column']])) {
             return self::COLUMN_MAP[(int) $order[0]['column']];
         }
@@ -451,7 +457,7 @@ class DirectoryController extends AbstractController
 
     private function getSortDirection(Request $request): string
     {
-        $order = $request->get('order');
+        $order = $request->query->get('order');
         if (isset($order[0]['dir']) && 'desc' === $order[0]['dir']) {
             return 'DESC';
         }
